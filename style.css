@@ -195,7 +195,7 @@ section *:nth-child(10) {
 }
 .praktik {
   position: fixed;
-  z-index: 999;
+  z-index: 998;
   transform: rotate(45deg);
   right: -7.25rem;
   top: 1.75rem;
