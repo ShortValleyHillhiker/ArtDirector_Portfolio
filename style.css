@@ -307,10 +307,37 @@ button:last-child {
 }
 .decarb-6 {
   background-size: contain;
-  background-color: #fff;
+  background-color: #e8eaed;
   background-image: url(img/Case1/mock_ani_flag.gif);
 }
 
+/* FUCKA UR */
+
+.botillskott-0 {
+  color: #e8eaed;
+  background-size: cover;
+  background-image: url(img/Case2/Intro.png);
+}
+.botillskott-0 button {
+  color: #e8eaed;
+  border: 1px solid #e8eaed;
+}
+.botillskott-1 {
+  background-size: cover;
+  background-image: url(img/Case2/mock_poster_1.png);
+}
+.botillskott-2 {
+  background-size: cover;
+  background-image: url(img/Case2/mock_poster_2.png);
+}
+.botillskott-3 {
+  background-size: cover;
+  background-image: url(img/Case2/mock_poster_3.png);
+}
+.botillskott-4 {
+  background-size: cover;
+  background-image: url(img/Case2/mock_poster_4.png);
+}
 .flex {
   display: flex;
   flex-direction: row;
