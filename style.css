@@ -168,12 +168,19 @@ section *:nth-child(10) {
     --hl-color: #d5a525;
     --ft-color: #131316;
   }
+  .about-me {
+    filter: brightness(115%);
+    opacity: 0.8;
+  }
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #131316;
     --hl-color: #d5a525;
     --ft-color: #e8eaed;
+  }
+  .about-me {
+    filter: brightness(85%);
   }
 }
 
