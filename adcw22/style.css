@@ -5,6 +5,9 @@ main {
   margin: auto;
   max-width: 780px;
 }
+.hide {
+  display: none;
+}
 img,
 .bajs {
   min-width: 150px;
@@ -16,7 +19,14 @@ img {
   box-shadow: 0px 11px 17px -10px rgba(0, 0, 0, 0.59);
   transition: cubic-bezier(0.06, 0.8, 0.35, 1.1) 0.66s;
 }
-
+.individuals.ad .show_ad,
+.individuals.cw .show_cw {
+  display: none;
+}
+.show_ad,
+.show_cw {
+  display: block;
+}
 img:nth-child(2n) {
   transform: rotate(-8deg) !important;
 }

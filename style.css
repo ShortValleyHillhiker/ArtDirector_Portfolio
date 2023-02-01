@@ -292,12 +292,18 @@ button:last-child {
 }
 
 /* fucka ur */
+.bredband-0 {
+  color: #131316;
+  background-size: cover;
+  background-image: url(img/Case3/Intro.png);
+}
 .decarb-0 {
   color: #131316;
   background-size: cover;
   background-image: url(img/Case1/Intro.gif);
 }
-.decarb-0 button {
+.decarb-0 button,
+.bredband-0 button {
   color: #131316;
   border: 1px solid #131316;
 }
@@ -416,4 +422,8 @@ span.case-content {
 
 .stack p {
   margin: 0;
+}
+
+.text-container h3 {
+  font-size: clamp(1.35rem, 10vw, 2.25rem);
 }
