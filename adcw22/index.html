@@ -162,6 +162,7 @@
       /* Style the buttons */
       .btn {
         outline: none;
+        background-color: rgba(0, 0, 0, 0);
         padding: 12px 16px;
         cursor: pointer;
         border-radius: 1000px;
@@ -197,162 +198,162 @@
           <img
             src="img_solo\adcw_0031_Amanda.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0030_Andrea.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0029_Angelica.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0028_Axel.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0027_Björn.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0026_Brian.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0025_Camilla.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0024_Christoffer.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0023_Donna.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0022_Eddie.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0021_Elina.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0020_Emelie.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0019_Emil.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0018_Evelyn.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0017_Fanny.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0016_Gabriel.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0015_Isabelle.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0014_Isolda.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0013_Jesper.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0012_Josefin.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0011_Josefine J.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0010_Joshua.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0009_Julius.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0008_Kattis.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0007_Lina.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0006_Linnéa.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0005_Nina.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0004_Nora.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0003_Sebastian.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
           <img
             src="img_solo\adcw_0002_Victor.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0001_William M.jpg"
             alt=""
-            class="column show_ad"
+            class="hidden column show_ad"
           />
           <img
             src="img_solo\adcw_0000_William T.jpg"
             alt=""
-            class="column show_cw"
+            class="hidden column show_cw"
           />
         </div>
       </section>
@@ -421,6 +422,20 @@
           this.className += " active";
         });
       }
+    </script>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          console.log(entry);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      });
+
+      const hiddenElements = document.querySelectorAll(".hidden");
+      hiddenElements.forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
