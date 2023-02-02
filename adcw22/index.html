@@ -13,6 +13,145 @@
     <link rel="stylesheet" href="adcw22\style.css" />
   </head>
   <body>
+    <style>
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+      }
+      main {
+        margin: auto;
+        max-width: 780px;
+      }
+      img,
+      .bajs {
+        min-width: 150px;
+        width: calc(36% - 4.15rem);
+        display: inline-block;
+      }
+      img {
+        display: none; /* Hide all elements by default */
+        -webkit-box-shadow: 0px 11px 17px -10px rgba(0, 0, 0, 0.59);
+        box-shadow: 0px 11px 17px -10px rgba(0, 0, 0, 0.59);
+        transition: cubic-bezier(0.06, 0.8, 0.35, 1.1) 0.66s;
+      }
+      img.show {
+        display: block;
+      }
+      img:nth-child(2n) {
+        transform: rotate(-8deg) !important;
+      }
+      img:nth-child(3n) {
+        transform: rotate(7deg) !important;
+      }
+      img:nth-child(5n) {
+        transform: rotate(-8deg);
+      }
+      img:nth-child(11n) {
+        transform: rotate(-3deg);
+      }
+      img:nth-child(13n) {
+        transform: rotate(2deg);
+      }
+      img:nth-child(17n) {
+        transform: rotate(9deg);
+      }
+
+      img:nth-child(2n + 1) {
+        transform: rotate(11deg);
+      }
+      img:nth-child(3n + 2) {
+        transform: rotate(18deg);
+      }
+      img:nth-child(5n + 3) {
+        transform: rotate(5deg);
+      }
+      img:nth-child(11n + 5) {
+        transform: rotate(-5deg);
+      }
+      img:nth-child(13n + 11) {
+        transform: rotate(-2deg);
+      }
+      img:nth-child(17n + 13) {
+        transform: rotate(2deg);
+      }
+      img:hover {
+        transform: scale(133%) rotate(0) !important;
+        z-index: 99;
+        cursor: pointer;
+      }
+      section {
+        min-height: 33vh;
+        width: 100%;
+      }
+      section:first-child {
+        min-height: 50vh;
+      }
+      section.intro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      section.individuals {
+        margin-bottom: 20vh;
+      }
+      h1 {
+        margin: 0.33rem 0;
+        font-weight: 900;
+        line-height: 95%;
+        font-size: clamp(2.95rem, 6.5vw, 5.75rem);
+        text-transform: uppercase;
+      }
+      p {
+        font-family: "Helvetica 45 Light", sans-serif;
+        margin: 0.33rem 0;
+        font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+        line-height: 125%;
+      }
+      section.individuals div,
+      section.teams div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: clamp(0.75rem, 2.5vw, 3rem);
+      }
+      @media only screen and (max-width: 600px),
+        only screen and (max-height: 600px) and (orientation: landscape) {
+        img,
+        .bajs {
+          width: calc(50% - 1rem);
+          min-width: 125px;
+          image-rendering: crisp-edges;
+        }
+      }
+
+      /* Style the buttons */
+      .btn {
+        border: none;
+        outline: none;
+        padding: 12px 16px;
+        background-color: white;
+        cursor: pointer;
+        border-radius: 1000px;
+      }
+
+      .btn:hover {
+        background-color: #ddd;
+      }
+
+      .btn.active {
+        background-color: #000;
+        color: white;
+      }
+
+      .teams div img {
+        display: block !important;
+      }
+      #myBtnContainer {
+        margin-bottom: 2rem;
+      }
+    </style>
+
     <main>
       <section class="intro">
         <div>
