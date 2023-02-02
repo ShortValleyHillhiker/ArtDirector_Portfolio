@@ -25,6 +25,9 @@
           background-color: #e8e8e8;
           color: #080808;
         }
+        img {
+          opacity: 0.85;
+        }
       }
 
       @media (prefers-color-scheme: light) {
@@ -131,7 +134,7 @@
         margin: 0.33rem 0;
         font-weight: 900;
         line-height: 95%;
-        font-size: clamp(2.95rem, 6.5vw, 5.75rem);
+        font-size: clamp(2.65rem, 6.5vw, 5.75rem);
         text-transform: uppercase;
       }
       p {
@@ -180,10 +183,8 @@
       <section class="intro">
         <div>
           <h1>En färgstark reklampaus</h1>
-          <p>
-            Här är ADCW22. Vi går ut på LIA april 2023, nedan finner du länkar
-            till alla våra portföljer.
-          </p>
+          <p>Det här är klass ADCW22 och vi går på LIA under april 2023.</p>
+          <p>nedan finner du länkar till alla våra portföljer.</p>
           <div id="myBtnContainer">
             <button class="btn active" onclick="filterSelection('all')">
               Show all
@@ -422,20 +423,6 @@
           this.className += " active";
         });
       }
-    </script>
-
-    <script>
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          console.log(entry);
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      });
-
-      const hiddenElements = document.querySelectorAll(".hidden");
-      hiddenElements.forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
