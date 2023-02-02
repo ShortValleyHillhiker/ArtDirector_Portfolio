@@ -26,10 +26,10 @@
           color: #080808;
         }
         img {
-          opacity: 0.85;
+          -webkit-filter: brightness(0.85);
+          filter: brightness(0.85);
         }
       }
-
       @media (prefers-color-scheme: light) {
         body {
           background-color: #fff;
@@ -58,52 +58,79 @@
         display: inline-block;
       }
       img {
-        display: none; /* Hide all elements by default */
+        display: none;
         -webkit-box-shadow: 0px 11px 17px -10px rgba(0, 0, 0, 0.59);
         box-shadow: 0px 11px 17px -10px rgba(0, 0, 0, 0.59);
+        -webkit-transition: cubic-bezier(0.06, 0.8, 0.35, 1.1) 0.66s;
+        -o-transition: cubic-bezier(0.06, 0.8, 0.35, 1.1) 0.66s;
         transition: cubic-bezier(0.06, 0.8, 0.35, 1.1) 0.66s;
       }
       img.show {
         display: block;
       }
       img:nth-child(2n) {
+        -webkit-transform: rotate(-8deg) !important;
+        -ms-transform: rotate(-8deg) !important;
         transform: rotate(-8deg) !important;
       }
       img:nth-child(3n) {
+        -webkit-transform: rotate(7deg) !important;
+        -ms-transform: rotate(7deg) !important;
         transform: rotate(7deg) !important;
       }
       img:nth-child(5n) {
+        -webkit-transform: rotate(-8deg);
+        -ms-transform: rotate(-8deg);
         transform: rotate(-8deg);
       }
       img:nth-child(11n) {
+        -webkit-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
         transform: rotate(-3deg);
       }
       img:nth-child(13n) {
+        -webkit-transform: rotate(2deg);
+        -ms-transform: rotate(2deg);
         transform: rotate(2deg);
       }
       img:nth-child(17n) {
+        -webkit-transform: rotate(9deg);
+        -ms-transform: rotate(9deg);
         transform: rotate(9deg);
       }
-
       img:nth-child(2n + 1) {
+        -webkit-transform: rotate(11deg);
+        -ms-transform: rotate(11deg);
         transform: rotate(11deg);
       }
       img:nth-child(3n + 2) {
+        -webkit-transform: rotate(18deg);
+        -ms-transform: rotate(18deg);
         transform: rotate(18deg);
       }
       img:nth-child(5n + 3) {
+        -webkit-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
         transform: rotate(5deg);
       }
       img:nth-child(11n + 5) {
+        -webkit-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
         transform: rotate(-5deg);
       }
       img:nth-child(13n + 11) {
+        -webkit-transform: rotate(-2deg);
+        -ms-transform: rotate(-2deg);
         transform: rotate(-2deg);
       }
       img:nth-child(17n + 13) {
+        -webkit-transform: rotate(2deg);
+        -ms-transform: rotate(2deg);
         transform: rotate(2deg);
       }
       img:hover {
+        -webkit-transform: scale(133%) rotate(0) !important;
+        -ms-transform: scale(133%) rotate(0) !important;
         transform: scale(133%) rotate(0) !important;
         z-index: 99;
         cursor: pointer;
@@ -116,14 +143,19 @@
         min-height: 50vh;
       }
       section.intro {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
       }
       .intro * {
         margin: 1rem 0;
       }
-
       .intro *:last-child {
         margin-bottom: 0;
       }
@@ -145,10 +177,20 @@
       }
       section.individuals div,
       section.teams div {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         gap: clamp(0.75rem, 2.5vw, 3rem);
       }
@@ -161,8 +203,6 @@
           image-rendering: crisp-edges;
         }
       }
-
-      /* Style the buttons */
       .btn {
         outline: none;
         background-color: rgba(0, 0, 0, 0);
@@ -170,7 +210,6 @@
         cursor: pointer;
         border-radius: 1000px;
       }
-
       .teams div img {
         display: block !important;
       }
