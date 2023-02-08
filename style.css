@@ -297,6 +297,11 @@ button:last-child {
   background-size: cover;
   background-image: url(img/Case3/intro.png);
 }
+.matsvinn-0 {
+  color: #e8eaed;
+  background-size: cover;
+  background-image: url(img/Case4/0_intro.png);
+}
 .decarb-0 {
   color: #131316;
   background-size: cover;
@@ -312,7 +317,8 @@ button:last-child {
   background-size: cover;
   background-image: url(img/Case2/Intro.png);
 }
-.botillskott-0 button {
+.botillskott-0 button,
+.matsvinn-0 button {
   color: #e8eaed;
   border: 1px solid #e8eaed;
 }
