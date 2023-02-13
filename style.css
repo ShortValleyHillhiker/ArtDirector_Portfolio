@@ -298,7 +298,7 @@ button:last-child {
   background-image: url(img/Case3/intro.png);
 }
 .matsvinn-0 {
-  color: #e8eaed;
+  color: #131316;
   background-size: cover;
   background-image: url(img/Case4/0_intro.png);
 }
@@ -308,17 +308,21 @@ button:last-child {
   background-image: url(img/Case1/Intro.gif);
 }
 .decarb-0 button,
-.bredband-0 button {
+.bredband-0 button,
+.matsvinn-0 button {
   color: #131316;
   border: 1px solid #131316;
+  background-color: #e8eaed;
+}
+.matsvinn-0 button {
+  background-color: #e8eaed;
 }
 .botillskott-0 {
   color: #e8eaed;
   background-size: cover;
   background-image: url(img/Case2/Intro.png);
 }
-.botillskott-0 button,
-.matsvinn-0 button {
+.botillskott-0 button {
   color: #e8eaed;
   border: 1px solid #e8eaed;
 }
