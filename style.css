@@ -124,7 +124,8 @@ footer {
 }
 .small-spacer {
   display: block;
-  min-height: 20vh;
+  height: 20vh;
+  min-height: 200px;
 }
 small {
   display: block;
@@ -316,6 +317,8 @@ button:last-child {
   background-size: cover;
   background-image: url(img/Case1/Intro.gif);
 }
+
+.mock-0 button,
 .decarb-0 button,
 .bredband-0 button,
 .matsvinn-0 button,
