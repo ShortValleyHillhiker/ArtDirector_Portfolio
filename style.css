@@ -125,7 +125,6 @@ footer {
 .small-spacer {
   display: block;
   height: 20vh;
-  min-height: 200px;
 }
 small {
   display: block;
@@ -318,7 +317,6 @@ button:last-child {
   background-image: url(img/Case1/Intro.gif);
 }
 
-.mock-0 button,
 .decarb-0 button,
 .bredband-0 button,
 .matsvinn-0 button,
@@ -326,6 +324,13 @@ button:last-child {
   color: #131316;
   border: 1px solid #131316;
 }
+
+.mock-0 button {
+  background-color: var(--hl-color);
+  color: #131316;
+  border: 1px solid #131316;
+}
+
 .botillskott-0 {
   color: #e8eaed;
   background-size: cover;
