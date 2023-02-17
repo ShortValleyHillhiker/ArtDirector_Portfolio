@@ -295,6 +295,12 @@ button:last-child {
   background-size: cover;
   background-position: center;
 }
+.mock-0 {
+  color: #131316;
+  background-image: url(img/mockups.png);
+  background-size: cover;
+  background-position: center;
+}
 .bredband-0 {
   color: #131316;
   background-size: cover;
