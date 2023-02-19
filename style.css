@@ -302,7 +302,7 @@ button:last-child {
   background-position: center;
 }
 .bredband-0 {
-  color: #131316;
+  color: #e8eaed;
   background-size: cover;
   background-image: url(img/Case3/intro.png);
 }
@@ -318,7 +318,6 @@ button:last-child {
 }
 
 .decarb-0 button,
-.bredband-0 button,
 .matsvinn-0 button,
 .blandat-0 button {
   color: #131316;
@@ -328,7 +327,7 @@ button:last-child {
 .mock-0 button {
   background-color: var(--hl-color);
   color: #131316;
-  border: 1px solid #131316;
+  border: none;
 }
 
 .botillskott-0 {
@@ -336,6 +335,7 @@ button:last-child {
   background-size: cover;
   background-image: url(img/Case2/Intro.png);
 }
+.bredband-0 button,
 .botillskott-0 button {
   color: #e8eaed;
   border: 1px solid #e8eaed;
