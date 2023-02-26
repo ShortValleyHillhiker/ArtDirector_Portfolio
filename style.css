@@ -23,12 +23,6 @@
 body {
   min-width: 375px;
 }
-#two,
-#three {
-  height: 1080px !important;
-  min-height: auto;
-}
-
 h1,
 h2 {
   margin: 0;
@@ -347,7 +341,8 @@ button:last-child {
   border: 1px solid #e8eaed;
 }
 
-@media only screen and (max-width: 600px), only screen and (max-height: 600px) and (orientation: landscape) {
+@media only screen and (max-width: 600px),
+  only screen and (max-height: 600px) and (orientation: landscape) {
   .case-container h3 {
     max-width: 200px;
   }

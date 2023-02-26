@@ -72,8 +72,94 @@
   </head>
   <body>
     <main class="temp">
-      <span class="section-spacer"></span>
       <!-- Intro -->
+      <section id="home">
+        <div class="praktik"><p>PRAKTIK SÖKES</p></div>
+        <span>
+          <h1>
+            Victor <br />
+            Vennerström
+          </h1>
+          <small>Blivande art director</small>
+          <hr />
+          <p class="hidden">Varmt välkommen ska du vara till min portfölj!</p>
+          <p class="hidden">
+            Hemsidan är hårdkodad av mig. Hittar du något som inte ser bra ut
+            eller än värre, inte fungerar under ditt besök är du <b>mer</b> än
+            välkommen att höra av dig till mig!
+          </p>
+          <span>
+            <button onclick="scrollOne()" class="hidden">Om mig</button>
+            <button onclick="scrollTwo()" class="hidden">Case</button>
+            <a
+              class="hidden"
+              href="https://www.instagram.com/victorvennerstrom/"
+              target="_blank"
+            >
+              <button class="inverted" name="instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </button>
+            </a>
+            <a
+              class="hidden"
+              href="https://www.linkedin.com/in/victor-vennerstrom/"
+              target="_blank"
+            >
+              <button class="inverted" name="linkedin">
+                <i class="fa-brands fa-linkedin"></i>
+              </button>
+            </a>
+          </span>
+        </span>
+        <p id="down" style="margin: 0">&#8595;</p>
+      </section>
+      <span class="section-spacer"></span>
+      <section id="one">
+        <img class="about-me" src="img/me.png" alt="" />
+        <span>
+          <h2>Hallå där!</h2>
+          <hr />
+          <p class="hidden">
+            Victor var namnet. Koff heter hunden. Uppväxt med fötterna på
+            västkustens klippor men med hjärtat i Norrbottens skärgård.
+          </p>
+          <p class="hidden">
+            Jag är en formstark person som alltid söker nya kreativa utlopp,
+            brukar skämtsamt säga att det slutgiltiga målet är att bli en
+            fullservicebyrå på två ben. När jag inte spelar indierock på ukulele
+            sysslar jag med webbutveckling, motion graphics, illustration och
+            världsbyggande.
+          </p>
+          <p class="hidden">
+            Kul att ses; snart ses vi i person; väl <b>online</b>-mött!
+            <i
+              style="
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                color: var(--hl-color);
+              "
+              class="fa-solid fa-hand-peace"
+            ></i>
+          </p>
+        </span>
+        <span>
+          <a
+            class="hidden"
+            href="https://www.instagram.com/victorvennerstrom/"
+            target="_blank"
+          >
+            <button class="inverted">Instagram</button>
+          </a>
+          <a
+            class="hidden right"
+            href="https://www.linkedin.com/in/victor-vennerstrom/"
+            target="_blank"
+          >
+            <button class="inverted">Linkedin</button>
+          </a>
+        </span>
+      </section>
+      <span class="section-spacer"></span>
       <section id="two" class="grid case">
         <div class="hidden matsvinn-0">
           <span class="case-container">
@@ -113,7 +199,7 @@
         </div>
       </section>
       <span class="section-spacer"></span>
-      <section id="three" class="grid type-two">
+      <section class="grid type-two">
         <div class="hidden right">
           <span class="case-container">
             <span>
@@ -138,12 +224,12 @@
           </span>
         </div>
       </section>
-      <span class="small-spacer"></span>
       <footer>
         <span>
           <p>victor@vennerstrom.se</p>
           <small>© 2023</small>
         </span>
+        <button onclick="scrollHome()" class="hidden">Till toppen ↑</button>
       </footer>
     </main>
   </body>
