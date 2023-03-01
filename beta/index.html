@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Victor Vennerström</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="beta/style.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,8 +19,8 @@
     <main>    
       <!--  -->
       <span class="test"></span>
-      <section id="home" style="scroll-snap-align: unset">
-        <div id="intro">
+      <section style="scroll-snap-align: unset">
+        <div id="trial">
           <h1 class="display-ft home-intro">
             Victor <br />
             Vennerström
@@ -36,7 +36,7 @@
             <button data-modal="modal-one" class="hidden2">Kontakt</button>
           </nav>
 
-          <div class="modal " id="modal-one">
+          <div class="modal" id="modal-one">
             <div class="modal-container">
               <form>
                 <h2 class="display-ft">Hör av dig!</h2>
@@ -49,14 +49,14 @@
                   <textarea name="message" id="message" cols="52" rows="7" placeholder="Meddelande"></textarea>
                   <button class="hidden1 right">Skicka</button>
                 </div>
-                <button class="modal-close modal-exit">X</button>
+                <button class="modal-close modal-exit"></button>
               </form>
             </div>
           </div>
         </div>
       </section>
       <span class="spacer"></span>
-      <section id="case">
+      <section id="till-case">
         <div class="case-grid">
           <div class="ar1 hidden2">
             <span>
@@ -121,7 +121,7 @@
       </section>
       <span class="test"></span>
       <span class="spacer"></span>
-      <section id="om-mig">
+      <section id="till-om-mig">
         <div>
           <h2 class="display-ft">Om mig</h2>
           <hr />
@@ -168,14 +168,14 @@
           </ul>
         </div>
       </section>
-      <footer class="home-intro">
+      <footer>
         <div>
           <p><b>Victor Vennerström</b></p>
           <p>victor@vennerstrom.se</p>
           <p>© 2023</p>
         </div>
         <div>
-          <a onclick="scrollHome()" class="hidden1 right">Till toppen ↑</a>
+          <a onclick="trialScroll()">Testa denna ist ↑</a>
         </div>
       </footer>
       <!--  -->
@@ -183,8 +183,8 @@
     </main>
 
     <!--  -->
-    <script src="nav.js" defer></script>
-    <script src="onclick.js" defer></script>
+    <script src="beta/nav.js" defer></script>
+    <script src="beta/onclick.js" defer></script>
     <script>
       const animateInTwo = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {

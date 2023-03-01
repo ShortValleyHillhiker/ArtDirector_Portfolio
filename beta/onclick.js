@@ -15,17 +15,17 @@ modals.forEach(function (trigger) {
   });
 });
 
+function trialScroll() {
+  var element = document.getElementById("trial");
+  element.scrollIntoView();
+}
+
 function scrollOne() {
-  var element = document.getElementById("case");
+  var element = document.getElementById("till-case");
   element.scrollIntoView();
 }
 
 function scrollTwo() {
-  var element = document.getElementById("om-mig");
-  element.scrollIntoView();
-}
-
-function scrollHome() {
-  var element = document.getElementById("home");
+  var element = document.getElementById("till-om-mig");
   element.scrollIntoView();
 }

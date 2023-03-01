@@ -164,7 +164,7 @@ hr {
   margin: 0.25rem 0 1rem -0.25rem;
   border: 1px solid var(--hl-color);
 }
-#intro {
+#trial {
   padding-top: 20vh;
 }
 nav {
@@ -432,6 +432,7 @@ label span {
   position: relative;
 }
 .modal-close {
+  --size: 2rem;
   position: absolute;
   outline: none;
   appearance: none;
@@ -442,7 +443,24 @@ label span {
   cursor: pointer;
   top: var(--padding);
   right: var(--padding);
+  width: var(--size);
+  height: var(--size);
 }
+.modal-close::after,
+.modal-close::before {
+  content: " ";
+  display: block;
+  border-bottom: var(--brdr);
+  width: 100%;
+}
+
+.modal-close::after {
+  transform: rotate(45deg);
+}
+.modal-close::before {
+  transform: rotate(-45deg);
+}
+
 .marquee__content > li span {
   -webkit-text-fill-color: var(--hl-color);
   -webkit-text-stroke-width: 1px;
@@ -457,6 +475,7 @@ form .form-details {
 
 form .form-details input[type="text"],
 form .form-details input[type="email"] {
+  width: 100%;
   grid-column: span 1;
   padding: var(--padding);
   color: var(--ft-color);
