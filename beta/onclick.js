@@ -26,6 +26,6 @@ function scrollTwo() {
 }
 
 function scrollHome() {
-  var element = document.getElementById("intro");
+  var element = document.getElementById("home");
   element.scrollIntoView();
 }
