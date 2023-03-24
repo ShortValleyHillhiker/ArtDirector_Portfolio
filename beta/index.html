@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Victor Vennerström</title>
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="beta/style.css" /> <!-- TEST -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet" />
@@ -31,7 +31,8 @@
                </nav>
                <div class="modal" id="modal-one">
                   <div class="modal-container">
-                     <form>
+
+                     <form  action="https://formspree.io/f/xgebyzeq"method="POST">
                         <h2 class="display-ft">Hör av dig!</h2>
                         <hr />
                         <p style="margin-bottom: 1rem;" class="hidden1">Skicka ett meddelande så hör jag av mig!</p>
@@ -39,10 +40,12 @@
                            <input type="text" name="name" id="name" placeholder="Namn" required>
                            <input type="email" name="email" id="email" placeholder="Epost" required>
                            <textarea name="message" id="message" cols="52" rows="7" placeholder="Meddelande"></textarea>
+                           <input type="hidden" name="_next" value="/beta/thanks.html" />
                            <button class="hidden1 right">Skicka</button>
                         </div>
                         <button class="modal-close modal-exit"></button>
                      </form>
+
                   </div>
                </div>
             </div>
@@ -70,6 +73,15 @@
                   <small class="hidden2">Lorem ipsum dolor sit amet</small>
                </span>
                <a href="#" class="inverted hidden2">&#x2192; Case</a>
+            </div> <div class="ar3 hidden2">
+               <div class="marquee">
+                  <ul class="marquee__content">
+                     <li><span>KLICKA HÄR FÖR mockups</span></li>
+                  </ul>
+                  <ul class="marquee__content" aria-hidden="true">
+                     <li><span>KLICKA HÄR FÖR mockups</span></li>
+                  </ul>
+               </div>
             </div>
             <div class="ar2 hidden2">
                <span>
@@ -99,16 +111,7 @@
                </span>
                <a href="#" class="inverted hidden2">&#x2192; Case</a>
             </div>
-            <div class="ar3 hidden2">
-               <div class="marquee">
-                  <ul class="marquee__content">
-                     <li><span>KLICKA HÄR FÖR mockups</span></li>
-                  </ul>
-                  <ul class="marquee__content" aria-hidden="true">
-                     <li><span>KLICKA HÄR FÖR mockups</span></li>
-                  </ul>
-               </div>
-            </div>
+         
          </section>
          <span class="test"></span>
          <span class="spacer"></span>
@@ -178,8 +181,8 @@
          <div id="gradient-btm"></div>
       </main>
       
-      <script src="nav.js" defer></script>
-      <script src="onclick.js" defer></script>
+      <script src="beta/nav.js" defer></script>
+      <script src="beta/onclick.js" defer></script>
       <script>
          const animateInTwo = new IntersectionObserver((entries) => {
            entries.forEach((entry) => {

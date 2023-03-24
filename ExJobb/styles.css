@@ -1,0 +1,240 @@
+/*  RESET  */
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/*  STRUCTURE  */
+body {
+  background: var(--bg-color);
+  color: var(--ft-color);
+  height: 100vh;
+}
+main {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(300px);
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /*Typography*/
+  font-family: "halyard-display", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  font-size: 1rem;
+  line-height: var(--lh-small);
+}
+section {
+  scroll-snap-align: start;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+  position: relative;
+}
+
+.content-container {
+  width: 93vw;
+  max-width: 37.5rem;
+}
+
+/*  LOREM  */
+:root {
+  --marker: #d5a525;
+  --lh-small: 1.125;
+  --lh-display: 0.975;
+  --lh-default: 1.4;
+
+  --staggering: 0.045s;
+  --transition: cubic-bezier(0.92, 0.18, 0.05, 0.86) 0.33s;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: #e8eaed;
+    --bg-color2: #13131650;
+    --hl-color: #d5a525;
+    --ft-color: #131316;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #131316;
+    --bg-color2: #e8eaed50;
+    --hl-color: #d5a525;
+    --ft-color: #e8eaed;
+  }
+}
+*::selection {
+  background-color: var(--hl-color);
+  color: #131316;
+}
+:is(*):is(.display-ft) {
+  font-family: "Modak", cursive;
+  font-weight: 400;
+  line-height: var(--lh-display);
+}
+:is(h1, h2, h3):not(.display-ft) {
+  margin-bottom: 0.5rem;
+}
+h1.display-ft {
+  font-size: clamp(2.35rem, 10vw, 3.85rem);
+}
+h2.display-ft {
+  font-size: clamp(1.5rem, 6vw, 2.85rem);
+}
+p,
+li {
+  font-size: clamp(0.875rem, 3vw, 1rem);
+  white-space: pre-wrap;
+  line-height: var(--lh-default);
+}
+li::marker,
+.hl,
+p strong {
+  font-weight: 500;
+}
+li:has(span.hl)::marker,
+.hl {
+  color: var(--hl-color);
+}
+ol,
+ul {
+  margin-left: 2rem;
+}
+p {
+  margin-bottom: 1rem;
+}
+.pagination {
+  transition-delay: 0.33s !important;
+  display: block;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: clamp(0.75rem, 2vw, 0.8rem);
+}
+.pagination span {
+  border: 1px solid var(--ft-color);
+  padding: 0.2rem 0.55rem;
+}
+/*  INTROSIDA  */
+#intro p {
+  margin: 0;
+}
+#intro hr {
+  border: 1px solid var(--hl-color);
+  margin: 0.66rem 0;
+  width: 1rem;
+}
+/*  ANIMATION */
+.hidden {
+  transition: var(--transition);
+  opacity: 0;
+  filter: blur(5px);
+  transition: 0.45s cubic-bezier(0.06, 0.8, 0.35, 1.1);
+  transform: translateX(-100px);
+}
+.hidden.right {
+  transform: translateX(100px);
+}
+.show,
+.show.right {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+.pagination.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(0);
+}
+.pagination.show {
+  opacity: 1;
+  filter: blur(0);
+}
+:is(.hidden):nth-child(2) {
+  transition-delay: calc(var(--staggering) * 1);
+}
+:is(.hidden):nth-child(3) {
+  transition-delay: calc(var(--staggering) * 2);
+}
+:is(.hidden):nth-child(4) {
+  transition-delay: calc(var(--staggering) * 3);
+}
+:is(.hidden):nth-child(5) {
+  transition-delay: calc(var(--staggering) * 4);
+}
+:is(.hidden):nth-child(6) {
+  transition-delay: calc(var(--staggering) * 5);
+}
+:is(.hidden):nth-child(7) {
+  transition-delay: calc(var(--staggering) * 6);
+}
+:is(.hidden):nth-child(8) {
+  transition-delay: calc(var(--staggering) * 7);
+}
+:is(.hidden):nth-child(9) {
+  transition-delay: calc(var(--staggering) * 8);
+}
+:is(.hidden):nth-child(10) {
+  transition-delay: calc(var(--staggering) * 9);
+}
+:is(.hidden):nth-child(11) {
+  transition-delay: calc(var(--staggering) * 10);
+}
+:is(.hidden):nth-child(12) {
+  transition-delay: calc(var(--staggering) * 11);
+}
+/**/
+#heart {
+  fill: var(--hl-color);
+}
+svg {
+  z-index: -1;
+  position: relative;
+  animation: heartbeat 1.5s infinite;
+}
+@keyframes heartbeat {
+  0% {
+    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
+  }
+  15% {
+    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(22%);
+  }
+  25% {
+    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
+  }
+  40% {
+    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(22%);
+  }
+  80% {
+    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
+  }
+  100% {
+    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
+  }
+}

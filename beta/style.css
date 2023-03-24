@@ -192,7 +192,6 @@ section {
   -ms-flex-direction: column;
   flex-direction: column;
   padding-top: 10vh;
-  padding-bottom: 8vh;
   min-height: 100vh;
 }
 .spacer {
@@ -389,7 +388,7 @@ div.ar1 a {
 }
 .ar3 {
   padding: var(--padding) 0 !important;
-  background-color: var(--hl-color);
+  background-color: var(--bg-color);
 }
 ul {
   padding: 0;
@@ -590,7 +589,7 @@ label span {
   transform: rotate(-45deg);
 }
 .marquee__content > li span {
-  -webkit-text-fill-color: var(--hl-color);
+  -webkit-text-fill-color: var(--bg-color);
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--ft-color);
 }
@@ -723,4 +722,8 @@ form .form-details button {
   -webkit-transition-delay: calc(var(--staggering) * 11);
   -o-transition-delay: calc(var(--staggering) * 11);
   transition-delay: calc(var(--staggering) * 11);
+}
+#till-case,
+#till-om-mig {
+  padding-bottom: 16vh;
 }
