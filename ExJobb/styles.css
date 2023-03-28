@@ -52,6 +52,7 @@ section {
   display: grid;
   align-items: center;
   justify-content: center;
+  justify-items: center;
   height: 100vh;
   width: 100vw;
   padding: 1rem;
@@ -60,7 +61,7 @@ section {
 
 .content-container {
   width: 93vw;
-  max-width: 37.5rem;
+  max-width: 32.5rem;
 }
 
 /*  LOREM  */
@@ -102,10 +103,16 @@ section {
   margin-bottom: 0.5rem;
 }
 h1.display-ft {
-  font-size: clamp(2.35rem, 10vw, 3.85rem);
+  font-size: clamp(2.35rem, 9vw, 3.65rem);
 }
 h2.display-ft {
   font-size: clamp(1.5rem, 6vw, 2.85rem);
+}
+h2 {
+  font-size: clamp(1.65rem, 8vw, 1.95rem);
+}
+h3 {
+  font-size: clamp(1.35rem, 6vw, 1.55rem);
 }
 p,
 li {
@@ -122,9 +129,32 @@ li:has(span.hl)::marker,
 .hl {
   color: var(--hl-color);
 }
+ol > :is(ol, ul) {
+  margin-left: 1.5rem;
+}
+ol > :is(ol, ul)::marker {
+  content: counters(list-item, ".") " ";
+}
 ol,
 ul {
   margin-left: 2rem;
+}
+.quote {
+  font-size: clamp(1rem, 2.25vw, 2em);
+  line-height: 0.96;
+  font-weight: 900;
+  position: relative;
+  z-index: -1;
+}
+.quote::before {
+  content: " “ ";
+  position: absolute;
+  transform: translate(-3rem, -2.75rem);
+  color: var(--hl-color);
+  opacity: 0.66;
+  z-index: -1;
+  display: block;
+  font-size: 8rem;
 }
 p {
   margin-bottom: 1rem;
@@ -141,6 +171,14 @@ p {
   border: 1px solid var(--ft-color);
   padding: 0.2rem 0.55rem;
 }
+
+.pagination.dark span {
+  border: 1px solid var(--bg-color);
+  padding: 0.2rem 0.55rem;
+}
+.pagination.dark {
+  color: var(--bg-color);
+}
 /*  INTROSIDA  */
 #intro p {
   margin: 0;
@@ -156,10 +194,10 @@ p {
   opacity: 0;
   filter: blur(5px);
   transition: 0.45s cubic-bezier(0.06, 0.8, 0.35, 1.1);
-  transform: translateX(-100px);
+  transform: translateX(-6rem);
 }
 .hidden.right {
-  transform: translateX(100px);
+  transform: translateX(6rem);
 }
 .show,
 .show.right {
@@ -170,10 +208,11 @@ p {
 .pagination.hidden {
   opacity: 0;
   filter: blur(5px);
-  transform: translateX(0);
+  transform: translateX(1rem);
 }
 .pagination.show {
   opacity: 1;
+  transform: translateX(0);
   filter: blur(0);
 }
 :is(.hidden):nth-child(2) {
@@ -213,28 +252,93 @@ p {
 #heart {
   fill: var(--hl-color);
 }
-svg {
+#heart-svg {
+  transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
   z-index: -1;
   position: relative;
-  animation: heartbeat 1.5s infinite;
+  animation: heartbeat 1.15s infinite;
 }
 @keyframes heartbeat {
   0% {
     transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
   }
-  15% {
-    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(22%);
+  10% {
+    transform: translate(-0%, -83.5%) rotate(9.5deg) scale(28%);
   }
-  25% {
-    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
+  29% {
+    transform: translate(-0%, -83.5%) rotate(13.5deg) scale(20%);
   }
-  40% {
-    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(22%);
+  44% {
+    transform: translate(-0%, -83.5%) rotate(10.5deg) scale(27.5%);
   }
-  80% {
-    transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
+  59% {
+    transform: translate(-0%, -83.5%) rotate(13.5deg) scale(22%);
+  }
+  79% {
+    transform: translate(-0%, -83.5%) rotate(11.5deg) scale(25%);
   }
   100% {
     transform: translate(-0%, -83.5%) rotate(12.5deg) scale(25%);
   }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+a {
+  text-align: center;
+  --clr: var(--bg-color);
+  text-decoration: none;
+  color: var(--clr);
+  font-size: 2rem;
+  border: 1px solid var(--clr);
+  padding: 1.1rem 1.75rem 1.3rem;
+  border-radius: 10rem;
+  transition: var(--transition);
+  font-weight: 700;
+}
+a:hover,
+a:focus {
+  --clr: var(--ft-color);
+  background-color: var(--bg-color);
+  outline: none;
+  color: var(--clr);
+  border: 1px solid var(--bg-color);
+}
+
+.pp {
+  width: 100%;
+  aspect-ratio: 1;
+  filter: saturate(0) sepia(66%) hue-rotate(332deg);
+}
+table {
+  border-collapse: collapse;
+  border-radius: 12px;
+  border-style: hidden;
+  box-shadow: 0 0 0 1px var(--ft-color);
+  overflow: hidden;
+
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+}
+
+thead {
+  background-color: var(--ft-color);
+  color: var(--bg-color);
+}
+
+th,
+td {
+  border: 1px solid var(--ft-color);
+
+  max-width: 300px;
+  padding: 15px;
+  line-height: 20px;
+}
+
+td {
+  font-size: 14px;
 }
