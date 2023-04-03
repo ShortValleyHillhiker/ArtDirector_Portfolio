@@ -205,6 +205,7 @@ section *:nth-child(10) {
   z-index: -1;
 }
 .praktik {
+  display: none;
   position: fixed;
   z-index: 998;
   transform: rotate(45deg);
@@ -341,8 +342,7 @@ button:last-child {
   border: 1px solid #e8eaed;
 }
 
-@media only screen and (max-width: 600px),
-  only screen and (max-height: 600px) and (orientation: landscape) {
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) and (orientation: landscape) {
   .case-container h3 {
     max-width: 200px;
   }
