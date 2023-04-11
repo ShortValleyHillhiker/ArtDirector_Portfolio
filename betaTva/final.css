@@ -1,0 +1,116 @@
+:root {
+  --c-bg: #131316;
+  --c-ft: #e8eaed;
+  --c-hl: #d5a525;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "halyard-display", sans-serif;
+  color: var(--c-ft);
+  background-color: var(--c-bg);
+}
+main,
+footer {
+  padding: 1rem;
+}
+/* section {
+  display: grid;
+} */
+@media (prefers-color-scheme: light) {
+  :root {
+    --c-bg: #e8eaed;
+    --c-ft: #131316;
+    --c-hl: #d5a525;
+  }
+}
+[hl="true"] {
+  color: var(--c-hl);
+}
+.intro-parent {
+  transition: 0.25s cubic-bezier(0.87, 0, 0.04, 1);
+  transform: translateY(50vh);
+  position: relative;
+}
+.intro-top {
+  top: 0;
+  position: absolute;
+  transform: translateY(-100%);
+}
+.bot-btn,
+.intro-parent span,
+.hidden {
+  transition: 0.25s cubic-bezier(0.87, 0, 0.04, 1);
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(30%);
+  filter: blur(0.33rem);
+}
+.bot-btn.active,
+.intro-parent span.active,
+.hidden.show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+.intro-top * {
+  line-height: 0.95;
+  font-size: clamp(4rem, 6vw, 2.5rem);
+  font-weight: 400;
+}
+.intro-bot {
+  line-height: 0.95;
+}
+.intro-bot *,
+.lft {
+  font-size: clamp(2.25rem, 6vw, 3rem);
+  font-weight: 100;
+}
+.bot-btn {
+  margin-top: 0.25rem;
+  width: auto;
+  display: block;
+  animation: 1.25s bounce infinite cubic-bezier(0.87, 0, 0, 1);
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(35%);
+    filter: blur(0.5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@media screen and (min-width: 1000px) {
+  section {
+    width: clamp(680px, 100vw, 30%);
+    margin: auto;
+  }
+}
+.abt p:not(.lft) {
+  margin-top: 1rem;
+}
+.hidden.show:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.hidden.show:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.hidden.show:nth-child(4) {
+  transition-delay: 0.24s;
+}
+.hidden.show:nth-child(5) {
+  transition-delay: 0.32s;
+}
+.hidden.show:nth-child(6) {
+  transition-delay: 0.4s;
+}
+.hidden.show:nth-child(7) {
+  transition-delay: 0.48s;
+}
