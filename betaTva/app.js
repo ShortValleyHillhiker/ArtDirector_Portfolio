@@ -1,12 +1,12 @@
-const firstVisit = localStorage.getItem("visited");
+const firstVisit = sessionStorage.getItem("visited");
 
-let kiss = document.querySelector(".intro-top");
-let bajs = document.querySelector(".intro-parent");
+let iT = document.querySelector(".intro-top");
+let iP = document.querySelector(".intro-parent");
 let testIgen = document.querySelector(".testIgen");
 let test = document.querySelector(".test");
-let botStartSpan = document.querySelectorAll(".bot-mid span");
-let botEndSpan = document.querySelectorAll(".bot-head span");
-let batten = document.querySelector(".bot-btn");
+let bmSpan = document.querySelectorAll(".bot-mid span");
+let bhSpan = document.querySelectorAll(".bot-head span");
+let bb = document.querySelector(".bot-btn");
 let body = document.querySelector("body");
 let skitande = document.querySelector(".skitande");
 
@@ -15,7 +15,7 @@ if (firstVisit == null) {
   window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       setTimeout(() => {
-        botStartSpan.forEach((span, idx) => {
+        bmSpan.forEach((span, idx) => {
           setTimeout(() => {
             span.classList.add("active");
           }, (idx + 1) * 155);
@@ -30,47 +30,48 @@ if (firstVisit == null) {
       }, 175);
 
       setTimeout(() => {
-        botEndSpan.forEach((span, idx) => {
+        bhSpan.forEach((span, idx) => {
           setTimeout(() => {
             span.classList.add("active");
           }, (idx + 1) * 155);
         });
       }, 1400);
       setTimeout(() => {
-        bajs.style.transform = "translateY(0)";
-        kiss.style.transform = "translateY(calc(-100%)-1rem)";
+        iP.style.transform = "translateY(0)";
+        iT.style.transform = "translateY(calc(-100%)-1rem)";
         skitande.style.minHeight = "auto";
         skitande.style.marginBottom = "2rem";
+        sessionStorage.setItem("visited", 1);
       }, 2300);
       setTimeout(() => {
-        kiss.style.display = "none";
-        batten.classList.add("active");
+        iT.style.display = "none";
+        bb.classList.add("active");
         body.classList.remove("no-scroll");
       }, 2425);
     });
   });
   //TEST
-  localStorage.setItem("visited", 1);
 } else {
   //TEST
   setTimeout(() => {
-    kiss.style.display = "none";
-    batten.classList.add("active");
+    iP.style.transition = "none";
+    iT.style.display = "none";
+    bb.classList.add("active");
     body.classList.remove("no-scroll");
-    bajs.style.transform = "translateY(0)";
-    kiss.style.transform = "translateY(calc(-100%)-1rem)";
+    iP.style.transform = "translateY(0)";
+    iT.style.transform = "translateY(calc(-100%)-1rem)";
     skitande.style.minHeight = "auto";
     skitande.style.marginBottom = "2rem";
 
     test.classList.add("active");
     testIgen.classList.add("active");
-    botStartSpan.forEach((span, idx) => {
+    bmSpan.forEach((span, idx) => {
       setTimeout(() => {
         span.classList.add("active");
       });
     });
 
-    botEndSpan.forEach((span, idx) => {
+    bhSpan.forEach((span, idx) => {
       setTimeout(() => {
         span.classList.add("active");
       });

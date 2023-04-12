@@ -162,28 +162,31 @@ nav a:focus {
   flex-direction: column;
   gap: 1rem;
 }
-.case div {
+.case > a {
   background-color: var(--c-ft);
   padding: 1rem;
   border: 1px solid var(--c-ft);
+  color: var(--c-ft);
   display: flex;
+  aspect-ratio: 2/1;
   flex-direction: column;
   transition: 0.2s ease-in-out;
 }
-.case div * {
+.case > a * {
   transition: 0.2s ease-in-out;
   opacity: 0;
   filter: blur(0.33rem);
 }
 
-.case div:hover,
-.case div:active,
-.case div:focus {
+.case > a:hover,
+.case > a:active,
+.case > a:focus {
   background-color: var(--c-bg);
+  cursor: pointer;
 }
-.case div:hover *,
-.case div:active *,
-.case div:focus * {
+.case > a:hover *,
+.case > a:active *,
+.case > a:focus * {
   opacity: 1;
   filter: blur(0);
 }
