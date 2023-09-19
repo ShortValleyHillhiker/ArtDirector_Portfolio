@@ -95,7 +95,8 @@ h3 {
   text-wrap: balance;
 }
 h3,
-p.large {
+p.large,
+p.large > a {
   font-size: clamp(1.5rem, 1.75vw, 3rem);
 }
 p,
@@ -300,7 +301,6 @@ video {
   height: 100%;
   left: 0;
   bottom: 0;
-  border-radius: 1rem;
   user-select: none;
 }
 [image-ar="paper"] {
@@ -342,7 +342,7 @@ video {
   padding: clamp(1rem, 4vw, 1000rem);
   padding-right: 33%;
 }
-/* .case-image:first-child:after {
+.case-image:first-child:after {
   content: "Nytt!";
   display: block;
   position: absolute;
@@ -354,7 +354,7 @@ video {
   transform: rotate(45deg);
   padding: 0.25rem;
   text-transform: uppercase;
-} */
+}
 
 /* Accordions */
 input[type="checkbox"] {
@@ -644,4 +644,7 @@ header .bot :last-child {
 }
 .case-image img {
   filter: brightness(0.6);
+}
+p.cover {
+  grid-column: span 7;
 }
