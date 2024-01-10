@@ -29,7 +29,11 @@
 html {
   box-sizing: border-box;
   font-size: var(--fs-100);
-  color-scheme: var(--color-scheme);
+  /* color-scheme: var(--color-scheme); */
+  color: #0e0e0e;
+}
+body {
+  background-color: #eeeeee;
 }
 *,
 *:before,
