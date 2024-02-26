@@ -16,58 +16,31 @@ hiddenElements.forEach((el) => observer.observe(el));
 
 
 // Siteload
-
-
-const swup = new Swup();
-
-document.addEventListener('DOMContentLoaded', () => {
-  const firstVisit = sessionStorage.getItem("visited");
-
-  let backgroundAni = document.querySelector(".animated-intro");
-  let allLines = document.querySelectorAll(".animated-intro span");
-
-  if (firstVisit == null) {
-    window.addEventListener("DOMContentLoaded", () => {
+function visitCheck() {
+  if (window.location.pathname === '/index.html') {
+    const firstVisit = sessionStorage.getItem("visited");
+    let backgroundAni = document.querySelector(".animated-intro");
+    if (firstVisit === null) {
       setTimeout(() => {
         backgroundAni.classList.remove("animate");
         sessionStorage.setItem("visited", 1);
       }, 1650);
-
       setTimeout(() => {
-        backgroundAni.classList.toggle("animated-intro");
-
+        backgroundAni.classList.remove("animated-intro");
       }, 1750);
-    });
+    } else {
+      backgroundAni.classList.remove("animated-intro");
+    }
   } else {
-    backgroundAni.classList.remove("animate");
-    backgroundAni.classList.toggle("animated-intro");
+    console.log("Not index");
   }
+}
 
-  console.log("Hello world!");
+
+document.addEventListener('DOMContentLoaded', () => {
+  visitCheck();
 });
 
 swup.hooks.on('page:view', () => {
-  const firstVisit = sessionStorage.getItem("visited");
-
-  let backgroundAni = document.querySelector(".animated-intro");
-  let allLines = document.querySelectorAll(".animated-intro span");
-
-  if (firstVisit == null) {
-    window.addEventListener("DOMContentLoaded", () => {
-      setTimeout(() => {
-        backgroundAni.classList.remove("animate");
-        sessionStorage.setItem("visited", 1);
-      }, 1650);
-
-      setTimeout(() => {
-        backgroundAni.classList.toggle("animated-intro");
-
-      }, 1750);
-    });
-  } else {
-    backgroundAni.classList.remove("animate");
-    backgroundAni.classList.toggle("animated-intro");
-  }
-
-  console.log("every load");
+  visitCheck();
 });
