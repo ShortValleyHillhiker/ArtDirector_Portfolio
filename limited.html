@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekommendation Logotyp för Limited</title>
+  </head>
+  <body>
+    <main>
+      <div class="layout">
+        <h1>Min rekommendation</h1>
+        <span>
+          <p>Jag bifogar detta och vill verkligen slå ett slag för denna logotypen.</p>
+          <p>Nu arbetar vi endast fram en logotyp och färger kommer när den är bestämd - men av alla förslag jag tagit fram och bollat med, anser jag att denna har högst potential.</p>
+          <p>Det finns mycket man kan göra med utförandet rent digitalt, analogt, konceptuellt och grafiskt. Logotypen är i min åsikt en mycket bra kombination av modernitet, coolhet och lyx.</p>
+          <p>Kika gärna en extra runda så hörs vi under vecka 45. Trevligt helg!</p>
+        </span>
+      </div>
+      <div class="focus">
+        <img src="limited/001.png" alt="" />
+      </div>
+      <div class="focus">
+        <img src="limited/002.png" alt="" />
+      </div>
+      <div class="focus">
+        <img src="limited/003.png" alt="" />
+      </div>
+      <div class="focus">
+        <img src="limited/004.png" alt="" />
+      </div>
+      <div>
+        <video autoplay muted loop playsinline src="limited/Limited_logomations.mp4"></video>
+      </div>
+      <div>
+        <img src="limited/005.png" alt="" />
+        <img src="limited/006.png" alt="" />
+      </div>
+      <div>
+        <img src="limited/007.png" alt="" />
+      </div>
+      <div>
+        <img src="limited/008.png" alt="" />
+        <i>Slut!</i>
+      </div>
+    </main>
+  </body>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    .layout {
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
+      max-width: 880px;
+    }
+    h1 {
+      text-align: center;
+      width: 100%;
+    }
+    p {
+      margin-top: 0.4rem;
+    }
+    main {
+      font-family: "Roboto Condensed", sans-serif;
+      display: grid;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      justify-items: center;
+    }
+    div img,
+    div video {
+      width: 100%;
+      max-width: 880px;
+    }
+    .focus:nth-child(odd) :is(img) {
+      filter: invert(1);
+    }
+  </style>
+</html>
