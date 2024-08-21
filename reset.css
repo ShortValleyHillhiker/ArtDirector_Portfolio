@@ -19,18 +19,6 @@
   --side-padding: clamp(1rem, 20vw, 10rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --clr-bg-1: #141414;
-    --clr-ft-1: #ffefb7;
-    --clr-ft-2: #FFC700;
-  }
-
-  img {
-    filter: brightness(.6);
-  }
-}
-
 *,
 *:before,
 *:after {
