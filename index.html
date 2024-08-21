@@ -1,193 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Victor Vennerstrom | Art Director</title>
-    <link rel="preload stylesheet" href="style.css" as="style" />
-    <script defer src="intro.js"></script>
-    <script defer src="app.js"></script>
 
-    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preload stylesheet" href="style.css" as="style" />
+  <link rel="preload stylesheet" href="typography.css" as="style" />
+  <link rel="preload stylesheet" href="reset.css" as="style" />
 
-    <meta name="description" content="En vetgirig och formstark art director från Göteborg som tar examen nu i december." />
+  <link rel="preload" href="assets\fonts\Tobias-Light.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vennerstrom.se/" />
-    <meta property="og:title" content="Portfölj | Victor Vennerström" />
-    <meta property="og:description" content="En vetgirig och formstark art director från Göteborg som tar examen nu i december." />
-    <meta property="og:image" content="img/me.webp" />
+  <script defer src="app.js"></script>
+  <script src="https://unpkg.com/swup@4"></script>
+  <script>
+    const swup = new Swup();
+  </script>
+</head>
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://vennerstrom.se/" />
-    <meta property="twitter:title" content="Portfölj | Victor Vennerström" />
-    <meta property="twitter:description" content="En vetgirig och formstark art director från Göteborg som tar examen nu i december." />
-    <meta property="twitter:image" content="img/me.webp" />
-
-    <meta name="twitter:card" content="img/me.webp" />
-
-    <!--  Non-Essential, But Recommended -->
-    <meta property="og:description" content="Art director student från Göteborg." />
-    <meta property="og:site_name" content="Portfölj — Victor Vennerström" />
-    <meta name="twitter:image:alt" content="Bild på Victor" />
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-85FPDY7LFE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-85FPDY7LFE");
-    </script>
-  </head>
-  <body>
-    <div class="animated-intro animate">
-      <span><h1>Tja!</h1></span>
-      <span><h1>Tjo!</h1></span>
-      <span><h1>Tjena!</h1></span>
-      <span><h1>Hallo dô!</h1></span>
-    </div>
-    <div class="kaffe-popup">
-      <div class="kaffe-close" onclick="kaffe()"></div>
-      <div class="kaffe">
-        <span style="--order: 2"><small>www.vennerstrom.se/ingetformulär</small></span>
-        <span style="--order: 3"><h3>Här trodde du att det skulle vara ett formulär kanske?</h3></span>
-        <span style="--order: 4">
-          <p>Det är <i>ganska</i> tjorvigt att få in ett mejlformulär på en hemsida som denna...</p>
-        </span>
-        <span style="--order: 5"><p>Däremot vill jag gärna träffa dig! Hör av dig så ses vi på en kopp eller två.</p></span>
-        <span style="--order: 6">
-          <p><u>victor@vennerstrom.se</u></p>
-        </span>
+<body>
+  <div id="drapes">
+    <span style="--dlay: 1;"></span>
+    <span style="--dlay: 2;"></span>
+    <span style="--dlay: 3;"></span>
+    <span style="--dlay: 4;"></span>
+    <span style="--dlay: 5;"></span>
+    <span style="--dlay: 6;"></span>
+    <span style="--dlay: 7;"></span>
+  </div>
+  <main id="swup" class="transition-fade">
+    <div class="header-grid">
+      <div>
+        <a href="https://se.linkedin.com/in/victor-vennerstrom">LinkedIn</a> <br>
+        <a href="https://www.instagram.com/victorvennerstrom/">Instagram</a> <br>
+        <p>victor@vennerstrom.se</p>
+      </div>
+      <br>
+      <div>
+        <p>Välkommen till min portfolio</p> <br>
+        <p><b>(tom just nu, fylld inom en snar framtid)</b></p>
+      </div>
+      <div class="ettans">
+        <h1 id="intro-top"><span class="hidden" style="--dlay: 0;">Tja</span> <span class="hidden"
+            style="--dlay: 1;">mitt
+            namn är</span>
+          <span class="intro" style="--dlay: 1;">Victor Vennerström</span>
+          <span class="hidden" style="--dlay: 2;">— en vetgirig och
+            formstark</span> <span class="intro" style="--dlay: 2;">Art</span>
+          <span class="intro" style="--dlay: 3;">Director</span> <span class="hidden" style="--dlay: 3;">från</span>
+          <span class="intro" style="--dlay: 4;">Göteborg.</span>
+        </h1>
+        <h1 id="intro-bot">
+          <span class="hidden" style="--dlay: 4;">Jag älskar</span> <span class="intro"
+            style="--dlay: 5;">Konceptstarka</span> <span class="hidden" style="--dlay: 5;">kampanjer grundade
+            i</span> <span class="intro" style="--dlay: 6;">Empatiska</span> <span class="hidden"
+            style="--dlay: 6;">insikter.</span>
+        </h1>
+        <img id="jagjag" src="assets/Portrait.svg" alt="">
       </div>
     </div>
-    <header class="introduction animated-hidden" id="top">
-      <div class="top grid">
-        <span>
-          <a href="" class="no-line intro-hide" style="--order: 4">
-            Victor<br />
-            Vennerström
-          </a>
-        </span>
-        <p class="desktop above intro-hide" style="--order: 5">
-          Praktikant @ <a href="">spöket</a> <br />
-          Examen i december 2023
-        </p>
-        <span>
-          <a class="button intro-hide" style="--order: 5" onclick="kaffe()">Kaffe?</a>
-        </span>
-      </div>
-      <div class="mid grid">
-        <span>
-          <h1 class="intro-hide" style="--order: 1">Nykläckt, vetgirig och formstark</h1>
-          <p class="intro-hide" style="--order: 2">Uppväxt och bosatt i Göteborg, studerar Art director på YRGO och tar examen december 2023. Söker nu efter frilansmöjligheter, projekt-, del- och heltidsanställning.</p>
-          <p class="intro-hide" style="--order: 2">Svajpa upp eller klicka på knapparna för att bli min kompis!</p>
-          <a href="#personen" class="button intro-hide" style="--order: 3">Personen</a>
-          <a href="#hantverket" class="button intro-hide" style="--order: 4">Hantverket</a>
-        </span>
-      </div>
-      <div class="bot grid">
-        <span class="flex">
-          <p class="mobile above intro-hide" style="--order: 5">
-            Prakikant @ <a href="https://www.spkt.se/">Spöket</a> <br />
-            Examen i december 2023
-          </p>
-          <a href="https://www.linkedin.com/in/victor-vennerstrom/" class="intro-hide" style="--order: 6">Linkedin</a>
-          <a href="https://www.instagram.com/victorvennerstrom/" class="intro-hide" style="--order: 7">Instagram</a>
-        </span>
-        <p class="intro-hide">© 2023</p>
-      </div>
-    </header>
-    <section class="about">
-      <div class="top grid" id="personen">
-        <span class="title hidden" style="--order: 1"><p>Om mig</p></span>
-        <p class="large hidden" style="--order: 2">Jag har alltid varit kreativ, det har varit en konstant del av mitt liv. I kanterna på alla papper finns det kladd och klotter. Om jag inte fått sätta penna på papper när jag var yngre kunde jag inte somna, det är nästintill tvångsmässigt.</p>
-        <img src="img/me.webp" alt="" class="hidden" style="--order: 3" loading="lazy" />
-      </div>
-      <div class="mid grid">
-        <p class="hidden" style="--order: 1">Behöver din byrå en Art director som gillar att idéa och som verkligen älskar att löpa linan ut? Då har jag ett riktigt pangerbjudande för dig.</p>
-        <p class="hidden" style="--order: 2">Jag talar idé, koncept och CSS flytande. Arbetar obehindrat i hela Adobe suiten, Blender och mycket mer.</p>
-      </div>
-      <div class="bot">
-        <div class="accordion hidden">
-          <input class="accordion-trigger" id="accordion-one" type="checkbox" />
-          <label class="accordion-title" for="accordion-one">Utbildning</label>
-          <div class="accordion-wrapper">
-            <div class="accordion-content">
-              <p><strong>YRGO</strong>, Art director (2022-2023)</p>
-              <p><strong>Luleå tekniska universitet</strong>, Civilingenjör Arkitektur, Stadsbyggnad. <i>Ej examinerad</i> (2016-2021)</p>
-              <p><strong>IT-Gymnasiet Göteborg</strong>, Teknik & media. (2013-2016)</p>
-            </div>
-          </div>
-        </div>
-        <div class="accordion hidden">
-          <input class="accordion-trigger" id="accordion-two" type="checkbox" />
-          <label class="accordion-title" for="accordion-two">Erfarenhet</label>
-          <div class="accordion-wrapper">
-            <div class="accordion-content">
-              <p><strong>Spöket</strong>, Praktik (2023)</p>
-              <p><strong>Forsman & Bodenfors</strong>, Praktik (2023)</p>
-              <p><strong>Social Order</strong>, Medgrundare (2019 - 2022)</p>
-            </div>
-          </div>
-        </div>
-        <div class="accordion hidden">
-          <input class="accordion-trigger" id="accordion-three" type="checkbox" />
-          <label class="accordion-title" for="accordion-three">Annat bôs</label>
-          <div class="accordion-wrapper">
-            <div class="accordion-content">
-              <p><strong>Spkt-mockups</strong>, projekt (2022 - ...)</p>
-              <p><strong>Teknologkåren</strong>, Informationsenhetens ordförande (2018 - 2019)</p>
-              <p><strong>Arktis programförening</strong>, informationsansvarig & diverse poster (2017 - 2020)</p>
-              <br /><br />
-              <p>Ett stort intresse för mig är Världsbyggande. Kort sagt gillar jag att göra realistiska kartor, skriva om fiktiva nationer och personerna som lever i dem. Ländernas relationer och hur de möts i den geopolitiska sfären.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="grid case-grid" id="hantverket">
-      <div class="case-image hidden">
-        <div>
-          <p class="large hidden" style="--order: 1">Spkt-Mockups</p>
-          <p class="hidden" style="--order: 2">Varför säljer vi vårt hantverk med bilder från kontinenten och Nordamerika? En fråga som jag haft länge, något jag inte var ensam om. När jag träffade Spöket hade vi samma tanke och bestämde oss för att göra något åt det.</p>
-          <a href="spktmockups.html" class="button hidden" style="--order: 3">Se mer</a>
-        </div>
-        <img src="img/spktmockups/intro.webp" alt="" loading="lazy" />
-      </div>
-      <div class="case-image hidden">
-        <div>
-          <p class="large hidden" style="--order: 1">Decarbonize</p>
-          <p class="hidden" style="--order: 2">Skolprojekt med målet att skapa ett varumärke med en medföljande kampanj. Kampanjen skulle tydligt motsätta sig de klassiska slagorden "Atomkraft? Nej tack".</p>
-          <a href="decarbonize.html" class="button hidden" style="--order: 3">Se mer</a>
-        </div>
-        <img src="img/decarbonize/intro.gif" alt="" />
-      </div>
-      <div class="case-image hidden">
-        <div>
-          <p class="hidden" style="--order: 1">jagvillhabostad.nu</p>
-          <p class="large hidden" style="--order: 2">Bostadstillskott</p>
-          <p class="hidden" style="--order: 3">Vårt bidrag till studenttävlingen 48H, målet var att skapa en kampanj som med humor får unga vuxna att vilja ansluta sig till föreningen.</p>
-          <a href="bostadstillskott.html" class="button hidden" style="--order: 4">Se mer</a>
-        </div>
-        <img src="img/bostadstillskott/intro.png" alt="" />
-      </div>
-    </section>
+  </main>
+</body>
 
-    <footer>
-      <div class="call-to-action" id="elementToMove">
-        <p>Har du ett projekt i åtanke?</p>
-        <h1>Hör av dig!</h1>
-      </div>
-      <div class="grid">
-        <p>Hemsida av mig <br />© 2023</p>
-        <span> <a href="#top" class="button">Till toppen</a></span>
-      </div>
-    </footer>
-  </body>
 </html>
