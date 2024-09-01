@@ -198,6 +198,7 @@ strong {
 [title-style="stylized"]>span.static {
   font-family: Inter, sans-serif;
   font-weight: 400;
+  letter-spacing: -.04em;
   display: inline;
   position: relative;
 }
@@ -309,6 +310,7 @@ iframe {
 
 .grid_item>img {
   width: 100%;
+  display: block;
 }
 
 .grid_item>a {
@@ -378,7 +380,7 @@ iframe {
 
 #about {
   --cstm: clamp(3rem, 3svw, 100vw);
-  min-height: 50svh;
+  min-height: 75svh;
   justify-content: space-between;
   margin-bottom: var(--cstm);
   gap: var(--cstm);
@@ -387,7 +389,7 @@ iframe {
 
 #couple {
   position: absolute;
-  height: 70%;
+  height: 55%;
   right: 0;
   bottom: 0;
   width: auto;
@@ -397,7 +399,7 @@ iframe {
   position: absolute;
   width: 65%;
   right: 0;
-  bottom: -27%;
+  bottom: -34%;
   height: auto;
   display: none;
 }
