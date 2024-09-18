@@ -451,6 +451,7 @@ iframe {
   right: -40%;
   transform: rotate(45deg);
   z-index: 99;
+  font-size: clamp(.775rem, calc(.25rem + 1.5vw), 100vw);
 }
 
 @media (min-width: 360px) {
