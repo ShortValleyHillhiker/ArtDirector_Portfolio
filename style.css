@@ -438,6 +438,21 @@ iframe {
   display: none;
 }
 
+.fiktivt::after {
+  display: block;
+  background-color: var(--clr-hl);
+  color: #262626;
+  text-align: center;
+  content: "Hitte-på-case";
+  padding: .5rem;
+  width: 100%;
+  position: absolute;
+  top: 10%;
+  right: -40%;
+  transform: rotate(45deg);
+  z-index: 99;
+}
+
 @media (min-width: 360px) {
   :root {
     --fs-xl: 7.95vw;
@@ -492,6 +507,11 @@ iframe {
 
   #tent {
     display: block
+  }
+
+  .fiktivt::after {
+    top: 9%;
+    right: -41%;
   }
 }
 
@@ -550,6 +570,11 @@ iframe {
 
   #tent {
     display: none;
+  }
+
+  .fiktivt::after {
+    top: 5%;
+    right: -45%;
   }
 }
 
