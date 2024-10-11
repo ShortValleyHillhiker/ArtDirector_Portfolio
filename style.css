@@ -336,8 +336,8 @@ iframe {
   display: block;
   color: var(--clr-ft);
   background-color: var(--clr);
-  height: 100%;
-  width: 100%;
+  height: calc(100% - 1px);
+  width: calc(100% - 1px);
   position: absolute;
   bottom: 100%;
   -webkit-transition-delay: .2s;
@@ -438,20 +438,20 @@ iframe {
   display: none;
 }
 
-.fiktivt::after {
+.fiktivt >span.banner {
   display: block;
   background-color: var(--clr-hl);
   color: #262626;
   text-align: center;
-  content: "Hitte-på-case";
   padding: .5rem;
-  width: 100%;
+  width: 80%;
   position: absolute;
-  top: 10%;
-  right: -40%;
+  top: 14%;
+  right: -29%;
   transform: rotate(45deg);
   z-index: 99;
-  font-size: clamp(.775rem, calc(.25rem + 1.5vw), 100vw);
+  pointer-events: none;
+  font-size: clamp(.775rem, calc(.25rem + 1.25vw), 100vw);
 }
 
 @media (min-width: 360px) {
@@ -501,6 +501,10 @@ iframe {
     -ms-grid-column-span: 2;
     grid-column: span 2;
   }
+  [grid-size="xs"] {
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+  }
 
   #couple {
     display: none;
@@ -510,10 +514,11 @@ iframe {
     display: block
   }
 
-  .fiktivt::after {
-    top: 9%;
-    right: -41%;
+  .fiktivt >span.banner {
+    top: 10%;
+    right: -33%;
   }
+
 }
 
 @media (min-width: 1200px) {
@@ -571,11 +576,6 @@ iframe {
 
   #tent {
     display: none;
-  }
-
-  .fiktivt::after {
-    top: 5%;
-    right: -45%;
   }
 }
 
