@@ -1,0 +1,42 @@
+:root {
+  --font-family: Inter, sans-serif;
+  
+  --flow-spacing: clamp(16px, 1vw, 1vw);
+  --padding-inline: clamp(16px, 2vw, 2vw);
+  --content-max-width: 1780px;
+  --breakout-max-width: 1920px;
+  --breakout-size: calc(
+    (var(--breakout-max-width) - var(--content-max-width)) / 2
+  );
+
+  --font-size-huge: clamp(36px, 4.44vw, 82px);
+  --font-size-large: clamp(26px, 1.81vw, 64px);
+  --font-size-medium: 26px;
+  --font-size-regular: 16px;
+  --font-size-regular-line-height: 1.25;
+
+  --color-foreground-100: rgb(238, 238, 238);
+  --color-foreground-50: rgb(238 238 238 / 0.5);
+  --color-foreground-33: rgb(238 238 238 / 0.333);
+  --color-foreground-25: rgb(238 238 238 / 0.25);
+  --color-foreground-20: rgb(238 238 238 / 0.2);
+  --color-foreground-15: rgb(238 238 238 / 0.15);
+  --color-foreground-10: rgb(238 238 238 / 0.1);
+  --color-foreground-5: rgb(238 238 238 / 0.05);
+  --color-foreground-0: rgb(238 238 238 / 0);
+  --color-background-100: rgb(28, 28, 28);
+  --color-background-80: rgb(28 28 28 / .8);
+  --color-background-0: rgb(28 28 28 / 0);
+  --color-accent-100: rgb(255, 199, 0);
+  --color-accent-10: rgb(255 199 0 / 0.1);
+  --color-accent-5: rgb(255 199 0 / 0.05);
+
+  --grid-xheight: 220px;
+  --grid-size-large: repeat(5, [col-start] 1fr);
+  --grid-size-medium: repeat(4, [col-start] 1fr);
+  --grid-size-small: repeat(2, [col-start] 1fr);
+  --grid-gutter: 1rem;
+
+  --grid-margin: 40px;
+  --grid-xheight: 220px;
+}
