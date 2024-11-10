@@ -318,6 +318,8 @@ section.intro .text.is-visible {
   padding: var(--g-g);
   text-decoration: none;
   border: unset;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 .work .content .item:hover > .information {
   top: 0;
@@ -350,7 +352,7 @@ section.intro .text.is-visible {
   color: var(--c-fg-50);
 }
 
-/* Section references
+/* Section background
 ----------------------------------------------------------------------------- */
 .background { 
   padding: calc(var(--g-x-h) / 5) 0 20px 0;
@@ -391,13 +393,12 @@ body.welcome-is-visible .app-header {
   -webkit-user-select: none;
   user-select: none;
   top: 0;
-  background-color: rgb(0 0 0 / 0.6);
-  -webkit-backdrop-filter: blur(4px);
+  /* -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+  background-color: var(--c-a-5);
+  border-bottom: 1px solid var(--c-a-10); */
   transition: top 1.5s cubic-bezier(0.33, 0, 0.2, 1);
   transition-delay: 0.25s;
-  background-color: var(--c-a-5);
-  border-bottom: 1px solid var(--c-a-10);
 }
 .app-header > .content {
   padding: calc(var(--g-g) / 3) 0;
@@ -416,7 +417,7 @@ body.welcome-is-visible .app-header {
   line-height: 1;
 }
 .app-header .brand h3 span:nth-child(n + 2) {
-  margin-left: -0.25rem;
+  margin-left: -.05em;
   opacity: 0;
   transition: margin-left 0.3s ease-in, opacity 0.3s ease-in;
 }
@@ -537,10 +538,10 @@ body.welcome-is-visible .app-header {
 }
 .controller-theme .option:hover {
   cursor: pointer;
-  background-color: var(--c-fg-15);
+  /* background-color: var(--c-fg-15); */
 }
 .controller-theme .option:active {
-  background-color: var(--c-fg-20);
+  /* background-color: var(--c-fg-20); */
 }
 .controller-theme .option svg path {
   fill: var(--c-fg-100);
