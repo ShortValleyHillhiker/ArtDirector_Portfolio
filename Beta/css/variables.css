@@ -1,42 +1,43 @@
 :root {
-  --font-family: Inter, sans-serif;
-  
-  --flow-spacing: clamp(16px, 1vw, 1vw);
-  --padding-inline: clamp(16px, 2vw, 2vw);
-  --content-max-width: 1780px;
-  --breakout-max-width: 1920px;
-  --breakout-size: calc(
-    (var(--breakout-max-width) - var(--content-max-width)) / 2
-  );
+  --ff: Inter, sans-serif;
+  --ff-s: "liga", "ss02", "ss03", "ss04", "ss06";
+  --fw: 400;
+  --fs: normal;
 
-  --font-size-huge: clamp(36px, 4.44vw, 82px);
-  --font-size-large: clamp(26px, 1.81vw, 64px);
-  --font-size-medium: 26px;
-  --font-size-regular: 16px;
-  --font-size-regular-line-height: 1.25;
+  --fs-xl: clamp(36px, 4.44vw, 82px);
+  --fs-l: clamp(26px, 1.81vw, 64px);
+  --fs-m: 26px;
+  --fs-n: 16px;
+  --fs-n-lh: 1.25;
 
-  --color-foreground-100: rgb(238, 238, 238);
-  --color-foreground-50: rgb(238 238 238 / 0.5);
-  --color-foreground-33: rgb(238 238 238 / 0.333);
-  --color-foreground-25: rgb(238 238 238 / 0.25);
-  --color-foreground-20: rgb(238 238 238 / 0.2);
-  --color-foreground-15: rgb(238 238 238 / 0.15);
-  --color-foreground-10: rgb(238 238 238 / 0.1);
-  --color-foreground-5: rgb(238 238 238 / 0.05);
-  --color-foreground-0: rgb(238 238 238 / 0);
-  --color-background-100: rgb(28, 28, 28);
-  --color-background-80: rgb(28 28 28 / .8);
-  --color-background-0: rgb(28 28 28 / 0);
-  --color-accent-100: rgb(255, 199, 0);
-  --color-accent-10: rgb(255 199 0 / 0.1);
-  --color-accent-5: rgb(255 199 0 / 0.05);
+  --rg-sp: clamp(16px, 1vw, 1vw);
+  --rg-pd: clamp(16px, 2vw, 2vw);
+  --rg-c-mw: 1780px;
+  --rg-bo-mw: 1920px;
+  --rg-bo-s: calc((var(--rg-bo-mw) - var(--rg-c-mw)) / 2);
 
-  --grid-xheight: 220px;
-  --grid-size-large: repeat(5, [col-start] 1fr);
-  --grid-size-medium: repeat(4, [col-start] 1fr);
-  --grid-size-small: repeat(2, [col-start] 1fr);
-  --grid-gutter: 1rem;
+  --c-fg-100: rgb(28 28 28 / 1);
+  --c-fg-50: rgb(28 28 28 / 0.6);
+  --c-fg-33: rgb(28 28 28 / 0.45);
+  --c-fg-25: rgb(28 28 28 / 0.4);
+  --c-fg-20: rgb(28 28 28 / 0.27);
+  --c-fg-15: rgb(28 28 28 / 0.22);
+  --c-fg-10: rgb(28 28 28 / 0.17);
+  --c-fg-5: rgb(28 28 28 / 0.12);
+  --c-fg-0: rgb(28 28 28 / 0);
 
-  --grid-margin: 40px;
-  --grid-xheight: 220px;
+  --c-bg-100: rgb(238 238 238 / 1);
+  --c-bg-50: rgb(238 238 238 / 0.5);
+  --c-bg-0: rgb(238 238 238 / 0);
+
+  --c-a-100: rgb(255 199 0);
+  --c-a-10: rgb(255 199 0 / 0.2);
+  --c-a-5: rgb(255 199 0 / 0.1);
+
+  --g-s-l: repeat(5, [col-start] 1fr);
+  --g-s-m: repeat(3, [col-start] 1fr);
+  --g-s-s: repeat(2, [col-start] 1fr);
+  --g-g: clamp(16px, 1vw, 48px);
+
+  --g-x-h: 220px;
 }

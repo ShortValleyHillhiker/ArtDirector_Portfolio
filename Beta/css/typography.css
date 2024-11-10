@@ -7,17 +7,17 @@
 }
 
 * {
-  font-family: var(--font-family);
-  font-style: var(--font-style);
-  font-weight: var(--font-weight);
-  font-feature-settings: var(--font-feature-settings);
+  font-family: var(--ff);
+  font-style: var(--fs);
+  font-weight: var(--fw);
+  font-feature-settings: var(--ff-s);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 
 html {
-  font-size: var(--font-size-regular);
-  line-height: var(--font-size-regular-line-height);
+  font-size: var(--fs-n);
+  line-height: var(--fs-n-lh);
 }
 
 .serif {
@@ -25,7 +25,7 @@ html {
 }
 
 .serif > span {
-  font-family: var(--font-family);
+  font-family: var(--ff);
 }
 a {
   color: inherit;
@@ -33,9 +33,9 @@ a {
 }
 :not(.case) > a {
   color: inherit;
-  border-bottom: 1px solid var(--color-foreground-25);
+  border-bottom: 1px solid var(--c-fg-25);
 }
 :not(.case) > a:hover {
-  border-bottom-color: var(--color-foreground-100);
+  border-bottom-color: var(--c-fg-100);
   cursor: pointer;
 }

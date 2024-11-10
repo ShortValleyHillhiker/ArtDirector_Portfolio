@@ -1,52 +1,56 @@
 @media all and (max-width: 1280px) {
-}
-@media all and (max-width: 1020px) {
   body {
-    --grid-size-large: repeat(4, [col-start] 1fr);
-    --grid-size-small: repeat(1, [col-start] 1fr);
+    --g-s-l: repeat(4, [col-start] 1fr);
+    --g-s-m: repeat(2, [col-start] 1fr);
+    --g-s-s: repeat(2, [col-start] 1fr);
   }
-  .grid-overlay .column-wrapper .column:nth-child(n + 5) {
+  .overlay.columns .column:nth-child(n + 5) {
     display: none;
   }
-  body .work .heading {
-    grid-column: 3 / -1;
+  body section > .content {
+    grid-column: 1 / -2;
+    position: relative;
+  }
+  body section .heading {
+    grid-column: 2 / -2;
+  }
+  .work .content {
+    grid-column: 1 / -1;
+}
+}
+@media all and (max-width: 1020px) {
+
+  body section .heading {
+    grid-column: 2 / -2;
   }
 }
 @media all and (max-width: 760px) {
   body {
-    --grid-size-large: repeat(3, [col-start] 1fr);
-    --grid-size-small: repeat(1, [col-start] 1fr);
+    --g-s-l: repeat(3, [col-start] 1fr);
+    --g-s-m: repeat(2, [col-start] 1fr);
+    --g-s-s: 1fr;
   }
-  .grid-overlay .column-wrapper .column:nth-child(n + 4) {
+  .overlay.columns .column:nth-child(n + 4) {
     display: none;
   }
-  body .background .content > :first-child,
-  section.intro > .content,
-  body section.cover > .content {
+  body section > .content {
     grid-column: 1 / -1;
+    position: relative;
   }
-  section.work > .content {
-    grid-column: 2 / -1;
-    aspect-ratio: 2 / 1;
-  }
-  .background .content,
-  .references .content,
-  body .work .heading {
+  body section .heading {
     grid-column: 2 / -1;
   }
 }
 @media all and (max-width: 500px) {
   body {
-    --grid-size-large: repeat(2, [col-start] 1fr);
+    --g-s-l: repeat(2, [col-start] 1fr);
+    --g-s-m: 1fr;
+    --g-s-s: 1fr;
   }
-  .grid-overlay .column-wrapper .column:nth-child(n + 3) {
+  .overlay.columns .column:nth-child(n + 3) {
     display: none;
   }
-  body .background .content,
-  .background .content > :first-child,
-  .references .content,
-  section.work > .content,
-  body .work .heading {
+  body section .heading {
     grid-column: 1 / -1;
   }
 }
