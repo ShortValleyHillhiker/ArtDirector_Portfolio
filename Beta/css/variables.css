@@ -5,7 +5,7 @@
   --fs: normal;
 
   --fs-xl: clamp(32px, 4.44vw, 82px);
-  --fs-l: clamp(26px, 1.81vw, 64px);
+  --fs-l: clamp(26px, 2.81vw, 64px);
   --fs-m: 26px;
   --fs-n: 16px;
   --fs-n-lh: 1.25;

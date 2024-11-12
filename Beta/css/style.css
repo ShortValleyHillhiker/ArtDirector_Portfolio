@@ -186,16 +186,15 @@ section {
   display: grid;
   grid-template-columns: var(--g-s-l);
   gap: var(--g-g);
-  /* padding: 0 var(--grid-margin); */
 }
 section > .content {
   padding: var(--g-x-h) 0 20px 0;
-  grid-column: 1 / -2;
+  grid-column: 2 / -1;
   position: relative;
 }
 section .heading {
   padding-bottom: 80px;
-  grid-column: 3 / -2;
+  grid-column: 4 / -1;
   display: flex;
   flex-direction: column;
   gap: var(--g-g);
@@ -343,6 +342,7 @@ section.intro .text.is-visible {
   padding: var(--g-x-h) 0 20px 0;
 }
 .references .quote {
+  font-size: clamp(26px, 1.81vw, 64px);
   padding-right: 20px;
 }
 .opening-quote-mark {
@@ -361,7 +361,8 @@ section.intro .text.is-visible {
 /* Section background
 ----------------------------------------------------------------------------- */
 .background {
-  padding: calc(var(--g-x-h) / 5) 0 20px 0;
+  padding: var(--g-x-h) 0 20px 0;
+  
 }
 .background .content {
   padding: unset;
@@ -369,22 +370,58 @@ section.intro .text.is-visible {
   grid-template-columns: var(--g-s-s);
   gap: var(--g-g);
 }
-.background h2 {
-  padding-top: 40px;
-  padding-bottom: 0.14em;
+.background .content h2 {
+  font-size: clamp(26px, 1.81vw, 64px);
 }
-.background p {
+section .heading {
+  padding-bottom: 80px;
+  grid-column: 2 / -3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--g-g);
+}
+section .introduction {
+  display: grid;
+  gap: var(--g-g);
+  grid-column: 4 / -1;
+}
+.background .content h2 {
+  padding: 80px 0 10px;
+}
+.background .content p {
   margin-top: 16px;
 }
 .background p .title {
   font-size: var(--fs-m);
 }
-.background p .description {
+.background p > .information {
   color: var(--c-fg-50);
+}
+.background p > .information > span {
+  color: var(--c-fg-100);
 }
 .background .item p > span {
   margin-top: 8px;
   display: block;
+}
+.background .list {
+  display: grid;
+  gap: 0 var(--g-g);
+  grid-template-columns: var(--g-s-s);
+}
+.background .list p {
+  position: relative;
+  margin-top: 0;
+}
+.background .list .column p:nth-child(n+2) {
+  margin-top: .25em;
+}
+.background .list p > span {
+  display: block;
+  text-align: right;
+  position: absolute;
+  left: -1.5em;
+  color: var(--c-fg-50);
 }
 
 /* App header
@@ -433,39 +470,103 @@ body.welcome-is-visible .app-header {
   transition: margin-left 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-.app-header .brand:hover h3 span:nth-child(2) {transition-delay: 0s;} 
-.app-header .brand:hover h3 span:nth-child(3) {transition-delay: 0.01s;}
-.app-header .brand:hover h3 span:nth-child(4) {transition-delay: 0.02s;}
-.app-header .brand:hover h3 span:nth-child(5) {transition-delay: 0.03s;}
-.app-header .brand:hover h3 span:nth-child(6) {transition-delay: 0.04s;}
-.app-header .brand:hover h3 span:nth-child(7) {transition-delay: 0.05s;}
-.app-header .brand:hover h3 span:nth-child(8) {transition-delay: 0.06s;}
-.app-header .brand:hover h3 span:nth-child(9) {transition-delay: 0.07s;}
-.app-header .brand:hover h3 span:nth-child(10) {transition-delay: 0.08s;}
-.app-header .brand:hover h3 span:nth-child(11) {transition-delay: 0.09s;}
-.app-header .brand:hover h3 span:nth-child(12) {transition-delay: 0.1s;}
-.app-header .brand:hover h3 span:nth-child(13) {transition-delay: 0.11s;}
-.app-header .brand:hover h3 span:nth-child(14) {transition-delay: 0.12s;}
-.app-header .brand:hover h3 span:nth-child(15) {transition-delay: 0.13s;}
-.app-header .brand:hover h3 span:nth-child(16) {transition-delay: 0.14s;}
-.app-header .brand:hover h3 span:nth-child(17) {transition-delay: 0.15s;}
+.app-header .brand:hover h3 span:nth-child(2) {
+  transition-delay: 0s;
+}
+.app-header .brand:hover h3 span:nth-child(3) {
+  transition-delay: 0.01s;
+}
+.app-header .brand:hover h3 span:nth-child(4) {
+  transition-delay: 0.02s;
+}
+.app-header .brand:hover h3 span:nth-child(5) {
+  transition-delay: 0.03s;
+}
+.app-header .brand:hover h3 span:nth-child(6) {
+  transition-delay: 0.04s;
+}
+.app-header .brand:hover h3 span:nth-child(7) {
+  transition-delay: 0.05s;
+}
+.app-header .brand:hover h3 span:nth-child(8) {
+  transition-delay: 0.06s;
+}
+.app-header .brand:hover h3 span:nth-child(9) {
+  transition-delay: 0.07s;
+}
+.app-header .brand:hover h3 span:nth-child(10) {
+  transition-delay: 0.08s;
+}
+.app-header .brand:hover h3 span:nth-child(11) {
+  transition-delay: 0.09s;
+}
+.app-header .brand:hover h3 span:nth-child(12) {
+  transition-delay: 0.1s;
+}
+.app-header .brand:hover h3 span:nth-child(13) {
+  transition-delay: 0.11s;
+}
+.app-header .brand:hover h3 span:nth-child(14) {
+  transition-delay: 0.12s;
+}
+.app-header .brand:hover h3 span:nth-child(15) {
+  transition-delay: 0.13s;
+}
+.app-header .brand:hover h3 span:nth-child(16) {
+  transition-delay: 0.14s;
+}
+.app-header .brand:hover h3 span:nth-child(17) {
+  transition-delay: 0.15s;
+}
 
-.app-header .brand h3 span:nth-child(2) {transition-delay: 0.15s;}
-.app-header .brand h3 span:nth-child(3) {transition-delay: 0.14s;}
-.app-header .brand h3 span:nth-child(4) {transition-delay: 0.13s;}
-.app-header .brand h3 span:nth-child(5) {transition-delay: 0.12s;}
-.app-header .brand h3 span:nth-child(6) {transition-delay: 0.11s;}
-.app-header .brand h3 span:nth-child(7) {transition-delay: 0.1s;}
-.app-header .brand h3 span:nth-child(8) {transition-delay: 0.09s;}
-.app-header .brand h3 span:nth-child(9) {transition-delay: 0.08s;}
-.app-header .brand h3 span:nth-child(10) {transition-delay: 0.07s;}
-.app-header .brand h3 span:nth-child(11) {transition-delay: 0.06s;}
-.app-header .brand h3 span:nth-child(12) {transition-delay: 0.05s;}
-.app-header .brand h3 span:nth-child(13) {transition-delay: 0.04s;}
-.app-header .brand h3 span:nth-child(14) {transition-delay: 0.03s;}
-.app-header .brand h3 span:nth-child(15) {transition-delay: 0.02s;}
-.app-header .brand h3 span:nth-child(16) {transition-delay: 0.01s;}
-.app-header .brand h3 span:nth-child(17) {transition-delay: 0s;}
+.app-header .brand h3 span:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.app-header .brand h3 span:nth-child(3) {
+  transition-delay: 0.14s;
+}
+.app-header .brand h3 span:nth-child(4) {
+  transition-delay: 0.13s;
+}
+.app-header .brand h3 span:nth-child(5) {
+  transition-delay: 0.12s;
+}
+.app-header .brand h3 span:nth-child(6) {
+  transition-delay: 0.11s;
+}
+.app-header .brand h3 span:nth-child(7) {
+  transition-delay: 0.1s;
+}
+.app-header .brand h3 span:nth-child(8) {
+  transition-delay: 0.09s;
+}
+.app-header .brand h3 span:nth-child(9) {
+  transition-delay: 0.08s;
+}
+.app-header .brand h3 span:nth-child(10) {
+  transition-delay: 0.07s;
+}
+.app-header .brand h3 span:nth-child(11) {
+  transition-delay: 0.06s;
+}
+.app-header .brand h3 span:nth-child(12) {
+  transition-delay: 0.05s;
+}
+.app-header .brand h3 span:nth-child(13) {
+  transition-delay: 0.04s;
+}
+.app-header .brand h3 span:nth-child(14) {
+  transition-delay: 0.03s;
+}
+.app-header .brand h3 span:nth-child(15) {
+  transition-delay: 0.02s;
+}
+.app-header .brand h3 span:nth-child(16) {
+  transition-delay: 0.01s;
+}
+.app-header .brand h3 span:nth-child(17) {
+  transition-delay: 0s;
+}
 
 .controller-theme .options {
   display: flex;
@@ -511,7 +612,7 @@ body.welcome-is-visible .app-header {
   bottom: 0;
   transition: right 0.5s ease-in-out;
   right: 0;
-  transform: translate(2px, 2px);
+  transform: translate(1px, 1px);
 }
 .controller-theme .option.theme .slider-container {
   width: 48px;
@@ -529,6 +630,7 @@ body.welcome-is-visible .app-header {
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
+  transform: translate(-1px, -1px);
 }
 .controller-theme .option.theme .dot {
   width: 4px;
