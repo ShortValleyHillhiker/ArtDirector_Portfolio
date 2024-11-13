@@ -394,6 +394,7 @@ section .introduction {
 .background p .title {
   font-size: var(--fs-m);
 }
+.background p > .description,
 .background p > .information {
   color: var(--c-fg-50);
 }

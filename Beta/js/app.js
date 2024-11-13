@@ -60,9 +60,9 @@ $(document).ready(function () {
     $('.intro .option.rekryterare').addClass('is-active');
     $('.intro .text.rekryterare').addClass('is-visible');
   });
-  $('.intro .option.byrachefer').click(function () {
-    $('.intro .option.byrachefer').addClass('is-active');
-    $('.intro .text.byrachefer').addClass('is-visible');
+  $('.intro .option.creativedirector').click(function () {
+    $('.intro .option.creativedirector').addClass('is-active');
+    $('.intro .text.creativedirector').addClass('is-visible');
   });
   $('.intro .option.designchefer').click(function () {
     $('.intro .option.designchefer').addClass('is-active');
