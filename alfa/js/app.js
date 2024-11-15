@@ -85,25 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to toggle menu class
     const toggleMenu = () => document.body.classList.toggle('menu-is-active');
     mobMenu?.addEventListener('click', toggleMenu);
-
-    // Smooth scrolling with optional delay for active menu
+    
     const smoothScroll = (event) => {
-        event.preventDefault();
-        const targetId = event.currentTarget.getAttribute('href')?.substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (!targetSection) return;
-
-        const isMenuActive = document.body.classList.contains('menu-is-active');
-        if (isMenuActive) {
-            setTimeout(() => {
+        const targetId = event.currentTarget.getAttribute('href');
+        
+        // Check if it's an internal link (starts with #)
+        if (targetId?.startsWith('#')) {
+            event.preventDefault();
+            const sectionId = targetId.substring(1);
+            const targetSection = document.getElementById(sectionId);
+            if (!targetSection) return;
+    
+            const isMenuActive = document.body.classList.contains('menu-is-active');
+            if (isMenuActive) {
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.body.classList.remove('menu-is-active');
+                }, 300);
+            } else {
                 targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                document.body.classList.remove('menu-is-active');
-            }, 300); // Adjusted delay to 100ms as per your original requirement
-        } else {
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     };
-
+    
     // Add event listener for all navigation links
     navLinks.forEach(link => link.addEventListener('click', smoothScroll));
 });
