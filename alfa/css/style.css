@@ -13,7 +13,11 @@ header {
   justify-content: space-between;
   top: 0;
   z-index: 98;
+  pointer-events: none;
   width: calc(100% - 2 * var(--grid-gap));
+}
+header > * {
+  pointer-events: all;
 }
 body,
 .overlay,
@@ -63,7 +67,6 @@ nav {
 }
 .nav-wrapper > p.is-active > a {
   color: var(--color-foreground-100);
-  border-bottom: 1px solid var(--color-foreground-100);
 }
 /* Mobile menu
 --------------- */
@@ -193,7 +196,11 @@ section {
   gap: var(--grid-gap);
 }
 section:first-of-type {
-  padding: 300px 0;
+  padding: clamp(100px, 45lvh, 300px) 0;
+}
+section:last-of-type {
+  padding: 0;
+  padding-bottom: clamp(100px, 35lvh, 220px);
 }
 section > .content {
   grid-column: 1/-1;
@@ -221,12 +228,27 @@ section h2 {
 }
 section h3 {
   font-size: var(--font-size-medium);
-  line-height: var(--fs-n-lh);
-  color: var(--c-bg-50);
+  line-height: var(--font-size-regular-line-height);
 }
 /* -----------------------------------------------------------------------------
 Section Intro
 ----------------------------------------------------------------------------- */
+.message {
+  grid-column: 1/-1;
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  color: var(--color-foreground-33);
+}
+.message::before{
+  content: "";
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  background-color: var(--color-accent-100);
+  border-radius: 100vw;
+  transform: translateY(60%);
+}
 section#intro .options {
   position: relative;
   display: flex;
@@ -275,6 +297,7 @@ section#intro .gradient-mask.right {
     var(--color-background-100) 2%,
     var(--color-background-0) 100%
   );
+  transform: translateX(1px);
 }
 section#intro .gradient-mask.left {
   left: 0;
@@ -283,6 +306,7 @@ section#intro .gradient-mask.left {
     var(--color-background-100) 2%,
     var(--color-background-0) 100%
   );
+  transform: translateX(-1px);
 }
 section#intro .options .option.is-active {
   color: var(--color-foreground-100);
@@ -355,6 +379,7 @@ Section About
   margin-bottom: 1rem;
 }
 #about .list {
+  color: var(--color-foreground-50);
   display: grid;
   gap: 0 var(--grid-gap);
   grid-template-columns: var(--columns-small);
@@ -396,12 +421,11 @@ section .introduction {
 #background p .title {
   font-size: var(--font-size-medium);
 }
-#background p > .description,
-#background p > .information {
+#background p > .description {
   color: var(--color-foreground-50);
 }
 #background p > .information > span {
-  color: var(--color-foreground-100);
+  color: var(--color-foreground-50);
 }
 #background .item p > span {
   margin-top: 8px;
@@ -432,22 +456,37 @@ Section References
 /* -----------------------------------------------------------------------------
 Section Case-intro
 ----------------------------------------------------------------------------- */
+#case-intro {
+  padding-top: clamp(100px, 45lvh, 300px);
+}
 #case-intro .content {
+  display: grid;
+  grid-template-columns: var(--columns-medium);
   height: 1px;
+  gap: var(--grid-gap);
   overflow: hidden;
-  transition: height 300ms cubic-bezier(0.33, 0, 0.2, 1);
+  /* transition: height 300ms cubic-bezier(0.33, 0, 0.2, 1); */
+}
+#case-intro .content > span {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+#case-intro .content > span:first-child {
+  --columns-medium: auto;
+}
+#case-intro .content > span:last-child {
+  grid-column: 2/-1;
 }
 #case-intro .heading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: var(--columns-small);
   grid-column: 1/-1;
+  align-items: end;
 }
 #case-intro.is-active .content {
   height: 100%;
-}
-.display {
-  transition: padding 300ms cubic-bezier(0.33, 0, 0.2, 1);
 }
 #case-intro .display {
   display: grid;
@@ -465,6 +504,10 @@ Section Case-intro
 }
 #case-intro h2 {
   margin: unset;
+}
+
+#case-intro .content > p {
+  margin-bottom: 1em;
 }
 
 /* TESTASTE */
