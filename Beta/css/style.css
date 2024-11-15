@@ -16,7 +16,8 @@ header {
   width: calc(100% - 2 * var(--grid-gap));
 }
 body,
-.overlay {
+.overlay,
+.welcome {
   display: grid;
   grid-template-columns:
     [full-width-start] minmax(var(--grid-gap), 1fr)
@@ -28,7 +29,8 @@ body,
     minmax(var(--grid-gap), 1fr) [full-width-end];
 }
 main,
-.columns {
+.columns,
+.welcome > * {
   grid-column: content;
   display: grid;
   grid-template-columns: var(--columns-large);
@@ -126,7 +128,8 @@ body.menu-is-active .icon > span:last-child {
   color: var(--color-foreground-100);
   border: 1px solid var(--color-foreground-100);
   border-radius: 0.5rem;
-  transition: background-color 100ms cubic-bezier(0.33, 0, 0.2, 1), color 100ms cubic-bezier(0.33, 0, 0.2, 1);
+  transition: background-color 100ms cubic-bezier(0.33, 0, 0.2, 1),
+    color 100ms cubic-bezier(0.33, 0, 0.2, 1);
 }
 .button svg {
   height: var(--font-size-regular);
@@ -364,10 +367,6 @@ Section About
   margin-top: 0.25em;
 }
 #about .list p > span {
-  display: block;
-  text-align: right;
-  position: absolute;
-  left: -1.5em;
   color: var(--color-foreground-50);
 }
 /* -----------------------------------------------------------------------------
@@ -421,9 +420,6 @@ Section References
   font-size: clamp(26px, 1.65vw, 64px);
   padding-right: 20px;
 }
-.opening-quote-mark {
-  margin-left: -0.385em;
-}
 #references .item p {
   padding-top: 10px;
 }
@@ -436,16 +432,39 @@ Section References
 /* -----------------------------------------------------------------------------
 Section Case-intro
 ----------------------------------------------------------------------------- */
-.case-intro .content {
+#case-intro .content {
   height: 1px;
   overflow: hidden;
   transition: height 300ms cubic-bezier(0.33, 0, 0.2, 1);
 }
-.case-intro.is-active .content {
+#case-intro .heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  grid-column: 1/-1;
+}
+#case-intro.is-active .content {
   height: 100%;
 }
 .display {
   transition: padding 300ms cubic-bezier(0.33, 0, 0.2, 1);
+}
+#case-intro .display {
+  display: grid;
+  grid-column: 1/-1;
+  gap: var(--grid-gap);
+  grid-template-columns: 1fr;
+}
+#case-intro .display > span {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: 1fr 1fr;
+}
+#case-intro img {
+  border-radius: 0.5rem;
+}
+#case-intro h2 {
+  margin: unset;
 }
 
 /* TESTASTE */
@@ -460,13 +479,13 @@ body.entry-animation main {
 }
 .welcome {
   position: fixed;
-  display: grid;
   align-items: center;
   top: 0;
   left: var(--grid-gap);
   right: var(--grid-gap);
   opacity: 0;
-  transition: opacity 1s cubic-bezier(0.33, 0, 0.2, 1), bottom 1.5s cubic-bezier(0.33, 0, 0.2, 1);
+  transition: opacity .75s cubic-bezier(0.33, 0, 0.2, 1),
+    bottom 1.5s cubic-bezier(0.33, 0, 0.2, 1);
   bottom: 100%;
 }
 body.entry-loading {
@@ -493,13 +512,13 @@ body.entry-animation .overlay .column span {
   padding-bottom: 40px;
   animation: welcome 1.5s cubic-bezier(0.33, 0, 0.2, 1);
   font-size: var(--font-size-huge);
+  grid-column: 1/-1;
 }
 nav {
   opacity: 1;
-  transition: opacity 1.5s cubic-bezier(0.33, 0, 0.2, 1);
-  transition-delay: 0.5s;
 }
 body.entry-animation nav {
+  transition: opacity 1.5s cubic-bezier(0.33, 0, 0.2, 1);
   opacity: 0;
 }
 header {

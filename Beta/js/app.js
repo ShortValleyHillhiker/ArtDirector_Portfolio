@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // Reset the window scroll position to top on every page load and re-load
     if (history.scrollRestoration) {
-      history.scrollRestoration = 'manual';
+        history.scrollRestoration = 'manual';
     }
 });
 
@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Select the button inside the heading
-    const button = document.querySelector('.case-intro .heading .button');
+    const button = document.querySelector('#case-intro .heading .button');
 
     if (button) {
         // Add a click event listener to the button
         button.addEventListener('click', () => {
-            const caseIntro = button.closest('.case-intro');
+            const caseIntro = button.closest('#case-intro');
             caseIntro?.classList.toggle('is-active');
         });
     }
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.remove("entry-animation");
         }, 1500);
         setTimeout(() => {
-            document.body.classList.toggle("entry-loading");
+            document.body.classList.remove("entry-loading");
         }, 2750);
 
         // Set the session storage variable to prevent future animations
