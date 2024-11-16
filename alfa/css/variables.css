@@ -31,3 +31,29 @@
 
   --responsive-grid-max-width: 1780px;
 }
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+  --color-foreground-100: rgb(32 32 32 / 1);
+  --color-foreground-50:  rgb(32 32 32 / 0.5);
+  --color-foreground-33:  rgb(32 32 32 / 0.333);
+  --color-foreground-25:  rgb(32 32 32 / 0.25);
+  --color-foreground-20:  rgb(32 32 32 / 0.2);
+  --color-foreground-15:  rgb(32 32 32 / 0.15);
+  --color-foreground-10:  rgb(32 32 32 / 0.1);
+  --color-foreground-5:   rgb(32 32 32 / 0.05);
+  --color-foreground-0:   rgb(32 32 32 / 0);
+  --color-background-100: rgb(238 238 238 / 1);
+  --color-background-0:   rgb(238 238 238 / 0);
+  --color-accent-100: rgb(255 199 0 / 1);
+  --color-accent-25: rgb(255 199 0 / .25);
+  --color-accent-5:   rgb(255 199 0 / .05);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  img,video {
+    filter: brightness(.8);
+  }
+}

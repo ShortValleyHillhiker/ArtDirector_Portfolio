@@ -1,148 +1,137 @@
-$(document).ready(function () {
+import Swup from 'https://unpkg.com/swup@4?module';
 
-    // Reset the window scroll position to top on every page load and re-load
+// Initiera Swup
+const swup = new Swup();
+
+// Funktioner som behöver köras på varje sidladdning
+function pageLoad() {
+    resetScrollPosition();
+    initIntroOptions();
+    initNavigation();
+    initCaseIntroButton();
+    closeMobileMenu();
+}
+
+// Kör `pageLoad()` på första sidladdningen
+document.addEventListener('DOMContentLoaded', pageLoad);
+
+
+// Kör `pageLoad()` varje gång en sida laddas via Swup
+swup.hooks.on('page:view', () => {
+    pageLoad();
+  });
+
+  function closeMobileMenu() {
+    document.body.classList.remove('menu-is-active');
+}
+
+// Funktion för att återställa fönstrets scrollposition vid omladdning
+function resetScrollPosition() {
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
+        setTimeout(() => {
+            sessionStorage.setItem("vennerstrom-visited", "true");
+        }, 250);
     }
-});
+}
 
-window.addEventListener('DOMContentLoaded', () => {
+// Funktion för att hantera alternativ i intro-sektionen
+function initIntroOptions() {
     const optionsContainer = document.querySelector('#intro .options');
     const gradientMaskLeft = document.querySelector('#intro .gradient-mask.left');
     const texts = document.querySelectorAll('#intro .texts h1');
     const options = document.querySelectorAll('#intro .option');
 
-    // Exit early if the container is not found
-    if (!optionsContainer || !gradientMaskLeft || options.length === 0 || texts.length === 0) {
-        return;
-    }
+    if (!optionsContainer || !gradientMaskLeft || options.length === 0 || texts.length === 0) return;
 
-    // Show/hide the gradient mask based on horizontal scroll
     optionsContainer.addEventListener('scroll', () => {
         gradientMaskLeft.classList.toggle('is-visible', optionsContainer.scrollLeft > 0);
     });
 
-    // Function to handle option clicks
-    const handleOptionClick = (option) => {
-        const textClass = option.classList[1];
-        if (!textClass) return;
-
-        // Remove active state from all options and texts
-        options.forEach(opt => opt.classList.remove('is-active'));
-        texts.forEach(txt => txt.classList.remove('is-visible'));
-
-        // Add active state to the clicked option and corresponding text
-        option.classList.add('is-active');
-        document.querySelector(`#intro .text.${textClass}`)?.classList.add('is-visible');
-    };
-
-    // Attach a single event listener using event delegation
     optionsContainer.addEventListener('click', (event) => {
         const clickedOption = event.target.closest('.option');
         if (clickedOption && optionsContainer.contains(clickedOption)) {
-            handleOptionClick(clickedOption);
+            handleOptionClick(clickedOption, options, texts);
         }
     });
-});
+}
 
+function handleOptionClick(option, options, texts) {
+    const textClass = option.classList[1];
+    if (!textClass) return;
 
+    options.forEach(opt => opt.classList.remove('is-active'));
+    texts.forEach(txt => txt.classList.remove('is-visible'));
 
+    option.classList.add('is-active');
+    document.querySelector(`#intro .text.${textClass}`)?.classList.add('is-visible');
+}
 
-
-document.addEventListener('DOMContentLoaded', () => {
+// Funktion för att initiera navigationslogik och smooth scroll
+function initNavigation() {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-wrapper p');
     const navLinks = document.querySelectorAll('.nav-wrapper a, .button');
     const mobMenu = document.querySelector('.mob-menu');
+    
+    const navMap = cacheNavItems(navItems);
 
-    // Cache nav items with their corresponding section IDs
-    const navMap = [...navItems].reduce((map, item) => {
+    initIntersectionObserver(sections, navMap, navItems);
+    mobMenu?.addEventListener('click', toggleMenu);
+
+    navLinks.forEach(link => link.addEventListener('click', smoothScroll));
+}
+
+function cacheNavItems(navItems) {
+    return [...navItems].reduce((map, item) => {
         const link = item.querySelector('a');
         const sectionId = link?.getAttribute('href')?.substring(1);
         if (sectionId) map[sectionId] = item;
         return map;
     }, {});
+}
 
-    // Function to update active navigation item based on section in view
-    const setActiveNavItem = (sectionId) => {
-        navItems.forEach(item => item.classList.remove('is-active'));
-        navMap[sectionId]?.classList.add('is-active');
-    };
-
-    // Intersection Observer for detecting active section
+function initIntersectionObserver(sections, navMap, navItems) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) setActiveNavItem(entry.target.id);
+            if (entry.isIntersecting) setActiveNavItem(entry.target.id, navMap, navItems);
         });
     }, {
-        rootMargin: '-45% 0px',
+        rootMargin: '-55% 0px',
         threshold: 0
     });
 
-    // Observe all sections
     sections.forEach(section => observer.observe(section));
+}
 
-    // Function to toggle menu class
-    const toggleMenu = () => document.body.classList.toggle('menu-is-active');
-    mobMenu?.addEventListener('click', toggleMenu);
-    
-    const smoothScroll = (event) => {
-        const targetId = event.currentTarget.getAttribute('href');
-        
-        // Check if it's an internal link (starts with #)
-        if (targetId?.startsWith('#')) {
-            event.preventDefault();
-            const sectionId = targetId.substring(1);
-            const targetSection = document.getElementById(sectionId);
-            if (!targetSection) return;
-    
-            const isMenuActive = document.body.classList.contains('menu-is-active');
-            if (isMenuActive) {
-                setTimeout(() => {
-                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.body.classList.remove('menu-is-active');
-                }, 300);
-            } else {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-    };
-    
-    // Add event listener for all navigation links
-    navLinks.forEach(link => link.addEventListener('click', smoothScroll));
-});
+function setActiveNavItem(sectionId, navMap, navItems) {
+    navItems.forEach(item => item.classList.remove('is-active'));
+    navMap[sectionId]?.classList.add('is-active');
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Select the button inside the heading
+function toggleMenu() {
+    document.body.classList.toggle('menu-is-active');
+}
+
+function smoothScroll(event) {
+    const targetId = event.currentTarget.getAttribute('href');
+    if (targetId?.startsWith('#')) {
+        event.preventDefault();
+        const sectionId = targetId.substring(1);
+        const targetSection = document.getElementById(sectionId);
+        if (!targetSection) return;
+
+        const isMenuActive = document.body.classList.contains('menu-is-active');
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (isMenuActive) document.body.classList.remove('menu-is-active');
+    }
+}
+
+// Funktion för att hantera knapptryck i case-intro-sektionen
+function initCaseIntroButton() {
     const button = document.querySelector('#case-intro .heading .button');
-
-    if (button) {
-        // Add a click event listener to the button
-        button.addEventListener('click', () => {
-            const caseIntro = button.closest('#case-intro');
-            caseIntro?.classList.toggle('is-active');
-        });
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Check if the user has visited before using sessionStorage
-    const hasVisited = sessionStorage.getItem("vennerstrom-visited");
-
-    if (!hasVisited) {
-        // // First-time visit: add entry animation classes
-        // document.body.classList.add("entry-animation");
-        // document.body.classList.add("entry-loading");
-
-        // After 1500ms, toggle the entry-loading class
-        setTimeout(() => {
-            document.body.classList.remove("entry-animation");
-        }, 1500);
-        setTimeout(() => {
-            document.body.classList.remove("entry-loading");
-        }, 2750);
-
-        // Set the session storage variable to prevent future animations
-        // sessionStorage.setItem("vennerstrom-visited", "true");
-    }
-});
+    button?.addEventListener('click', () => {
+        const caseIntro = button.closest('#case-intro');
+        caseIntro?.classList.toggle('is-active');
+    });
+}

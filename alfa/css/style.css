@@ -2,7 +2,13 @@ html {
   background-color: var(--color-background-100);
   color: var(--color-foreground-100);
 }
+html.is-changing .transition-fade {
+  transition: opacity 250ms ease-in-out;
+}
 
+html.is-animating .transition-fade {
+  opacity: 0;
+}
 /* -----------------------------------------------------------------------------
 Overlays
 ----------------------------------------------------------------------------- */
@@ -18,6 +24,13 @@ header {
 }
 header > * {
   pointer-events: all;
+}
+header > .branding a {
+  border: unset;
+  transition: color 300ms cubic-bezier(0.33, 0, 0.2, 1);
+}
+header > .branding:hover a {
+  color: var(--color-foreground-33);
 }
 body,
 .overlay,
@@ -54,7 +67,7 @@ nav {
 .nav-wrapper {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--grid-gap) / 4);
+  gap: calc(var(--grid-gap) / 2);
 }
 .nav-wrapper > p {
   color: var(--color-foreground-33);
@@ -192,11 +205,11 @@ section {
   grid-column: 2/-1;
   display: grid;
   grid-template-columns: var(--columns-medium);
-  padding: 0 0 300px 0;
+  padding: 300px 0 0 0;
   gap: var(--grid-gap);
 }
 section:first-of-type {
-  padding: clamp(100px, 45lvh, 300px) 0;
+  padding: clamp(100px, 45lvh, 300px) 0 0 0;
 }
 section:last-of-type {
   padding: 0;
@@ -207,7 +220,9 @@ section > .content {
   position: relative;
   gap: calc(var(--grid-gap) / 4);
 }
-section > .ending,
+section > .ending {
+  grid-column: 4/-1;
+}
 section > .heading {
   grid-column: 3/-1;
   position: relative;
@@ -240,7 +255,7 @@ Section Intro
   gap: 8px;
   color: var(--color-foreground-33);
 }
-.message::before{
+.message::before {
   content: "";
   display: inline-block;
   height: 8px;
@@ -360,18 +375,39 @@ Section Work
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
+#work .content .item.coming-soon > .information {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+#work .content .item.coming-soon > img {
+  filter: blur(8px);
+}
 #work .content .item > .information > p {
   color: rgb(238 238 238 / 0.5);
 }
-#work .content .item:hover > .information {
+#work .content .item:hover > .information,
+#work .content .item.coming-soon > .information {
   top: 0;
+}
+.fictive::after {
+  display: block;
+  content: "Hitte-på-case";
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(238 238 238 / .33);
+  color: rgb(238 238 238 );
+  padding: calc(var(--grid-gap) / 2) var(--grid-gap);
+  border-radius: .5rem;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 /* -----------------------------------------------------------------------------
 Section About
 ----------------------------------------------------------------------------- */
-#about {
-  padding: unset;
-}
 #about .content {
   grid-column: 3 / -1;
 }
@@ -397,6 +433,9 @@ Section About
 /* -----------------------------------------------------------------------------
 Section Background
 ----------------------------------------------------------------------------- */
+#background {
+  padding: unset;
+}
 #background .content {
   padding: unset;
   display: grid;
@@ -470,7 +509,7 @@ Section Case-intro
 #case-intro .content > span {
   display: flex;
   flex-direction: column;
-  gap: .5em;
+  gap: 0.5em;
 }
 #case-intro .content > span:first-child {
   --columns-medium: auto;
@@ -499,7 +538,8 @@ Section Case-intro
   gap: var(--grid-gap);
   grid-template-columns: 1fr 1fr;
 }
-#case-intro img {
+#case-intro img,
+#case-intro video {
   border-radius: 0.5rem;
 }
 #case-intro h2 {
@@ -527,7 +567,7 @@ body.entry-animation main {
   left: var(--grid-gap);
   right: var(--grid-gap);
   opacity: 0;
-  transition: opacity .75s cubic-bezier(0.33, 0, 0.2, 1),
+  transition: opacity 0.75s cubic-bezier(0.33, 0, 0.2, 1),
     bottom 1.5s cubic-bezier(0.33, 0, 0.2, 1);
   bottom: 100%;
 }

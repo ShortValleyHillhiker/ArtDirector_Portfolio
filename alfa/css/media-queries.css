@@ -20,6 +20,9 @@
   body #about .content {
     grid-column: 1/-1;
   }
+  body section > .ending {
+    grid-column: 3/-1;
+  }
 }
 @media all and (max-width: 1020px) {
   body {
@@ -28,9 +31,12 @@
   body #references .heading {
     grid-column: 3/-1;
   }
-  body section,
-  body section > .ending {
+  body section {
     grid-column: 2/-1;
+  }
+  body section > .ending {
+    grid-column: 1/-1;
+    margin-top: 1rem;
   }
   body #about .content,
   body section > .heading {
@@ -62,10 +68,6 @@
   }
   body section > .heading {
     grid-column: 1/-1;
-  }
-  body section > .ending {
-    grid-column: 1/-1;
-    margin-top: 1rem;
   }
   body #references .heading {
     grid-column: 2/-1;
