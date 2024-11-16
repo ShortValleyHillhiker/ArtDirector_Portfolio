@@ -94,16 +94,23 @@ function cacheNavItems(navItems) {
 function initIntersectionObserver(sections, navMap, navItems) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) setActiveNavItem(entry.target.id, navMap, navItems);
+            if (entry.isIntersecting) {
+                setActiveNavItem(entry.target.id, navMap, navItems);
+            }
         });
     }, {
-        rootMargin: '-55% 0px',
-        threshold: 0
+        rootMargin: '-30% 0px',
+        threshold: 0.1 
     });
 
     sections.forEach(section => observer.observe(section));
-}
 
+    // För Safari och iOS - tvinga omvärdering vid fönsterstorleksändring
+    window.addEventListener('resize', () => {
+        sections.forEach(section => observer.unobserve(section));
+        sections.forEach(section => observer.observe(section));
+    });
+}
 function setActiveNavItem(sectionId, navMap, navItems) {
     navItems.forEach(item => item.classList.remove('is-active'));
     navMap[sectionId]?.classList.add('is-active');
