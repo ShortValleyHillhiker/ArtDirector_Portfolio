@@ -54,6 +54,7 @@
 
 @media (prefers-color-scheme: dark) {
   img,video {
-    filter: brightness(.8);
+    -webkit-filter: brightness(.8);
+            filter: brightness(.8);
   }
 }

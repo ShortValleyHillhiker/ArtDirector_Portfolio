@@ -47,6 +47,7 @@
     padding: clamp(150px, 5lvh, 300px) 0;
   }
   body #case-intro .content {
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
   }
   body #case-intro .content > span:first-child,
@@ -88,6 +89,7 @@
     grid-column: 1/-1;
   }
   section#intro .content {
+    display: -ms-grid;
     display: grid;
   }
   body section > .content {
@@ -97,6 +99,7 @@
     display: block;
   }
   body nav {
+    display: -ms-grid;
     display: grid;
     background-color: var(--color-background-100);
     gap: var(--grid-gap);
@@ -108,6 +111,8 @@
     bottom: 0;
     z-index: 97;
     opacity: 0;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
     pointer-events: none;
     overflow-y: scroll;

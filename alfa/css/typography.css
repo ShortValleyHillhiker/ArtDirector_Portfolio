@@ -10,7 +10,8 @@
   font-family: var(--font-family);
   font-style: var(--font-style);
   font-weight: var(--font-weight);
-  font-feature-settings: var(--font-feature-settings);
+  -webkit-font-feature-settings: var(--font-feature-settings);
+          font-feature-settings: var(--font-feature-settings);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
