@@ -20,8 +20,6 @@
                 document.body.classList.remove("entry-animation");
                 document.body.classList.remove("entry-loading");
             } else {
-                document.body.classList.add("entry-animation");
-                document.body.classList.add("entry-loading");
                 setTimeout(() => {
                     document.body.classList.remove("entry-animation");
                 }, 1500);
@@ -41,7 +39,7 @@
 </head>
 
 
-<body class="">
+<body class="entry-loading entry-animation">
 
 
     <main id="swup" class="transition-fade">
