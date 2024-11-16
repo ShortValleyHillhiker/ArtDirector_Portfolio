@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Startsidan -->
   <url>
-    <loc>https://vennerstrom.se/</loc>
-    <lastmod>2024-10-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.vennerstrom.se/index.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
+  <!-- Case: Minisylva -->
   <url>
-    <loc>https://vennerstrom.se/frihamnsravet</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://www.vennerstrom.se/minisylva.html</loc>
+    <lastmod>2024-11-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
+    <priority>0.8</priority>
   </url>
   
+  <!-- Case: Distorted Reflections -->
   <url>
-    <loc>https://vennerstrom.se/gbgstrunt</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://www.vennerstrom.se/mockups.html</loc>
+    <lastmod>2024-11-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Case: Distorted Reflections -->
+  <url>
+    <loc>https://www.vennerstrom.se/hamburgermenus.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
+  <!-- Case: Distorted Reflections -->
   <url>
-    <loc>https://vennerstrom.se/minisylva</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://www.vennerstrom.se/sundinvestering.html</loc>
+    <lastmod>2024-11-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
+    <priority>0.8</priority>
   </url>
-  
+
+  <!-- Case: Distorted Reflections -->
   <url>
-    <loc>https://vennerstrom.se/spktmockups</loc>
-    <lastmod>2024-10-10</lastmod>
+    <loc>https://www.vennerstrom.se/retardraveloution.html</loc>
+    <lastmod>2024-11-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
+    <priority>0.8</priority>
   </url>
-  
-  <url>
-    <loc>https://vennerstrom.se/sundinvestering</loc>
-    <lastmod>2024-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  
-  <url>
-    <loc>https://vennerstrom.se/burgerking</loc>
-    <lastmod>2024-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  
+
 </urlset>
