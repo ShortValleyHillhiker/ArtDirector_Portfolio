@@ -3,7 +3,6 @@ import Swup from 'https://unpkg.com/swup@4?module';
 // Initiera Swup
 const swup = new Swup();
 
-// Funktioner som behöver köras på varje sidladdning
 function pageLoad() {
     resetScrollPosition();
     initIntroOptions();
