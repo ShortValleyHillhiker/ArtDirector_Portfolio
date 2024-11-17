@@ -37,5 +37,5 @@ a:hover {
 .branding > P {
   font-size: var(--font-size-large);
   font-weight: 500;
-  letter-spacing: -.09em;
+  letter-spacing: -.16em;
 }
