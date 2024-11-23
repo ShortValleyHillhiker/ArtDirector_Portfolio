@@ -1,8 +1,3 @@
-import Swup from 'https://unpkg.com/swup@4?module';
-
-// Initiera Swup
-const swup = new Swup();
-
 function pageLoad() {
     resetScrollPosition();
     initIntroOptions();
@@ -67,7 +62,6 @@ function handleOptionClick(option, options, texts) {
     document.querySelector(`#intro .text.${textClass}`)?.classList.add('is-visible');
 }
 
-// Funktion för att initiera navigationslogik och smooth scroll
 function initNavigation() {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-wrapper p');
@@ -78,8 +72,6 @@ function initNavigation() {
 
     initIntersectionObserver(sections, navMap, navItems);
     mobMenu?.addEventListener('click', toggleMenu);
-
-    navLinks.forEach(link => link.addEventListener('click', smoothScroll));
 }
 
 function cacheNavItems(navItems) {
@@ -92,48 +84,45 @@ function cacheNavItems(navItems) {
 }
 
 function initIntersectionObserver(sections, navMap, navItems) {
-    const isMobileLandscape = window.innerHeight < 500 && window.innerWidth > window.innerHeight;
+    let observer;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setActiveNavItem(entry.target.id, navMap, navItems);
-            }
+    const createObserver = () => {
+        const isMobileLandscape = window.innerHeight < 500 && window.innerWidth > window.innerHeight;
+
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveNavItem(entry.target.id, navMap, navItems);
+                }
+            });
+        }, {
+            rootMargin: isMobileLandscape ? '-10% 0px' : '-30% 0px',
+            threshold: 0.1
         });
-    }, {
-        rootMargin: isMobileLandscape ? '-10% 0px' : '-30% 0px',
-        threshold: 0.1 
-    });
 
-    sections.forEach(section => observer.observe(section));
-
-    // För Safari och iOS - tvinga omvärdering vid fönsterstorleksändring
-    window.addEventListener('resize', () => {
-        sections.forEach(section => observer.unobserve(section));
         sections.forEach(section => observer.observe(section));
+    };
+
+    createObserver();
+
+    window.addEventListener('resize', () => {
+        if (observer) {
+            sections.forEach(section => observer.unobserve(section));
+            observer.disconnect();
+        }
+
+        createObserver();
     });
 }
+
 function setActiveNavItem(sectionId, navMap, navItems) {
     navItems.forEach(item => item.classList.remove('is-active'));
     navMap[sectionId]?.classList.add('is-active');
 }
 
+
 function toggleMenu() {
     document.body.classList.toggle('menu-is-active');
-}
-
-function smoothScroll(event) {
-    const targetId = event.currentTarget.getAttribute('href');
-    if (targetId?.startsWith('#')) {
-        event.preventDefault();
-        const sectionId = targetId.substring(1);
-        const targetSection = document.getElementById(sectionId);
-        if (!targetSection) return;
-
-        const isMenuActive = document.body.classList.contains('menu-is-active');
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (isMenuActive) document.body.classList.remove('menu-is-active');
-    }
 }
 
 // Funktion för att hantera knapptryck i case-intro-sektionen
