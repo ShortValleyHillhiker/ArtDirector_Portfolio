@@ -72,6 +72,12 @@ function initNavigation() {
 
     initIntersectionObserver(sections, navMap, navItems);
     mobMenu?.addEventListener('click', toggleMenu);
+
+    if (window.innerWidth < 500) {
+        navItems.forEach((navItem) => {
+            navItem.addEventListener('click', closeMobileMenu);
+        });
+    }
 }
 
 function cacheNavItems(navItems) {
