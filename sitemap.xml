@@ -3,49 +3,49 @@
 
   <!-- Startsidan -->
   <url>
-    <loc>https://www.vennerstrom.se/index.html</loc>
+    <loc>https://www.vennerstrom.se/</loc>
     <lastmod>2024-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Case: Minisylva -->
+  <!-- Case: Minisylva, Stora Enso -->
   <url>
     <loc>https://www.vennerstrom.se/minisylva.html</loc>
     <lastmod>2024-11-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Case: Distorted Reflections -->
+  <!-- Case: Spkt mockups -->
   <url>
     <loc>https://www.vennerstrom.se/mockups.html</loc>
     <lastmod>2024-11-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Case: Distorted Reflections -->
+  <!-- Case: Hamburger menus, Burger King -->
   <url>
     <loc>https://www.vennerstrom.se/hamburgermenus.html</loc>
     <lastmod>2024-11-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Case: Distorted Reflections -->
+  <!-- Case: Sund Investering, Göteborgsvarvet -->
   <url>
     <loc>https://www.vennerstrom.se/sundinvestering.html</loc>
     <lastmod>2024-11-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Case: Distorted Reflections -->
+  <!-- Case: Retard raveloution, GIL -->
   <url>
     <loc>https://www.vennerstrom.se/retardraveloution.html</loc>
     <lastmod>2024-11-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
