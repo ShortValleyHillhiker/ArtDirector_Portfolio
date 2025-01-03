@@ -107,6 +107,7 @@ nav > header div:last-child {
 .mobile-menu_toggle {
   display: block;
   position: relative;
+  cursor: pointer;
 }
 .mobile-menu_toggle span {
   display: block;
@@ -225,9 +226,6 @@ body.mobile-active .mobile-menu {
   border-bottom: 1px solid var(--c-ft);
   padding-bottom: 1rem;
 }
-.main-menu a:hover {
-  text-decoration: underline;
-}
 
 .submenu {
   position: absolute;
@@ -260,12 +258,16 @@ body.mobile-active .mobile-menu {
   border-bottom: 1px solid var(--c-ft);
   color: var(--c-bg);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .submenu-toggle {
+  width: clamp(1.25rem, 5.25vw, 1.25rem);
+  height: clamp(1.25rem, 5.25vw, 1.25rem);
   display: block;
   position: relative;
+  cursor: pointer;
 }
 .submenu-toggle span {
   display: block;
@@ -277,11 +279,11 @@ body.mobile-active .mobile-menu {
 }
 .submenu-toggle span:first-child {
   top: 25%;
-  transform: rotate(-45deg) translate(6px, -3px);
+  transform: rotate(-45deg) translateY(1px);
 }
 .submenu-toggle span:last-child {
   bottom: 25%;
-  transform: rotate(45deg) translate(3px, 0px);
+  transform: rotate(45deg) translateY(-1px);
 }
 
 .submenu-list {
