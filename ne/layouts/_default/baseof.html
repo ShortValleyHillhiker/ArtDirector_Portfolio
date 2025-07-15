@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <header id="main-nav">
+    {{ partial "header.html" . }}
+  </header>
+  <main id="swup" class="transition-fade {{ if .Params.isInverted }}inverted{{ end }}">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="page-bottom">
+    {{ partial "footer.html" . }}
+  </footer>
+</body>
+</html>

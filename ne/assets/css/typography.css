@@ -1,0 +1,39 @@
+html {
+  box-sizing: border-box;
+  font-family: var(--font-family-body);
+  line-height: var(--font-size-regular-line-height);
+  font-style: var(--font-style);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-regular);
+  letter-spacing: 0.02em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-accent);
+  font-weight: var(--font-weight);
+  line-height: 1.15;
+  color: var(--color-foreground-100);
+  /* margin-bottom: 0.625em; */
+}
+
+h1 {
+  font-size: var(--font-size-huge);
+}
+
+h2 {
+  font-size: var(--font-size-large);
+}
+h3 {
+  font-size: var(--font-size-medium);
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

@@ -1,0 +1,32 @@
+baseURL = 'https://aoe.studio/'
+languageCode = 'en-us'
+defaultContentLanguage = "en-us"
+title = 'My New Hugo Site'
+
+relativeURLs = false
+canonifyURLs = true
+
+[params]
+    defaultDescription = "AOE is a creative agency driven by design and experimentation."
+    defaultImage = "/images/default-og.jpg"
+    organization_logo = "/images/logo.png"
+
+[author]
+    name = "AOE"
+
+[menu]
+
+  [[menu.main]]
+  name = "Work"
+  url = "/work/"
+  weight = 1
+
+  [[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 2
+
+  [[menu.main]]
+  name = "News"
+  url = "/news/"
+  weight = 3
