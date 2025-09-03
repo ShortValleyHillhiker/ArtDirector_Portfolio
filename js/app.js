@@ -3,6 +3,7 @@ function pageLoad() {
     initIntroOptions();
     initNavigation();
     initCaseIntroButton();
+    initVideoIntersectionObserver()
     closeMobileMenu();
 }
 
@@ -78,6 +79,34 @@ function initNavigation() {
             navItem.addEventListener('click', closeMobileMenu);
         });
     }
+}
+
+function initVideoIntersectionObserver() {
+    const videos = document.querySelectorAll('video[autoplay]');
+    
+    if (videos.length === 0) return;
+
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                video.play().catch(() => {
+                    // Handle autoplay restrictions
+                });
+            } else {
+                video.pause();
+            }
+        });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.3
+    });
+
+    videos.forEach(video => {
+        // Remove autoplay attribute since we're handling it manually
+        video.removeAttribute('autoplay');
+        videoObserver.observe(video);
+    });
 }
 
 function cacheNavItems(navItems) {
