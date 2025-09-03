@@ -834,3 +834,28 @@ body.entry-animation header {
 .member {
   color: var(--color-foreground-50);
 }
+
+span > blockquote {
+}
+
+blockquote {
+  font-size: var(--font-size-large);
+  line-height: 0.975;
+  letter-spacing: -0.02em;
+  padding: 0;
+  margin: 0;
+  padding: calc(var(--grid-gap) * 6.5) 0;
+}
+blockquote > cite {
+  display: block;
+  color: var(--color-foreground-50);
+  font-size: var(--font-size-regular);
+  line-height: 0.975;
+  letter-spacing: -0.02em;
+  padding: 0;
+  margin: 0;
+  margin-top: 1em;
+}
+blockquote > cite em {
+  color: var(--color-foreground-33);
+}

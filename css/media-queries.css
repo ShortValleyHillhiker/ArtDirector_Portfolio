@@ -82,6 +82,12 @@
   body .brief {
     --brief: 1fr;
   }
+#case-intro .display > span {
+  grid-template-columns: 1fr!important;
+}
+  blockquote {
+  padding: calc(var(--grid-gap) * 3) 0!important;
+}
 }
 @media all and (max-width: 500px) {
   body {

@@ -3,8 +3,8 @@
   --font-weight: 400;
   --font-style: normal;
   --font-feature-settings: "liga", "ss02", "ss03", "ss04", "ss06";
-  --font-size-huge: clamp(32px, 3.25vw, 82px);
-  --font-size-large: clamp(26px, 2.25vw, 64px);
+  --font-size-huge: clamp(32px, 3.25vw, 72px);
+  --font-size-large: clamp(26px, 2.25vw, 58px);
   --font-size-medium: clamp(26px, 1.15vw,44px);
   --font-size-regular: clamp(16px, .9vw,32px);
   --font-size-regular-line-height: 1.25;
