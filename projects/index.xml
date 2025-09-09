@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Victor Vennerström</title>
-    <link>https://www.vennerstrom.se/</link>
-    <description>Recent content on Victor Vennerström</description>
+    <title>Projects on Victor Vennerström</title>
+    <link>https://www.vennerstrom.se/projects.html</link>
+    <description>Recent content in Projects on Victor Vennerström</description>
     <generator>Hugo</generator>
     <language>sv</language>
     <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.vennerstrom.se/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.vennerstrom.se/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Charlie</title>
       <link>https://www.vennerstrom.se/charlie.html</link>
