@@ -1,24 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Startsidan -->
   <url>
-    <loc>https://www.vennerstrom.se/charlie.html</loc>
-    <lastmod>2025-08-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.vennerstrom.se/projects.html</loc>
-    <lastmod>2025-08-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.vennerstrom.se/</loc>
-    <lastmod>2025-08-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.vennerstrom.se/bravo.html</loc>
-    <lastmod>2025-08-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.vennerstrom.se/alpha.html</loc>
-    <lastmod>2025-08-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.vennerstrom.se/categories.html</loc>
-  </url><url>
-    <loc>https://www.vennerstrom.se/tags.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
+
+  <!-- Case: Minisylva, Stora Enso -->
+  <url>
+    <loc>https://www.vennerstrom.se/minisylva.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Case: Spkt mockups -->
+  <url>
+    <loc>https://www.vennerstrom.se/mockups.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Case: Hamburger menus, Burger King -->
+  <url>
+    <loc>https://www.vennerstrom.se/hamburgermenus.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Case: Sund Investering, Göteborgsvarvet -->
+  <url>
+    <loc>https://www.vennerstrom.se/sundinvestering.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Case: Retard raveloution, GIL -->
+  <url>
+    <loc>https://www.vennerstrom.se/retardraveloution.html</loc>
+    <lastmod>2024-11-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
