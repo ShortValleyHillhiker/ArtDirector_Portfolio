@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<!--
+
+  ——
+
+    Design och kod av Victor Vennerström
+
+  ——
+
+-->
+
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA - Vennerström</title>
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="type.css">
+    <link rel="stylesheet" href="vars.css">
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="queries.css">
+
+    <script defer src="app.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#">Intro</a></li>
+            <li><a href="#">Hantverk</a></li>
+            <li><a href="#">Filosofi</a></li>
+            <li><a href="#">Bakgrund</a></li>
+            <li><a href="#">Erfarenheter</a></li>
+            <li><a href="#">Referenser</a></li>
+            <li><a href="#">Tankar</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="available">
+            <p>Art director @ <a href="https://confetti.se/">Confetti</a></p>
+        </section>
+
+        <section id="intro">
+            <div class="scroll-mask left"></div>
+            <div class="scroll-mask right scrolled"></div>
+
+            <div class="intro-options">
+                <div class="option O1 active">För vem som helst</div>
+                <div class="option O2">För rekryteraren</div>
+                <div class="option O3">För byråchefen</div>
+                <div class="option O4">För creative director</div>
+                <div class="option O5">För copywritern</div>
+                <div class="option O6">För den intresserade</div>
+            </div>
+            <div class="intro-content">
+                <h1 class="message O1 active">
+                    Tja! Mitt namn är Victor Vennerström. Jag är en vetgirig & formstark Art director från Göteborg. Jag
+                    tror på magkänsla framför Excel-ark och älskar kampanjer där idén får styra.
+                </h1>
+                <h1 class="message O2">
+                    De bästa idéerna kommer ur bra samarbete. Jag gillar att jobba i lag med andra kreativa
+                    människor och bidra med det jag är bäst på när det behövs.
+                </h1>
+                <h1 class="message O3">
+                    Kreativa idéer är bara halva jobbet. Idéer som inte löser kundens faktiska problem är bara
+                    bortkastad tid
+                    &amp; pengar. Jag vill skapa marknadsföring som både är kreativ och får årsbudgeten att gå
+                    ihop.
+                </h1>
+                <h1 class="message O4">
+                    Jag pushar idéer framåt och hittar sätt att visualisera dem så de blir omöjliga att ignorera. Mitt
+                    mål är
+                    att ge allt för att göra koncept starkare än man trodde var möjligt.
+                </h1>
+                <h1 class="message O5">
+                    Du kanske klickade här för att du hittade ett stavfel? Hör av dig! Som Batman behöver Robin
+                    behöver jag en copywriter att bolla med. Jag söker en kreativ partner, gör du? Låt oss kroka arm.
+                </h1>
+                <h1 class="message O6">
+                    Jag har en stark hatkärlek till smarta kampanjer. Sånt som får en att utbryta i ett "fan
+                    vad bra... Jag hatar det". När insikten är tydlig redan innan du fått den förklarad och budskapet
+                    bottnar i en empatisk verklighet.
+                </h1>
+            </div>
+            <div class="intro-buttons">
+                <a href="#work">Mitt hantverk</a>
+                <a href="#background">Om mig</a>
+                <a href="#thoughts">Mina tankar</a>
+            </div>
+        </section>
+
+        <section id="work">
+            <article class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-info">
+                    <div>
+                        <p>placeholder</p>
+                        <p class="customer">placeholder</p>
+                    </div>
+                        <p class="project-type">placeholder</p>
+                </div>
+            </article>
+            <article class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-info">
+                    <div>
+                        <p>placeholder</p>
+                        <p class="customer">placeholder</p>
+                    </div>
+                        <p class="project-type">placeholder</p>
+                </div>
+            </article>
+            <article class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-info">
+                    <div>
+                        <p>placeholder</p>
+                        <p class="customer">placeholder</p>
+                    </div>
+                        <p class="project-type">placeholder</p>
+                </div>
+            </article>
+            <article class="skeleton">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-info">
+                    <div>
+                        <p>placeholder</p>
+                        <p class="customer">placeholder</p>
+                    </div>
+                        <p class="project-type">placeholder</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="philosophy">
+            <h2 class="title">Jag vill arbeta med kreativa människor som bryr sig lika mycket om koncept som resultat. Som vågar lita
+                på magkänsla samtidigt som man ser till att idén faktiskt löser något.</h2>
+            <p class="message">De bästa idéerna hittar de enklaste svaren till två frågor: Vad vill vi säga? Och vad vill vi att mottagaren ska känna?
+                Men effektiv reklam bygger också på empati och återspeglar en mänsklig verklighet. När det sitter uppstår känslan: "fan vad bra... Jag hatar det."</p>
+        </section>
+
+        <section id="background">
+            <h2 class="title">Jag har en bakgrund inom marknadsföring som sträcker sig från ideellt arbete till egenföretagande samt
+                en Art Director-utbildning på YRGO. Senaste tiden har jag fokuserat på idé och koncept, men kan också
+                driva projekt till färdig leverans. Med 7 års erfarenhet från eget företag, frilans, in-house och
+                reklambyrå har jag jobbat brett, från småskaligt varumärkesbygge till heltäckande kampanjer.</h2>
+            <p class="message">2x guld, Gerillaägget 2025. Retard raveloution (GIL/Spöket) <br />
+                1x Shortlist, Svenska designpriset 2025. Restaurang Kollage (Götaplatsgruppen/Spöket)</p>
+        </section>
+
+        <section id="experiences">
+            <h1>erfarenheter</h1>
+        </section>
+
+        <section id="references">
+            <h1>referenser</h1>
+        </section>
+
+        <section id="thoughts">
+            <h1>tankar</h1>
+        </section>
+
+        <section id="contact">
+            <h1>contact</h1>
+        </section>
+    </main>
+
+    <footer>
+        Footer
+    </footer>
+
+    <main id="project-modal">
+        <div class="modal-close"></div>
+        <div class="modal-content">
+            <div>
+                <p class="modal-heading">Input the title here</p>
+                <p class="modal-customer">Customer here</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="overlay">
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+</body>
+
+</html>

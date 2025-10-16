@@ -1,0 +1,24 @@
+{
+  "title": "Project Alpha",
+  "headerImage": "https://images.pexels.com/photos/34123169/pexels-photo-34123169.jpeg",
+  "customer": "Acme Corp",
+  "url": "project-alpha",
+  "postOrder": 1,
+  "projectType": "Brand Campaign",
+  "content": [
+    {
+      "type": "image",
+      "src": "https://images.pexels.com/photos/34295619/pexels-photo-34295619.jpeg",
+      "alt": "Campaign visual"
+    },
+    {
+      "type": "text",
+      "value": "This campaign started with a simple insight about user behavior..."
+    },
+    {
+      "type": "image",
+      "src": "https://images.pexels.com/photos/34203371/pexels-photo-34203371.jpeg",
+      "alt": "Results chart"
+    }
+  ]
+}
