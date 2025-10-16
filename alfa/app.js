@@ -50,8 +50,8 @@ async function initializeWork() {
     let sortedProjects = [];
 
     try {
-        const projectList = await fetch('/data/projects.json').then(res => res.json());
-        const projectFiles = projectList.map(file => `/data/${file}`);
+        const projectList = await fetch('alfa/data/projects.json').then(res => res.json());
+        const projectFiles = projectList.map(file => `alfa/data/${file}`);
         const responses = await Promise.all(
             projectFiles.map(file => fetch(file).then(res => res.json()))
         );
