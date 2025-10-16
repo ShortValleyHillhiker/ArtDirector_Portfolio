@@ -1,0 +1,96 @@
+@media (max-width: 1280px) {
+  body {
+    --gs-xl: repeat(5, 1fr);
+    --gs-l: repeat(3, 1fr);
+  }
+  .overlay div:nth-child(n + 6) {
+    display: none;
+  }
+#philosophy .title {
+  grid-column: 1/-1;
+}
+#references .title,
+#philosophy .message {
+  grid-column: 2/-1
+}
+.item-experience {
+  grid-column: 1/-2;
+}
+#background .message {
+  grid-column: 3/-1;
+}
+}
+
+@media (max-width: 1024px) {
+  body {
+    --gs-xl: repeat(3, 1fr);
+    --gs-l: repeat(2, 1fr);
+  }
+  .overlay div:nth-child(n + 4) {
+    display: none;
+  }
+#contact,
+.modal-content,
+  main > section,
+  footer,
+#background .message {
+    grid-column: 2/-1;
+  }
+  #work {
+  grid-template-columns: 1fr;
+}
+#philosophy .message,
+.item-experience {
+  grid-column: 1/-1;
+}
+.illustration.one {
+    bottom: 5%;
+    transform: rotate(10deg);
+}
+}
+
+@media (max-width: 768px) {
+  body {
+    --gs-xl: repeat(2, 1fr);
+    --gs-l: repeat(2, 1fr);
+
+    --gap: clamp(0.5rem, 2.5vw, 100vw);
+  }
+  .overlay div:nth-child(n + 3) {
+    display: none;
+  }
+#contact,
+#references .title,
+  main > section,
+  footer,
+  #project-modal > * {
+    grid-column: 1/-1;
+  }
+
+  section#background {
+    z-index: auto;
+  }
+  section#background::before,
+  section#background::after {
+    display: none;
+  }
+  .modal-close {
+  left: auto;
+  right: var(--gap);
+}
+
+  /* >>>>>> TEMP <<<<<< */
+  nav {
+    display: none;
+  }
+  /* >>>>>> TEMP <<<<<< */
+}
+
+@media (max-width: 500px) {
+  .intro-buttons {
+    justify-content: center;
+  }
+#background .message {
+  grid-column: 1/-1;
+}
+}
