@@ -118,7 +118,7 @@ function createProjectLink(project) {
     link.innerHTML = `
         <article>
             <div class="case-img_wrapper">
-                <img src="${project.headerImage}" alt="${project.title}">
+                <img src="${project.headerImage}" alt="${project.title}" loading="lazy">
             </div>
             <div class="case-info">
                 <div>
