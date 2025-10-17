@@ -1,9 +1,14 @@
 {
-  "title": "Project Epsilon",
+  "title": "MiniSylva",
   "headerImage": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3-alpha.figma.com%2Fhub%2Ffile%2F4093188630%2F561dfe3e-e5f8-415c-9b26-fbdf94897722-cover.png&f=1&nofb=1&ipt=e02c9ae5845a7b6bd2e5cd98b23acfe1c5878900db985c85f209ed299747f6bf",
-  "customer": "Acme Corp",
-  "url": "project-epsilon",
+  "customer": "Stora Enso",
+  "url": "stora enso",
   "postOrder": 5,
-  "projectType": "test Campaign",
-  "introText": "A bold campaign that redefined how customers interact with digital services."
+  "projectType": "Studentprojekt",
+  "content": [
+    {
+      "type": "text",
+      "value": "Placeholder, uppdateringar kommer ske allt eftersom"
+    }
+  ]
 }

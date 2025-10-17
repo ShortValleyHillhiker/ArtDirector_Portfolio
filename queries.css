@@ -6,19 +6,32 @@
   .overlay div:nth-child(n + 6) {
     display: none;
   }
-#philosophy .title {
-  grid-column: 1/-1;
-}
-#references .title,
-#philosophy .message {
-  grid-column: 2/-1
-}
-.item-experience {
-  grid-column: 1/-2;
-}
-#background .message {
-  grid-column: 3/-1;
-}
+  #philosophy .title {
+    grid-column: 1/-1;
+  }
+  #references .title,
+  #philosophy .message {
+    grid-column: 2/-1;
+  }
+  .item-experience {
+    grid-column: 1/-2;
+  }
+  #background .message {
+    grid-column: 3/-1;
+  }
+  #work {
+    grid-template-columns: 1fr;
+  }
+
+  #contact .info {
+    max-width: 33%;
+  }
+  .illustration.one {
+    right: 0;
+    left: auto;
+    bottom: -7.5%;
+    width: clamp(154px, 14vw, 99999rem);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -29,24 +42,21 @@
   .overlay div:nth-child(n + 4) {
     display: none;
   }
-#contact,
-.modal-content,
+  #contact,
+  .modal-content,
   main > section,
   footer,
-#background .message {
+  #background .message {
     grid-column: 2/-1;
   }
-  #work {
-  grid-template-columns: 1fr;
-}
-#philosophy .message,
-.item-experience {
-  grid-column: 1/-1;
-}
-.illustration.one {
+  #philosophy .message,
+  .item-experience {
+    grid-column: 1/-1;
+  }
+  .illustration.one {
     bottom: 5%;
     transform: rotate(10deg);
-}
+  }
 }
 
 @media (max-width: 768px) {
@@ -59,8 +69,8 @@
   .overlay div:nth-child(n + 3) {
     display: none;
   }
-#contact,
-#references .title,
+  #contact,
+  #references .title,
   main > section,
   footer,
   #project-modal > * {
@@ -75,10 +85,21 @@
     display: none;
   }
   .modal-close {
-  left: auto;
-  right: var(--gap);
-}
+    left: auto;
+    right: var(--gap);
+  }
 
+  .illustration.three {
+    display: none;
+  }
+  .illustration.two {
+    bottom: 62px;
+  }
+  .illustration.one {
+    top: 20%;
+    bottom: auto;
+    right: -5%;
+  }
   /* >>>>>> TEMP <<<<<< */
   nav {
     display: none;
@@ -90,7 +111,18 @@
   .intro-buttons {
     justify-content: center;
   }
-#background .message {
-  grid-column: 1/-1;
-}
+  #background .message {
+    grid-column: 1/-1;
+  }
+  .illustration.two {
+    bottom: -60px;
+    width: 100%;
+  }
+  #contact .info {
+    max-width: 100%;
+  }
+  .illustration.one {
+    right: -10%;
+    top: 25%;
+  }
 }

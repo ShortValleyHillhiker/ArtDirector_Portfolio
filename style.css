@@ -1,5 +1,6 @@
 html,
 body {
+  overflow-x: hidden;
   background-color: var(--bg-clr);
 }
 
@@ -23,10 +24,11 @@ main {
 main > section {
   grid-column: 3/-1;
   background-color: var(--bg-clr);
+  position: relative;
 }
 
 section + section {
-  margin: clamp(80px, 10vw, 99999rem) 0;
+  padding: clamp(80px, 10vw, 99999rem) 0;
 }
 
 /* ------------
@@ -41,8 +43,10 @@ nav ul {
   padding: 0;
   top: 0;
   position: sticky;
-  padding-top: clamp(60px, 8.25vw, 9999rem)!important;
+  padding-top: clamp(60px, 8.25vw, 9999rem) !important;
   list-style: none;
+  pointer-events: all;
+  display: inline-block;
 }
 nav li + li {
   margin-top: 0.5em;
@@ -60,7 +64,6 @@ Sections
 
 section#background {
   grid-column: 1 / -1;
-  position: relative;
   z-index: 99;
 }
 section#background::before,
@@ -71,7 +74,9 @@ section#background::after {
   display: block;
   content: "";
   position: absolute;
-  padding: calc(var(--gap) * 3); /* Revidera när typsättning och layout är klar. */
+  padding: calc(
+    var(--gap) * 3
+  ); /* Revidera när typsättning och layout är klar. */
   left: 0;
   right: 0;
 }
@@ -83,16 +88,15 @@ section#background::after {
   background: linear-gradient(to bottom, var(--gradient));
   bottom: var(--position);
 }
+#background .message > span {
+  color: var(--ft-clr-50);
+}
 
 /* -----------------------------------
   Section Intro
 ----------------------------------- */
 #available {
-  padding-top: clamp(60px, 8.25vw, 9999rem)!important;
-}
-
-#intro {
-  position: relative;
+  padding-top: clamp(60px, 8.25vw, 9999rem) !important;
 }
 .intro-content,
 .intro-buttons {
@@ -179,9 +183,9 @@ section#background::after {
 Philosophy section
 ------------ */
 #philosophy {
-    display: grid;
-    grid-template-columns: var(--gs-l);
-    gap: calc(var(--gap) * 2.5);
+  display: grid;
+  grid-template-columns: var(--gs-l);
+  gap: calc(var(--gap) * 2.5);
 }
 
 #philosophy .title {
@@ -196,16 +200,16 @@ Philosophy section
   font-size: var(--ft-m);
   line-height: var(--ft-s-lh);
   letter-spacing: var(--ft-m-ls);
-  grid-column: 3/-1
+  grid-column: 3/-1;
 }
 
 /* ------------
 Background section
 ------------ */
 #background {
-    display: grid;
-    gap: var(--gap);
-    grid-template-columns: var(--gs-xl);
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: var(--gs-xl);
 }
 
 #background .title {
@@ -247,7 +251,7 @@ Experiences section
   grid-column: 1/-3;
 }
 .item-experience p + p {
-margin-top: 0;
+  margin-top: 0;
 }
 .exp-company,
 .desc-company {
@@ -287,7 +291,7 @@ References
   font-weight: 500;
 }
 .author-reference {
-  margin-top: .75em;
+  margin-top: 0.75em;
 }
 .author-reference > span {
   color: var(--ft-clr-50);
@@ -298,9 +302,8 @@ Contact section
 ------------ */
 #contact {
   display: grid;
-  gap:calc(var(--gap) * 6);
-  position: relative;
-    grid-column: 3 / -1;
+  gap: calc(var(--gap) * 6);
+  grid-column: 3 / -1;
 }
 #contact .title {
   font-size: var(--ft-xl);
@@ -308,10 +311,10 @@ Contact section
   letter-spacing: var(--ft-m-ls);
   font-weight: 500;
 }
-#contact .info{
+#contact .info {
   display: flex;
   gap: var(--gap);
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 /* ------------
 Overlay
@@ -389,7 +392,7 @@ Work section
 
 /* PROJECT MODAL */
 body.project-modal-open {
-  overflow:hidden
+  overflow: hidden;
 }
 body.project-modal-open #project-modal {
   position: fixed;
@@ -397,8 +400,8 @@ body.project-modal-open #project-modal {
   display: grid;
   z-index: 100;
   overflow: auto;
-  user-select:auto;
-  pointer-events:all;
+  user-select: auto;
+  pointer-events: all;
   opacity: 1;
 }
 #project-modal {
@@ -408,9 +411,9 @@ body.project-modal-open #project-modal {
   user-select: none;
   pointer-events: none;
   background-color: var(--bg-clr);
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
   padding: 0 var(--gap);
-  padding-top: clamp(60px, 5vw, 9999rem)!important;
+  padding-top: clamp(60px, 5vw, 9999rem) !important;
 }
 .modal-content {
   display: grid;
@@ -418,7 +421,7 @@ body.project-modal-open #project-modal {
   gap: var(--gap);
   padding-bottom: var(--gap);
 }
-.modal-content > p{
+.modal-content > p {
   font-size: var(--ft-m);
   line-height: var(--ft-s-lh);
   letter-spacing: var(--ft-m-ls);
@@ -438,7 +441,7 @@ body.project-modal-open #project-modal {
   font-size: var(--ft-m);
   line-height: var(--ft-s-lh);
   letter-spacing: var(--ft-m-ls);
-  margin-top: .25em;
+  margin-top: 0.25em;
 }
 .modal-close {
   position: fixed;
@@ -450,11 +453,10 @@ body.project-modal-open #project-modal {
   border-radius: 99999rem;
   border: 1px solid var(--ft-clr);
 
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .modal-close:before,
 .modal-close:after {
@@ -463,7 +465,7 @@ body.project-modal-open #project-modal {
   height: 1px;
   width: 1rem;
   background-color: var(--ft-clr);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 }
 .modal-close:before {
   transform: translateY(-4px);
@@ -479,13 +481,13 @@ body.project-modal-open #project-modal {
 }
 
 span:has(.load-more) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: calc(var(--gap) * 2);
-    grid-column: 1/-1;
-  }
-.load-more{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: calc(var(--gap) * 2);
+  grid-column: 1/-1;
+}
+.load-more {
   font-size: var(--ft-s);
   border: 1px solid var(--ft-clr);
   border-radius: 999rem;
@@ -493,6 +495,81 @@ span:has(.load-more) {
   cursor: pointer;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.illustration.one {
+  left: 30.4%;
+  bottom: 2.5%;
+  width: clamp(144px, 10vw, 99999rem);
+  height: auto;
+  z-index: 4;
+}
+.illustration.two,
+.illustration.three {
+  right: 0;
+  bottom: clamp(80px, 8vw, 99999rem);
+}
+.illustration.two {
+  width: auto;
+  height: clamp(128px, 10vw, 99999rem);
+}
+.illustration.three {
+  width: clamp(162px, 14vw, 99999rem);
+  height: auto;
+  animation-delay: 0.5s;
+}
+.illustration {
+  position: absolute;
+  animation: wiggle 8s infinite steps(1);
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  6.25% {
+    transform: rotate(0.6deg);
+  }
+  12.5% {
+    transform: rotate(-0.4deg);
+  }
+  18.75% {
+    transform: rotate(0.75deg);
+  }
+  25% {
+    transform: rotate(-0.55deg);
+  }
+  31.25% {
+    transform: rotate(0.3deg);
+  }
+  37.5% {
+    transform: rotate(-0.825deg);
+  }
+  43.75% {
+    transform: rotate(0.7deg);
+  }
+  50% {
+    transform: rotate(-0.45deg);
+  }
+  56.25% {
+    transform: rotate(0.8deg);
+  }
+  62.5% {
+    transform: rotate(-0.65deg);
+  }
+  68.75% {
+    transform: rotate(0.35deg);
+  }
+  75% {
+    transform: rotate(-0.75deg);
+  }
+  81.25% {
+    transform: rotate(0.6deg);
+  }
+  87.5% {
+    transform: rotate(-0.25deg);
+  }
+  93.75% {
+    transform: rotate(0.65deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

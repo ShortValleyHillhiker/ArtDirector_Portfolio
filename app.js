@@ -90,7 +90,7 @@ async function initializeWork() {
 
         if (sortedProjects.length > 4) {
             const loadMoreBtn = document.createElement('span');
-            loadMoreBtn.innerHTML = '<p class="load-more">Load More</p>';
+            loadMoreBtn.innerHTML = '<p class="load-more">Fler projekt</p>';
             workSection.appendChild(loadMoreBtn);
 
             loadMoreBtn.addEventListener('click', () => {
