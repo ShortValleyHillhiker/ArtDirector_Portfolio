@@ -238,8 +238,72 @@ function initializeNavigation() {
     sections.forEach(section => observer.observe(section));
 }
 
+// TEST
+
+function initializeAppearanceSlider() {
+    
+    const appearanceOption = document.querySelector('.option.appearance');
+    const slider = document.querySelector('.site-controls .slider');
+    
+    if (!appearanceOption || !slider) {
+        return;
+    }
+
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Detect touch support
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    html.classList.add(isTouchDevice ? 'touchevents' : 'no-touchevents');
+
+    // Remove all color scheme classes helper
+    function removeColorSchemeClasses() {
+        body.className = body.className.replace(/color-scheme--\d+/g, '').trim();
+    }
+
+    // Make appearance slider visible on hover on no touch devices
+    if (!isTouchDevice) {
+        appearanceOption.addEventListener('mouseenter', () => {
+            body.classList.add('appearance-slider--is--visible');
+        });
+        
+        appearanceOption.addEventListener('mouseleave', () => {
+            body.classList.remove('appearance-slider--is--visible');
+        });
+    }
+
+    // Make appearance slider visible on tap on touch devices
+    if (isTouchDevice) {
+        appearanceOption.addEventListener('click', (e) => {
+            e.stopPropagation();
+            body.classList.add('appearance-slider--is--visible');
+        });
+        
+        html.addEventListener('click', (event) => {
+            if (!event.target.closest('.option.appearance')) {
+                body.classList.remove('appearance-slider--is--visible');
+            }
+        });
+    }
+
+    // Appearance slider
+    slider.addEventListener('input', function() {
+        let sliderValue = this.value;
+        
+        if (sliderValue < 10) {
+            sliderValue = '0' + sliderValue;
+        }
+        
+        removeColorSchemeClasses();
+        body.classList.add('color-scheme--' + sliderValue);
+    });
+}
+
+// TEST
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeIntro();
     initializeWork();
     initializeNavigation();
+    initializeAppearanceSlider(); // <-- Make sure this line is here
 });

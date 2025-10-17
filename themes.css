@@ -1,0 +1,125 @@
+
+
+/* Color
+----------------------------------------------------------------------------- */
+
+body.color-scheme--16 {
+  --ft-clr: rgb(0 0 0 / 1);
+  --ft-clr-50:  rgb(0 0 0 / 0.5);
+  --ft-clr-15:  rgb(0 0 0 / 0.15);
+  --bg-clr: rgb(255 255 255 / 1);
+  --bg-clr-0:   rgb(255 255 255 / 0);
+}
+body.color-scheme--15 {
+  --ft-clr: rgb(18 25 26 / 1);
+  --ft-clr-50:  rgb(18 25 26 / 0.5);
+  --ft-clr-15:  rgb(18 25 26 / 0.15);
+  --bg-clr: rgb(242 251 253 / 1);
+  --bg-clr-0:   rgb(242 251 253 / 0);
+}
+body.color-scheme--14 {
+  --ft-clr: rgb(30 40 42 / 1);
+  --ft-clr-50:  rgb(30 40 42 / 0.5);
+  --ft-clr-15:  rgb(30 40 42 / 0.15);
+  --bg-clr: rgb(222 235 238 / 1);
+  --bg-clr-0:   rgb(222 235 238 / 0);
+}
+body.color-scheme--13 {
+  --ft-clr: rgb(38 54 49 / 1);
+  --ft-clr-50:  rgb(38 54 49 / 0.5);
+  --ft-clr-15:  rgb(38 54 49 / 0.15);
+  --bg-clr: rgb(213 227 222 / 1);
+  --bg-clr-0:   rgb(213 227 222 / 0);
+}
+body.color-scheme--12 {
+  --ft-clr: rgb(59 66 54 / 1);
+  --ft-clr-50:  rgb(59 66 54 / 0.5);
+  --ft-clr-15:  rgb(59 66 54 / 0.15);
+  --bg-clr: rgb(209 218 203 / 1);
+  --bg-clr-0:   rgb(209 218 203 / 0);
+}
+body.color-scheme--11 {
+  --ft-clr: rgb(81 78 56 / 1);
+  --ft-clr-50:  rgb(81 78 56 / 0.5);
+  --ft-clr-15:  rgb(81 78 56 / 0.15);
+  --bg-clr: rgb(213 209 183 / 1);
+  --bg-clr-0:   rgb(213 209 183 / 0);
+}
+body.color-scheme--10 {
+  --ft-clr: rgb(119 78 52 / 1);
+  --ft-clr-50:  rgb(119 78 52 / 0.5);
+  --ft-clr-15:  rgb(119 78 52 / 0.15);
+  --bg-clr: rgb(243 230 207 / 1);
+  --bg-clr-0:   rgb(243 230 207 / 0);
+}
+body.color-scheme--09 {
+  --ft-clr: rgb(233 79 14 / 1);
+  --ft-clr-50:  rgb(233 79 14 / 0.5);
+  --ft-clr-15:  rgb(233 79 14 / 0.15);
+  --bg-clr: rgb(255 210 180 / 1);
+  --bg-clr-0:   rgb(255 210 180 / 0);
+}
+/* Mid point is color-scheme--08 */
+body.color-scheme--08 {
+  --ft-clr: rgb(243 230 207 / 1);
+  --ft-clr-50:  rgb(243 230 207 / 0.6);
+  --ft-clr-15:  rgb(243 230 207 / 0.22);
+  --bg-clr: rgb(233 79 14 / 1);
+  --bg-clr-0:   rgb(233 79 14 / 0);
+}
+body.color-scheme--07 {
+  --ft-clr: rgb(243 216 184 / 1);
+  --ft-clr-50:  rgb(243 216 184 / 0.6);
+  --ft-clr-15:  rgb(243 216 184 / 0.22);
+  --bg-clr: rgb(157 68 51 / 1);
+  --bg-clr-0:   rgb(157 68 51 / 0);
+}
+body.color-scheme--06 {
+  --ft-clr: rgb(242 195 164 / 1);
+  --ft-clr-50:  rgb(242 195 164 / 0.6);
+  --ft-clr-15:  rgb(242 195 164 / 0.22);
+  --bg-clr: rgb(119 58 53 / 1);
+  --bg-clr-0:   rgb(119 58 53 / 0);
+}
+body.color-scheme--05 {
+  --ft-clr: rgb(255 177 177 / 1);
+  --ft-clr-50:  rgb(255 177 177 / 0.6);
+  --ft-clr-15:  rgb(255 177 177 / 0.22);
+  --bg-clr: rgb(84 60 89 / 1);
+  --bg-clr-0:   rgb(84 60 89 / 0);
+}
+body.color-scheme--04 {
+  --ft-clr: rgb(248 166 211 / 1);
+  --ft-clr-50:  rgb(248 166 211 / 0.6);
+  --ft-clr-15:  rgb(248 166 211 / 0.22);
+  --bg-clr: rgb(64 54 79 / 1);
+  --bg-clr-0:   rgb(64 54 79 / 0);
+}
+body.color-scheme--03 {
+  --ft-clr: rgb(207 188 236 / 1);
+  --ft-clr-50:  rgb(207 188 236 / 0.6);
+  --ft-clr-15:  rgb(207 188 236 / 0.22);
+  --bg-clr: rgb(46 50 72 / 1);
+  --bg-clr-0:   rgb(46 50 72 / 0);
+}
+body.color-scheme--02 {
+  --ft-clr: rgb(183 212 245 / 1);
+  --ft-clr-50:  rgb(183 212 245 / 0.6);
+  --ft-clr-15:  rgb(183 212 245 / 0.22);
+  --bg-clr: rgb(24 41 56 / 1);
+  --bg-clr-0:   rgb(24 41 56 / 0);
+}
+body.color-scheme--01 {
+  --ft-clr: rgb(195 235 241 / 1);
+  --ft-clr-50:  rgb(195 235 241 / 0.6);
+  --ft-clr-15:  rgb(195 235 241 / 0.22);
+  --bg-clr: rgb(5 26 28 / 1);
+  --bg-clr-0:   rgb(5 26 28 / 0);
+}
+body.color-scheme--00 {
+  --ft-clr: rgb(255 255 255 / 1);
+  --ft-clr-50:  rgb(255 255 255 / 0.6);
+  --ft-clr-15:  rgb(255 255 255 / 0.22);
+  --bg-clr: rgb(0 0 0 / 1);
+  --bg-clr-0:   rgb(0 0 0 / 0);
+}

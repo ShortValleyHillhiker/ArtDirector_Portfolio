@@ -7,7 +7,7 @@
   letter-spacing: var(--ft-m-ls);
   
   font-size: var(--ft-s);
-  color: var(--clr-ft-100);
+  color: var(--ft-clr);
   
 
   -moz-osx-font-smoothing: grayscale;

@@ -100,11 +100,12 @@
     bottom: auto;
     right: -5%;
   }
-  /* >>>>>> TEMP <<<<<< */
+  #work {
+    gap: min(calc(var(--gap) * 2), 1.5rem);
+  }
   nav {
     display: none;
   }
-  /* >>>>>> TEMP <<<<<< */
 }
 
 @media (max-width: 500px) {
