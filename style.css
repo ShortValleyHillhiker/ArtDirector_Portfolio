@@ -1,6 +1,6 @@
+
 html,
 body {
-  overflow-x: hidden;
   background-color: var(--bg-clr);
 }
 
@@ -12,9 +12,9 @@ main,
   gap: var(--gap);
   color: var(--ft-clr);
 }
-body,
+main > *,
 .overlay {
-  padding: 0 var(--gap);
+  margin: 0 var(--gap);
 }
 nav,
 main {
@@ -29,6 +29,10 @@ main > section {
 
 section + section {
   padding: clamp(80px, 10vw, 99999rem) 0;
+}
+
+main {
+  overflow-x: clip;
 }
 
 /* ------------

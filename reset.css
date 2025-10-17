@@ -12,7 +12,6 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
   position: relative;
 }
 img, picture, video, canvas, svg {
