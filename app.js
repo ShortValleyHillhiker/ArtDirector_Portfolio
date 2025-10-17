@@ -37,8 +37,10 @@ function loadProjectIntoSkeleton(project, skeleton) {
     img.src = project.headerImage;
     
     img.onload = () => {
-        const link = createProjectLink(project);
-        skeleton.replaceWith(link);
+        requestAnimationFrame(() => {
+            const link = createProjectLink(project);
+            skeleton.replaceWith(link);
+        });
     };
 }
 
