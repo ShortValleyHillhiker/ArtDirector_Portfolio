@@ -12,7 +12,7 @@ main,
   gap: var(--gap);
   color: var(--ft-clr);
 }
-main,
+main > section,
 .overlay {
   margin: 0 var(--gap);
 }
@@ -629,8 +629,15 @@ span:has(.load-more) {
 
 
 
-
-
+#intro,
+#work,
+#philosophy,
+#experiences,
+#references,
+#thoughts,
+#contact {
+  margin-left: calc(var(--gap) / 2);
+}
 
 
 
