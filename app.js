@@ -30,30 +30,6 @@ function initializeIntro() {
     }
 }
 
-function initializeNavigation() {
-    const sections = document.querySelectorAll('main > section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    
-    if (sections.length === 0 || navLinks.length === 0) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const navLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-                if (navLink) {
-                    document.querySelectorAll('nav li').forEach(li => li.classList.remove('active'));
-                    navLink.parentElement.classList.add('active');
-                }
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '-10% 0px'
-    });
-    
-    sections.forEach(section => observer.observe(section));
-}
-
 // Case
 
 function loadProjectIntoSkeleton(project, skeleton) {
@@ -90,7 +66,7 @@ async function initializeWork() {
 
         if (sortedProjects.length > 4) {
             const loadMoreBtn = document.createElement('span');
-            loadMoreBtn.innerHTML = '<p class="load-more">Fler projekt</p>';
+            loadMoreBtn.innerHTML = '<p class="load-more">Load More</p>';
             workSection.appendChild(loadMoreBtn);
 
             loadMoreBtn.addEventListener('click', () => {
@@ -154,26 +130,23 @@ function createProjectLink(project) {
         </article>
     `;
 
-const preloadContent = () => {
-    if (preloadedProjects.has(project.url)) return;
+    const preloadContent = () => {
+        if (preloadedProjects.has(project.url)) return;
 
-    if (project.content && Array.isArray(project.content)) {
-        project.content.forEach(block => {
-            if (block.type === 'image') {
-                const existing = document.head.querySelector(`link[rel="preload"][href="${block.src}"]`);
-                if (!existing) {
+        if (project.content && Array.isArray(project.content)) {
+            project.content.forEach(block => {
+                if (block.type === 'image') {
                     const preload = document.createElement('link');
                     preload.rel = 'preload';
                     preload.as = 'image';
                     preload.href = block.src;
                     document.head.appendChild(preload);
                 }
-            }
-        });
-    }
+            });
+        }
 
-    preloadedProjects.add(project.url);
-};
+        preloadedProjects.add(project.url);
+    };
 
     link.addEventListener('mouseenter', preloadContent);
     link.addEventListener('touchstart', preloadContent, { passive: true });
@@ -187,45 +160,38 @@ const preloadContent = () => {
     return link;
 }
 
-let currentProjectUrl = null;
-
 function openModal(project) {
     const modal = document.getElementById('project-modal');
     if (!modal) return;
 
     const content = modal.querySelector('.modal-content');
 
-    // Only rebuild if it's a different project
-    if (currentProjectUrl !== project.url) {
-        let html = `
-            <div>
-                <p class="modal-heading">${project.title}</p>
-                <p class="modal-customer">${project.customer}</p>
-            </div>
-        `;
+    let html = `
+        <div>
+            <p class="modal-heading">${project.title}</p>
+            <p class="modal-customer">${project.customer}</p>
+        </div>
+    `;
 
-        if (project.content && Array.isArray(project.content)) {
-            project.content.forEach(block => {
-                switch (block.type) {
-                    case 'text':
-                        html += `<p>${block.value}</p>`;
-                        break;
-                    case 'image':
-                        html += `<img src="${block.src}" alt="${block.alt || ''}">`;
-                        break;
-                    case 'heading':
-                        html += `<h2>${block.value}</h2>`;
-                        break;
-                    default:
-                        console.warn('Unknown content type:', block.type);
-                }
-            });
-        }
-
-        content.innerHTML = html;
-        currentProjectUrl = project.url;
+    if (project.content && Array.isArray(project.content)) {
+        project.content.forEach(block => {
+            switch (block.type) {
+                case 'text':
+                    html += `<p>${block.value}</p>`;
+                    break;
+                case 'image':
+                    html += `<img src="${block.src}" alt="${block.alt || ''}">`;
+                    break;
+                case 'heading':
+                    html += `<h2>${block.value}</h2>`;
+                    break;
+                default:
+                    console.warn('Unknown content type:', block.type);
+            }
+        });
     }
 
+    content.innerHTML = html;
     document.body.classList.add('project-modal-open');
 
     const closeBtn = modal.querySelector('.modal-close');
@@ -243,8 +209,35 @@ window.addEventListener('popstate', () => {
     }
 });
 
+function initializeNavigation() {
+    // Skip on mobile screens
+    if (window.innerWidth < 768) return;
+    
+    const sections = document.querySelectorAll('main > section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    if (sections.length === 0 || navLinks.length === 0) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const navLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+                if (navLink) {
+                    document.querySelectorAll('nav li').forEach(li => li.classList.remove('active'));
+                    navLink.parentElement.classList.add('active');
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '-10% 0px'
+    });
+    
+    sections.forEach(section => observer.observe(section));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeIntro();
-    initializeNavigation();
     initializeWork();
+    initializeNavigation();
 });
