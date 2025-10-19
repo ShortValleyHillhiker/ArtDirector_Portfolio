@@ -102,11 +102,6 @@
   section#background::after {
     display: none;
   }
-  .modal-close {
-    left: auto;
-    right: var(--gap);
-  }
-
   .illustration.three {
     display: none;
   }

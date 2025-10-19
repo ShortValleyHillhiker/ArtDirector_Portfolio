@@ -1,36 +1,45 @@
+// Utility function for debouncing
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+// Intro section
 function initializeIntro() {
     const introSection = document.querySelector('#intro');
     if (!introSection) return;
 
     const leftMask = document.querySelector('.scroll-mask.left');
     const rightMask = document.querySelector('.scroll-mask.right');
+    const introOptions = introSection.querySelector('.intro-options');
 
     // Options toggle
     introSection.querySelectorAll('.option').forEach(option => {
         option.addEventListener('click', () => {
             introSection.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
             option.classList.add('active');
-            const targetClass = option.classList[1];
-            introSection.querySelector(`.message.${targetClass}`)?.classList.add('active');
+            introSection.querySelector(`.message.${option.classList[1]}`)?.classList.add('active');
         });
     });
 
     // Scroll masks with debounce
-    const introOptions = introSection.querySelector('.intro-options');
     if (introOptions) {
-        let timeoutId;
-        introOptions.addEventListener('scroll', function () {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-                const { scrollLeft, scrollWidth, clientWidth } = this;
-                leftMask?.classList.toggle('scrolled', scrollLeft > 16);
-                rightMask?.classList.toggle('scrolled', scrollLeft < scrollWidth - clientWidth - 16);
-            }, 16);
-        });
+        const handleScroll = debounce(function() {
+            const { scrollLeft, scrollWidth, clientWidth } = this;
+            leftMask?.classList.toggle('scrolled', scrollLeft > 16);
+            rightMask?.classList.toggle('scrolled', scrollLeft < scrollWidth - clientWidth - 16);
+        }, 16);
+        
+        introOptions.addEventListener('scroll', handleScroll);
     }
 }
 
-// Case
+// Project functions
+const preloadedProjects = new Set();
+let allProjects = []; // Store all projects globally for routing
 
 function loadProjectIntoSkeleton(project, skeleton) {
     const img = new Image();
@@ -38,81 +47,10 @@ function loadProjectIntoSkeleton(project, skeleton) {
     
     img.onload = () => {
         requestAnimationFrame(() => {
-            const link = createProjectLink(project);
-            skeleton.replaceWith(link);
+            skeleton.replaceWith(createProjectLink(project));
         });
     };
 }
-
-async function initializeWork() {
-    const workSection = document.querySelector('#work');
-    if (!workSection) return;
-
-    let currentIndex = 4;
-    let sortedProjects = [];
-
-    try {
-        const projectList = await fetch('/data/projects.json').then(res => res.json());
-        const projectFiles = projectList.map(file => `/data/${file}`);
-        const responses = await Promise.all(
-            projectFiles.map(file => fetch(file).then(res => res.json()))
-        );
-
-        sortedProjects = responses.sort((a, b) => a.postOrder - b.postOrder);
-        const skeletons = workSection.querySelectorAll('.skeleton');
-
-        sortedProjects.slice(0, 4).forEach((project, index) => {
-            if (!skeletons[index]) return;
-            loadProjectIntoSkeleton(project, skeletons[index]);
-        });
-
-        if (sortedProjects.length > 4) {
-            const loadMoreBtn = document.createElement('span');
-            loadMoreBtn.innerHTML = '<p class="load-more">Load More</p>';
-            workSection.appendChild(loadMoreBtn);
-
-            loadMoreBtn.addEventListener('click', () => {
-                const nextBatch = sortedProjects.slice(currentIndex, currentIndex + 4);
-
-                nextBatch.forEach(project => {
-                    const skeleton = document.createElement('article');
-                    skeleton.classList.add('skeleton');
-                    skeleton.innerHTML = `
-            <div class="skeleton-img"></div>
-            <div class="skeleton-info">
-                <div>
-                    <p>placeholder</p>
-                    <p class="customer">placeholder</p>
-                </div>
-                <p class="project-type">placeholder</p>
-            </div>
-        `;
-
-                    workSection.insertBefore(skeleton, loadMoreBtn);
-                    loadProjectIntoSkeleton(project, skeleton);
-                });
-
-                currentIndex += 4;
-
-                if (currentIndex >= sortedProjects.length) {
-                    loadMoreBtn.remove();
-                }
-            });
-        }
-
-        const path = window.location.pathname.replace(/^\/|\/$/g, '');
-        if (path) {
-            const matchedProject = sortedProjects.find(p => p.url === path);
-            if (matchedProject) {
-                openModal(matchedProject);
-            }
-        }
-    } catch (error) {
-        console.error('Failed to load projects:', error);
-    }
-}
-
-const preloadedProjects = new Set();
 
 function createProjectLink(project) {
     const link = document.createElement('a');
@@ -121,6 +59,7 @@ function createProjectLink(project) {
         <article>
             <div class="case-img_wrapper">
                 <img src="${project.headerImage}" alt="${project.title}" loading="lazy">
+                <div class="image-overlay"></div>
             </div>
             <div class="case-info">
                 <div>
@@ -132,27 +71,25 @@ function createProjectLink(project) {
         </article>
     `;
 
+    // Preload content on hover/touch
     const preloadContent = () => {
         if (preloadedProjects.has(project.url)) return;
-
-        if (project.content && Array.isArray(project.content)) {
-            project.content.forEach(block => {
-                if (block.type === 'image') {
-                    const preload = document.createElement('link');
-                    preload.rel = 'preload';
-                    preload.as = 'image';
-                    preload.href = block.src;
-                    document.head.appendChild(preload);
-                }
-            });
-        }
-
+        
+        project.content?.forEach(block => {
+            if (block.type === 'image') {
+                const preload = document.createElement('link');
+                preload.rel = 'preload';
+                preload.as = 'image';
+                preload.href = block.src;
+                document.head.appendChild(preload);
+            }
+        });
+        
         preloadedProjects.add(project.url);
     };
 
     link.addEventListener('mouseenter', preloadContent);
     link.addEventListener('touchstart', preloadContent, { passive: true });
-
     link.addEventListener('click', (e) => {
         e.preventDefault();
         openModal(project);
@@ -162,12 +99,97 @@ function createProjectLink(project) {
     return link;
 }
 
+function createSkeleton() {
+    const skeleton = document.createElement('article');
+    skeleton.classList.add('skeleton');
+    skeleton.innerHTML = `
+        <div class="skeleton-img"></div>
+        <div class="skeleton-info">
+            <div>
+                <p>placeholder</p>
+                <p class="customer">placeholder</p>
+            </div>
+            <p class="project-type">placeholder</p>
+        </div>
+    `;
+    return skeleton;
+}
+
+async function initializeWork() {
+    const workSection = document.querySelector('#work');
+    if (!workSection) return;
+
+    let currentIndex = 4;
+
+    try {
+        const projectList = await fetch('/data/projects.json').then(res => res.json());
+        const responses = await Promise.all(
+            projectList.map(file => fetch(`/data/${file}`).then(res => res.json()))
+        );
+
+        allProjects = responses.sort((a, b) => a.postOrder - b.postOrder);
+        const skeletons = workSection.querySelectorAll('.skeleton');
+
+        // Load initial projects
+        allProjects.slice(0, 4).forEach((project, index) => {
+            if (skeletons[index]) loadProjectIntoSkeleton(project, skeletons[index]);
+        });
+
+        // Add load more button if needed
+        if (allProjects.length > 4) {
+            const loadMoreBtn = document.createElement('span');
+            loadMoreBtn.innerHTML = '<p class="load-more">Fler projekt</p>';
+            workSection.appendChild(loadMoreBtn);
+
+            loadMoreBtn.addEventListener('click', () => {
+                const nextBatch = allProjects.slice(currentIndex, currentIndex + 4);
+
+                nextBatch.forEach(project => {
+                    const skeleton = createSkeleton();
+                    workSection.insertBefore(skeleton, loadMoreBtn);
+                    loadProjectIntoSkeleton(project, skeleton);
+                });
+
+                currentIndex += 4;
+                if (currentIndex >= allProjects.length) loadMoreBtn.remove();
+            });
+        }
+
+        // Handle initial route
+        handleRoute();
+    } catch (error) {
+        console.error('Failed to load projects:', error);
+    }
+}
+
+// Router function
+function handleRoute() {
+    const path = window.location.pathname.replace(/^\/|\/$/g, '');
+    
+    if (!path) {
+        // We're on the homepage, close modal if open
+        if (document.body.classList.contains('project-modal-open')) {
+            closeModal();
+        }
+        return;
+    }
+    
+    // Find and open the matching project
+    const matchedProject = allProjects.find(p => p.url === path);
+    if (matchedProject) {
+        openModal(matchedProject);
+    } else {
+        // Project not found, redirect to homepage
+        history.replaceState(null, '', '/');
+    }
+}
+
+// Modal functions
 function openModal(project) {
     const modal = document.getElementById('project-modal');
     if (!modal) return;
 
     const content = modal.querySelector('.modal-content');
-
     let html = `
         <div>
             <p class="modal-heading">${project.title}</p>
@@ -175,29 +197,23 @@ function openModal(project) {
         </div>
     `;
 
-    if (project.content && Array.isArray(project.content)) {
-        project.content.forEach(block => {
-            switch (block.type) {
-                case 'text':
-                    html += `<p>${block.value}</p>`;
-                    break;
-                case 'image':
-                    html += `<img src="${block.src}" alt="${block.alt || ''}">`;
-                    break;
-                case 'heading':
-                    html += `<h2>${block.value}</h2>`;
-                    break;
-                default:
-                    console.warn('Unknown content type:', block.type);
-            }
-        });
-    }
+    project.content?.forEach(block => {
+        switch (block.type) {
+            case 'text':
+                html += `<p>${block.value}</p>`;
+                break;
+            case 'image':
+                html += `<img src="${block.src}" alt="${block.alt || ''}">`;
+                break;
+            case 'heading':
+                html += `<h2>${block.value}</h2>`;
+                break;
+        }
+    });
 
     content.innerHTML = html;
     document.body.classList.add('project-modal-open');
-
-    const closeBtn = modal.querySelector('.modal-close');
-    closeBtn.onclick = closeModal;
+    modal.querySelector('.modal-close').onclick = closeModal;
 }
 
 function closeModal() {
@@ -205,14 +221,8 @@ function closeModal() {
     history.pushState(null, '', '/');
 }
 
-window.addEventListener('popstate', () => {
-    if (document.body.classList.contains('project-modal-open')) {
-        document.body.classList.remove('project-modal-open');
-    }
-});
-
+// Navigation
 function initializeNavigation() {
-    // Skip on mobile screens
     if (window.innerWidth < 768) return;
     
     const sections = document.querySelectorAll('main > section[id]');
@@ -238,72 +248,63 @@ function initializeNavigation() {
     sections.forEach(section => observer.observe(section));
 }
 
-// TEST
-
+// Appearance slider
 function initializeAppearanceSlider() {
-    
     const appearanceOption = document.querySelector('.option.appearance');
     const slider = document.querySelector('.site-controls .slider');
     
-    if (!appearanceOption || !slider) {
-        return;
-    }
+    if (!appearanceOption || !slider) return;
 
     const body = document.body;
     const html = document.documentElement;
-    
-    // Detect touch support
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
     html.classList.add(isTouchDevice ? 'touchevents' : 'no-touchevents');
 
-    // Remove all color scheme classes helper
     function removeColorSchemeClasses() {
         body.className = body.className.replace(/color-scheme--\d+/g, '').trim();
     }
 
-    // Make appearance slider visible on hover on no touch devices
-    if (!isTouchDevice) {
-        appearanceOption.addEventListener('mouseenter', () => {
-            body.classList.add('appearance-slider--is--visible');
-        });
-        
-        appearanceOption.addEventListener('mouseleave', () => {
-            body.classList.remove('appearance-slider--is--visible');
-        });
+    function toggleSliderVisibility(visible) {
+        body.classList.toggle('appearance-slider--is--visible', visible);
     }
 
-    // Make appearance slider visible on tap on touch devices
     if (isTouchDevice) {
         appearanceOption.addEventListener('click', (e) => {
             e.stopPropagation();
-            body.classList.add('appearance-slider--is--visible');
+            toggleSliderVisibility(true);
         });
         
         html.addEventListener('click', (event) => {
             if (!event.target.closest('.option.appearance')) {
-                body.classList.remove('appearance-slider--is--visible');
+                toggleSliderVisibility(false);
             }
         });
+    } else {
+        appearanceOption.addEventListener('mouseenter', () => toggleSliderVisibility(true));
+        appearanceOption.addEventListener('mouseleave', () => toggleSliderVisibility(false));
     }
 
-    // Appearance slider
     slider.addEventListener('input', function() {
-        let sliderValue = this.value;
-        
-        if (sliderValue < 10) {
-            sliderValue = '0' + sliderValue;
-        }
-        
+        const value = this.value < 10 ? '0' + this.value : this.value;
         removeColorSchemeClasses();
-        body.classList.add('color-scheme--' + sliderValue);
+        body.classList.add('color-scheme--' + value);
     });
+    
+    // Set initial value and trigger the change
+    slider.value = 4;
+    slider.dispatchEvent(new Event('input'));
 }
 
-// TEST
-
+// Initialize all
 document.addEventListener('DOMContentLoaded', () => {
     initializeIntro();
     initializeWork();
     initializeNavigation();
-    initializeAppearanceSlider(); // <-- Make sure this line is here
+    initializeAppearanceSlider();
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', () => {
+    handleRoute();
 });

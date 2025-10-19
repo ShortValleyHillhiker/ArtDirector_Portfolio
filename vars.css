@@ -20,18 +20,15 @@ body {
   --ft-m-ls: -0.0333em;
 
   /* Color */
-  --bg-clr: #eee;
-  --bg-clr-15: #eeeeee50;
-  --bg-clr-0: #eeeeee00;
+  --ft-clr: rgb(238 238 238 / 1);
+  --ft-clr-50: rgb(238 238 238 / 0.6);
+  --ft-clr-15: rgb(238 238 238 / 0.25);
 
-  --ft-clr: #2500c9;
-  --ft-clr-50: #2500c950;
-  --ft-clr-33: #2500c933;
-  --ft-clr-15: #2500c915;
+  --bg-clr: rgb(24 24 69 / 1);
+  --bg-clr-0: rgb(24 24 69 / 0);
 
-  --hl-clr: #ffc700;
-  --hl-clr-20: #ffc70035;
-  --hl-clr-05: #ffc70010;
+  --hl-clr-20: rgb(238 238 238 / 0.1);
+  --hl-clr-05: rgb(238 238 238 / 0);
 
   /* Sizing */
   --gs-xl: repeat(7, 1fr);
