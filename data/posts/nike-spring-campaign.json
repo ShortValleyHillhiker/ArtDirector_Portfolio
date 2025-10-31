@@ -1,0 +1,41 @@
+{
+  "id": "nike-spring-campaign",
+  "hero": {
+    "image": "https://images.pexels.com/photos/hero.jpeg",
+    "alt": "Nike Spring Campaign Hero"
+  },
+  "content": [
+    {
+      "type": "text",
+      "value": "Nike approached us to create a campaign that would capture the energy of their new spring collection while staying true to their brand heritage."
+    },
+    {
+      "type": "image",
+      "src": "https://images.pexels.com/photos/detail1.jpeg",
+      "alt": "Campaign detail",
+      "caption": "Key visual from the campaign"
+    },
+    {
+      "type": "text",
+      "value": "Our approach focused on movement and authenticity, shooting real athletes in natural settings."
+    },
+    {
+      "type": "gallery",
+      "images": [
+        {
+          "src": "https://images.pexels.com/photos/gallery1.jpeg",
+          "alt": "Gallery image 1"
+        },
+        {
+          "src": "https://images.pexels.com/photos/gallery2.jpeg",
+          "alt": "Gallery image 2"
+        }
+      ]
+    }
+  ],
+  "credits": {
+    "artDirection": "Your Name",
+    "photography": "Photographer Name",
+    "agency": "Agency Name"
+  }
+}

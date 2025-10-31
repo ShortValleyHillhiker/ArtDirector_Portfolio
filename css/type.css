@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  font-family: var(--ft-fam);
+  font-weight: normal;
+  line-height: var(--ft-m-lh);
+  letter-spacing: var(--ft-m-ls);
+
+  font-size: var(--ft-s);
+  color: var(--clr-fg-100);
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+::selection {
+  background: greenyellow;
+}
+
+a {
+  text-decoration: none;
+}
+p > a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+p > span {
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: var(--clr-fg-50);
+}
+
+
+
+
+.title.large {
+    font-size: var(--ft-l);
+    line-height: var(--ft-m-lh);
+    letter-spacing: var(--ft-m-ls);
+    font-weight: 500;
+}
+.message.large {
+    font-size: var(--ft-m);
+    line-height: var(--ft-s-lh);
+    letter-spacing: var(--ft-m-ls);
+}
+.message.small,
+.thoughts article a {
+  font-size: var(--ft-xs);
+    line-height: var(--ft-s-lh);
+    letter-spacing: var(--ft-m-ls);
+}

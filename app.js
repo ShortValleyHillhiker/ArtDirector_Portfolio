@@ -1,310 +1,432 @@
-// Utility function for debouncing
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
+(function () {
+    "use strict";
+
+    const BODY = document.body;
+    const SELECTORS = {
+        THEME_SLIDER: '.theme-selector input',
+        BRAND_GRID_TOGGLE: '.toggle.brand-grid',
+        DYNAMIC_CONTENT_TOGGLE: '.toggle.dynamic-content',
+        OVERLAY: '.overlay.dynamic-content',
+        SKELETON_ARTICLE: '.skeleton-article',
+        LOAD_MORE_BTN: '.load-more',
+        WORK_SECTION: '.work',
+        THOUGHTS_SECTION: '.thoughts',
+        CONTENT: '.content'
     };
-}
 
-// Intro section
-function initializeIntro() {
-    const introSection = document.querySelector('#intro');
-    if (!introSection) return;
+    class PostListManager {
+        constructor() {
+            this.posts = [];
+            this.loadedCounts = { work: 0, blog: 0 };
+            this.config = {
+                work: { initialLoad: 1, loadMore: 4, selector: SELECTORS.WORK_SECTION },
+                blog: { initialLoad: 1, loadMore: 6, selector: SELECTORS.THOUGHTS_SECTION }
+            };
+            this.init();
+        }
 
-    const leftMask = document.querySelector('.scroll-mask.left');
-    const rightMask = document.querySelector('.scroll-mask.right');
-    const introOptions = introSection.querySelector('.intro-options');
+        async init() {
+            await this.fetchPosts();
+            this.renderPosts();
+        }
 
-    // Options toggle
-    introSection.querySelectorAll('.option').forEach(option => {
-        option.addEventListener('click', () => {
-            introSection.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
-            option.classList.add('active');
-            introSection.querySelector(`.message.${option.classList[1]}`)?.classList.add('active');
-        });
-    });
-
-    // Scroll masks with debounce
-    if (introOptions) {
-        const handleScroll = debounce(function() {
-            const { scrollLeft, scrollWidth, clientWidth } = this;
-            leftMask?.classList.toggle('scrolled', scrollLeft > 16);
-            rightMask?.classList.toggle('scrolled', scrollLeft < scrollWidth - clientWidth - 16);
-        }, 16);
-        
-        introOptions.addEventListener('scroll', handleScroll);
-    }
-}
-
-// Project functions
-const preloadedProjects = new Set();
-let allProjects = []; // Store all projects globally for routing
-
-function loadProjectIntoSkeleton(project, skeleton) {
-    const img = new Image();
-    img.src = project.headerImage;
-    
-    img.onload = () => {
-        requestAnimationFrame(() => {
-            skeleton.replaceWith(createProjectLink(project));
-        });
-    };
-}
-
-function createProjectLink(project) {
-    const link = document.createElement('a');
-    link.href = `/${project.url}`;
-    link.innerHTML = `
-        <article>
-            <div class="case-img_wrapper">
-                <img src="${project.headerImage}" alt="${project.title}" loading="lazy">
-                <div class="image-overlay"></div>
-            </div>
-            <div class="case-info">
-                <div>
-                    <h2>${project.title}</h2>
-                    <p class="customer">${project.customer}</p>
-                </div>
-                <p class="project-type">${project.projectType}</p>
-            </div>
-        </article>
-    `;
-
-    // Preload content on hover/touch
-    const preloadContent = () => {
-        if (preloadedProjects.has(project.url)) return;
-        
-        project.content?.forEach(block => {
-            if (block.type === 'image') {
-                const preload = document.createElement('link');
-                preload.rel = 'preload';
-                preload.as = 'image';
-                preload.href = block.src;
-                document.head.appendChild(preload);
+        async fetchPosts() {
+            try {
+                const response = await fetch('data/post-index.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                this.posts = Array.isArray(data.posts) ? data.posts : [];
+            } catch (error) {
+                console.error("Could not fetch posts:", error);
+                this.posts = [];
             }
-        });
-        
-        preloadedProjects.add(project.url);
-    };
+        }
 
-    link.addEventListener('mouseenter', preloadContent);
-    link.addEventListener('touchstart', preloadContent, { passive: true });
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal(project);
-        history.pushState(null, '', `/${project.url}`);
-    });
+        renderPosts() {
+            const workPosts = this.posts.filter(post => post.type === 'work');
+            const blogPosts = this.posts.filter(post => post.type === 'blog');
 
-    return link;
-}
+            this.renderSection('work', workPosts, this.config.work.initialLoad);
+            this.renderSection('blog', blogPosts, this.config.blog.initialLoad);
+        }
 
-function createSkeleton() {
-    const skeleton = document.createElement('article');
-    skeleton.classList.add('skeleton');
-    skeleton.innerHTML = `
-        <div class="skeleton-img"></div>
-        <div class="skeleton-info">
-            <div>
-                <p>placeholder</p>
-                <p class="customer">placeholder</p>
-            </div>
-            <p class="project-type">placeholder</p>
-        </div>
-    `;
-    return skeleton;
-}
+        renderSection(type, allPosts, loadCount) {
+            const config = this.config[type];
+            const section = document.querySelector(config.selector);
+            if (!section) return;
 
-async function initializeWork() {
-    const workSection = document.querySelector('#work');
-    if (!workSection) return;
+            const content = section.querySelector(SELECTORS.CONTENT);
+            if (!content) return;
 
-    let currentIndex = 4;
+            const startIndex = this.loadedCounts[type];
+            const endIndex = Math.min(startIndex + loadCount, allPosts.length);
+            const postsToRender = allPosts.slice(startIndex, endIndex);
 
-    try {
-        const projectList = await fetch('/data/projects.json').then(res => res.json());
-        const responses = await Promise.all(
-            projectList.map(file => fetch(`/data/${file}`).then(res => res.json()))
-        );
+            const fragment = document.createDocumentFragment();
+            const loadMoreBtnWrapper = content.querySelector('span:has(.load-more)');
+            const newArticles = [];
 
-        allProjects = responses.sort((a, b) => a.postOrder - b.postOrder);
-        const skeletons = workSection.querySelectorAll('.skeleton');
+            if (startIndex === 0) {
+                content.querySelectorAll(SELECTORS.SKELETON_ARTICLE).forEach(el => el.remove());
+            }
 
-        // Load initial projects
-        allProjects.slice(0, 4).forEach((project, index) => {
-            if (skeletons[index]) loadProjectIntoSkeleton(project, skeletons[index]);
-        });
+            postsToRender.forEach((post, index) => {
+                const article = type === 'work'
+                    ? this.createWorkArticle(post)
+                    : this.createBlogArticle(post);
 
-        // Add load more button if needed
-        if (allProjects.length > 4) {
-            const loadMoreBtn = document.createElement('span');
-            loadMoreBtn.innerHTML = '<p class="load-more">Fler projekt</p>';
-            workSection.appendChild(loadMoreBtn);
+                article.style.setProperty('--i', index);
+                fragment.appendChild(article);
+                newArticles.push(article);
+                this.loadedCounts[type]++;
+            });
 
-            loadMoreBtn.addEventListener('click', () => {
-                const nextBatch = allProjects.slice(currentIndex, currentIndex + 4);
+            if (loadMoreBtnWrapper) {
+                content.insertBefore(fragment, loadMoreBtnWrapper);
+            } else {
+                content.appendChild(fragment);
+            }
 
-                nextBatch.forEach(project => {
-                    const skeleton = createSkeleton();
-                    workSection.insertBefore(skeleton, loadMoreBtn);
-                    loadProjectIntoSkeleton(project, skeleton);
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    newArticles.forEach(article => article.classList.add('loaded'));
                 });
+            });
 
-                currentIndex += 4;
-                if (currentIndex >= allProjects.length) loadMoreBtn.remove();
+            this.updateLoadMoreButton(type, content, allPosts.length);
+        }
+
+        updateLoadMoreButton(type, content, totalPosts) {
+            const remaining = totalPosts - this.loadedCounts[type];
+            let btnWrapper = content.querySelector('span:has(.load-more)');
+            let btn = btnWrapper?.querySelector('.load-more');
+
+            if (remaining > 0) {
+                if (!btnWrapper) {
+                    btnWrapper = document.createElement('span');
+                    btn = document.createElement('p');
+                    btn.className = 'load-more';
+                    btn.textContent = type === 'work' ? 'Fler projekt' : 'Läs fler tankar';
+                    btnWrapper.appendChild(btn);
+                    content.appendChild(btnWrapper);
+                }
+                // Always attach the handler (in case it's a pre-existing element)
+                btn.onclick = () => this.loadMore(type);
+            } else {
+                btnWrapper?.remove();
+            }
+        }
+        loadMore(type) {
+            const allPosts = this.posts.filter(post => post.type === type);
+            const loadCount = this.config[type].loadMore;
+            this.renderSection(type, allPosts, loadCount);
+        }
+
+        createWorkArticle(post) {
+            const article = document.createElement('article');
+            article.innerHTML = `
+                <div class="post-img_wrapper">
+                    <img src="${post.image}" alt="${post.title}">
+                </div>
+                <div class="post-txt_wrapper">
+                    <span>
+                        <h3>${post.title}</h3>
+                        <p>${post.client}</p>
+                    </span>
+                    <ul>
+                        ${post.tags?.map(tag => `<li>${tag}</li>`).join('') || ''}
+                    </ul>
+                </div>
+                <a href="#" class="block-link" data-post-id="${post.id}"></a>
+            `;
+            return article;
+        }
+
+        createBlogArticle(post) {
+            const article = document.createElement('article');
+            const formattedDate = new Date(post.date).toLocaleDateString('sv-SE', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+
+            article.innerHTML = `
+        <div>
+            <time datetime="${post.date}">${formattedDate}</time>
+            <h3>${post.title}</h3>
+        </div>
+        <a href="#" data-post-id="${post.id}">${post.linkText || 'Läs mer'}</a>
+    `;
+            return article;
+        }
+    }
+
+    class OverlayManager {
+        constructor() {
+            this.overlay = document.querySelector(SELECTORS.OVERLAY);
+            this.overlayContent = this.overlay?.querySelector('section');
+            this.cache = new Map();
+            this.currentPostId = null;
+            this.isOpening = false;
+            this.init();
+        }
+
+        init() {
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('[data-post-id]');
+                if (link) {
+                    e.preventDefault();
+                    this.openOverlay(link.dataset.postId);
+                }
+            });
+
+            this.overlay?.addEventListener('click', (e) => {
+                if (e.target === this.overlay) {
+                    this.closeOverlay();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && BODY.classList.contains('overlay-open')) {
+                    this.closeOverlay();
+                }
+            });
+
+            // Handle browser back/forward with debounce
+            let popstateTimeout;
+            window.addEventListener('popstate', () => {
+                clearTimeout(popstateTimeout);
+                popstateTimeout = setTimeout(() => this.handleRoute(), 10);
+            });
+
+            // Check for initial path on page load
+            this.handleRoute();
+        }
+
+        handleRoute() {
+            const path = window.location.pathname.replace(/^\/|\/$/g, '');
+
+            if (!path) {
+                // Homepage, close overlay if open
+                if (BODY.classList.contains('overlay-open')) {
+                    this.closeOverlay(false);
+                }
+                return;
+            }
+
+            // Don't re-open if already open with same content
+            if (BODY.classList.contains('overlay-open') && this.currentPostId === path) {
+                return;
+            }
+
+            // Open the matching post
+            this.openOverlay(path);
+        }
+
+        async openOverlay(postId) {
+            if (this.isOpening) return;
+            this.isOpening = true;
+
+            try {
+                let postData = this.cache.get(postId);
+
+                if (!postData) {
+                    const response = await fetch(`data/posts/${postId}.json`);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    postData = await response.json();
+                    this.cache.set(postId, postData);
+                }
+
+                this.renderOverlayContent(postData);
+                this.currentPostId = postId;
+                BODY.classList.add('overlay-open');
+
+                // Update URL pathname
+                if (window.location.pathname.replace(/^\/|\/$/g, '') !== postId) {
+                    window.history.pushState(null, '', `/${postId}`);
+                }
+            } catch (error) {
+                console.error("Could not fetch post content:", error);
+                // Post not found, redirect to homepage
+                window.history.replaceState(null, '', '/');
+            } finally {
+                this.isOpening = false;
+            }
+        }
+
+        closeOverlay(updateHistory = true) {
+            BODY.classList.remove('overlay-open');
+            this.currentPostId = null;
+
+            // Clear URL pathname
+            if (updateHistory && window.location.pathname !== '/') {
+                window.history.pushState(null, '', '/');
+            }
+        }
+
+        renderOverlayContent(postData) {
+            if (!this.overlayContent) return;
+
+            const fragment = document.createDocumentFragment();
+
+            if (postData.hero) {
+                const hero = document.createElement('div');
+                hero.className = 'hero';
+                hero.innerHTML = `<img src="${postData.hero.image}" alt="${postData.hero.alt}">`;
+                fragment.appendChild(hero);
+            }
+
+            postData.content?.forEach(block => {
+                const element = this.createContentBlock(block);
+                if (element) fragment.appendChild(element);
+            });
+
+            if (postData.credits) {
+                const credits = document.createElement('div');
+                credits.className = 'credits';
+                credits.innerHTML = '<h3>Credits</h3>';
+                Object.entries(postData.credits).forEach(([key, value]) => {
+                    credits.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+                });
+                fragment.appendChild(credits);
+            }
+
+            this.overlayContent.innerHTML = '';
+            this.overlayContent.appendChild(fragment);
+        }
+
+        createContentBlock(block) {
+            switch (block.type) {
+                case 'text':
+                    const p = document.createElement('p');
+                    p.textContent = block.value;
+                    return p;
+                case 'image':
+                    const figure = document.createElement('figure');
+                    figure.innerHTML = `
+                        <img src="${block.src}" alt="${block.alt}">
+                        ${block.caption ? `<figcaption>${block.caption}</figcaption>` : ''}
+                    `;
+                    return figure;
+                case 'gallery':
+                    const gallery = document.createElement('div');
+                    gallery.className = 'gallery';
+                    gallery.innerHTML = block.images?.map(img => `<img src="${img.src}" alt="${img.alt}">`).join('') || '';
+                    return gallery;
+                default:
+                    return null;
+            }
+        }
+    }
+
+    function setupToggles() {
+        const themeSlider = document.querySelector(SELECTORS.THEME_SLIDER);
+        if (themeSlider) {
+            const removeThemeClass = () => {
+                const currentTheme = Array.from(BODY.classList).find(cls => cls.startsWith('theme-'));
+                if (currentTheme) {
+                    BODY.classList.remove(currentTheme);
+                }
+            };
+            themeSlider.addEventListener('input', (e) => {
+                removeThemeClass();
+                BODY.classList.add(`theme-${e.target.value}`);
             });
         }
 
-        // Handle initial route
-        handleRoute();
-    } catch (error) {
-        console.error('Failed to load projects:', error);
-    }
-}
-
-// Router function
-function handleRoute() {
-    const path = window.location.pathname.replace(/^\/|\/$/g, '');
-    
-    if (!path) {
-        // We're on the homepage, close modal if open
-        if (document.body.classList.contains('project-modal-open')) {
-            closeModal();
+        const brandGridToggle = document.querySelector(SELECTORS.BRAND_GRID_TOGGLE);
+        if (brandGridToggle) {
+            brandGridToggle.addEventListener('click', () => {
+                BODY.classList.toggle('brand-grid_toggled');
+            });
         }
-        return;
-    }
-    
-    // Find and open the matching project
-    const matchedProject = allProjects.find(p => p.url === path);
-    if (matchedProject) {
-        openModal(matchedProject);
-    } else {
-        // Project not found, redirect to homepage
-        history.replaceState(null, '', '/');
-    }
-}
 
-// Modal functions
-function openModal(project) {
-    const modal = document.getElementById('project-modal');
-    if (!modal) return;
-
-    const content = modal.querySelector('.modal-content');
-    let html = `
-        <div>
-            <p class="modal-heading">${project.title}</p>
-            <p class="modal-customer">${project.customer}</p>
-        </div>
-    `;
-
-    project.content?.forEach(block => {
-        switch (block.type) {
-            case 'text':
-                html += `<p>${block.value}</p>`;
-                break;
-            case 'image':
-                html += `<img src="${block.src}" alt="${block.alt || ''}">`;
-                break;
-            case 'heading':
-                html += `<h2>${block.value}</h2>`;
-                break;
-        }
-    });
-
-    content.innerHTML = html;
-    document.body.classList.add('project-modal-open');
-    modal.querySelector('.modal-close').onclick = closeModal;
-}
-
-function closeModal() {
-    document.body.classList.remove('project-modal-open');
-    history.pushState(null, '', '/');
-}
-
-// Navigation
-function initializeNavigation() {
-    if (window.innerWidth < 768) return;
-    
-    const sections = document.querySelectorAll('main > section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    
-    if (sections.length === 0 || navLinks.length === 0) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const navLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-                if (navLink) {
-                    document.querySelectorAll('nav li').forEach(li => li.classList.remove('active'));
-                    navLink.parentElement.classList.add('active');
+        const dynamicContentToggle = document.querySelector(SELECTORS.DYNAMIC_CONTENT_TOGGLE);
+        if (dynamicContentToggle) {
+            dynamicContentToggle.addEventListener('click', () => {
+                if (BODY.classList.contains('overlay-open')) {
+                    BODY.classList.remove('overlay-open');
+                    // Clear URL pathname when closing overlay via toggle
+                    if (window.location.pathname !== '/') {
+                        window.history.pushState(null, '', '/');
+                    }
                 }
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '-10% 0px'
-    });
-    
-    sections.forEach(section => observer.observe(section));
-}
-
-// Appearance slider
-function initializeAppearanceSlider() {
-    const appearanceOption = document.querySelector('.option.appearance');
-    const slider = document.querySelector('.site-controls .slider');
-    
-    if (!appearanceOption || !slider) return;
-
-    const body = document.body;
-    const html = document.documentElement;
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    html.classList.add(isTouchDevice ? 'touchevents' : 'no-touchevents');
-
-    function removeColorSchemeClasses() {
-        body.className = body.className.replace(/color-scheme--\d+/g, '').trim();
+                else {
+                    BODY.classList.toggle('nav-open');
+                }
+            });
+        }
     }
 
-    function toggleSliderVisibility(visible) {
-        body.classList.toggle('appearance-slider--is--visible', visible);
+    function initApp() {
+        setupToggles();
+        new PostListManager();
+        new OverlayManager();
     }
 
-    if (isTouchDevice) {
-        appearanceOption.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleSliderVisibility(true);
-        });
-        
-        html.addEventListener('click', (event) => {
-            if (!event.target.closest('.option.appearance')) {
-                toggleSliderVisibility(false);
-            }
-        });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
     } else {
-        appearanceOption.addEventListener('mouseenter', () => toggleSliderVisibility(true));
-        appearanceOption.addEventListener('mouseleave', () => toggleSliderVisibility(false));
+        initApp();
+    }
+})();
+
+// 
+// 
+// 
+// 
+// 
+
+(function () {
+    "use strict";
+
+    // Debounce utility
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func.apply(this, args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
     }
 
-    slider.addEventListener('input', function() {
-        const value = this.value < 10 ? '0' + this.value : this.value;
-        removeColorSchemeClasses();
-        body.classList.add('color-scheme--' + value);
-    });
-    
-    // Set initial value and trigger the change
-    slider.value = 4;
-    slider.dispatchEvent(new Event('input'));
-}
+    // Intro section
+    function initializeIntro() {
+        const introSection = document.querySelector('#intro');
+        if (!introSection) return;
 
-// Initialize all
-document.addEventListener('DOMContentLoaded', () => {
-    initializeIntro();
-    initializeWork();
-    initializeNavigation();
-    initializeAppearanceSlider();
-});
+        const leftMask = document.querySelector('.scroll-mask.left');
+        const rightMask = document.querySelector('.scroll-mask.right');
+        const introOptions = introSection.querySelector('.intro-options');
 
-// Handle browser back/forward buttons
-window.addEventListener('popstate', () => {
-    handleRoute();
-});
+        // Options toggle
+        introSection.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                introSection.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+                option.classList.add('active');
+                introSection.querySelector(`.message.${option.classList[1]}`)?.classList.add('active');
+            });
+        });
+
+        // Scroll masks with debounce
+        if (introOptions) {
+            const handleScroll = debounce(function() {
+                const { scrollLeft, scrollWidth, clientWidth } = this;
+                leftMask?.classList.toggle('scrolled', scrollLeft > 0);
+                rightMask?.classList.toggle('scrolled', scrollLeft < scrollWidth - clientWidth);
+            }, 16);
+            
+            introOptions.addEventListener('scroll', handleScroll);
+        }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeIntro);
+    } else {
+        initializeIntro();
+    }
+})();

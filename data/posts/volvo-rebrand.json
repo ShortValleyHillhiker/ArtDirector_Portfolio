@@ -1,0 +1,22 @@
+{
+  "id": "volvo-rebrand",
+  "hero": {
+    "image": "https://images.pexels.com/photos/volvo-hero.jpeg",
+    "alt": "Volvo Rebrand Hero"
+  },
+  "content": [
+    {
+      "type": "text",
+      "value": "Repositioning Volvo for the electric era required a delicate balance between honoring their safety heritage and embracing a sustainable future."
+    },
+    {
+      "type": "image",
+      "src": "https://images.pexels.com/photos/volvo-detail.jpeg",
+      "alt": "Brand identity detail"
+    }
+  ],
+  "credits": {
+    "artDirection": "Your Name",
+    "branding": "Studio Name"
+  }
+}

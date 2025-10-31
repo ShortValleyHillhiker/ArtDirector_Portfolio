@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "id": "nike-spring-campaign",
+      "title": "Spring Collection Launch",
+      "client": "Nike",
+      "category": "Campaign",
+      "type": "work",
+      "image": "https://lipsum.app/random/500x500",
+      "tags": ["Digital"]
+    },
+    {
+      "id": "volvo-rebrand",
+      "title": "Electric Future Rebrand",
+      "client": "Volvo",
+      "category": "Branding",
+      "type": "work",
+      "image": "https://lipsum.app/random/501x501",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "creative-process",
+      "date": "2025-01-20",
+      "title": "Finding Clarity in Chaos",
+      "category": "Process",
+      "type": "blog",
+      "linkText": "Läs nu"
+    },
+    {
+      "id": "ai-in-advertising",
+      "date": "2024-12-05",
+      "title": "AI Won't Replace Art Directors",
+      "category": "Opinion",
+      "type": "blog",
+      "linkText": "Skit ner dig"
+    }
+  ]
+}

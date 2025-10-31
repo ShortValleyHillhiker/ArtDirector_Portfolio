@@ -1,0 +1,167 @@
+@media (max-width: 1280px) {
+  body {
+    --gr-c-l: repeat(5, 1fr);
+    --gr-c-m: repeat(3, 1fr);
+    --gr-c-s: 1fr;
+  }
+  .overlay.brand-grid > div:nth-child(n + 6) {
+    display: none;
+  }
+  .overlay.brand-grid > div::after,
+  .brand-grid_active .overlay.brand-grid > div span {
+    transition-delay: calc((var(--brand-delay) * 0.05s) + 0.33s);
+  }
+  .overlay.brand-grid > div span,
+  .brand-grid_active .overlay.brand-grid > div::after {
+    transition-delay: calc(var(--brand-delay) * 0.05s);
+  }
+
+
+  main > section {
+    grid-column: 3/-1;
+  }
+  .thoughts .content {
+    grid-column: 1 / -1;
+  }
+
+  .illustration.one {
+    right: 0;
+    left: auto;
+    bottom: -7.5%;
+    width: clamp(154px, 14vw, 99999rem);
+  }
+      .contact .info {
+        max-width: 33%;
+    }
+}
+
+@media (max-width: 1024px) {
+  body {
+    --gr-c-l: repeat(3, 1fr);
+    --gr-c-m: repeat(2, 1fr);
+    --gr-c-s: 1fr;
+    --gr-gap: max(.5rem,2vw)
+  }
+  .overlay.brand-grid > div:nth-child(n + 4) {
+    display: none;
+  }
+
+
+  main > section {
+    grid-column: 2/-1;
+  }
+  .background .message {
+    grid-column: 2/-1;
+  }
+
+
+  .illustration.one {
+    bottom: 5%;
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    --gr-c-l: repeat(2, 1fr);
+    --gr-c-m: 1fr;
+    --gr-c-s: 1fr;
+  }
+  .overlay.brand-grid > div:nth-child(n + 3) {
+    display: none;
+  }
+  .overlay.brand-grid > div::after,
+  .brand-grid_active .overlay.brand-grid > div span {
+    transition-delay: calc((var(--brand-delay) * 0.1s) + 0.25s);
+  }
+  .overlay.brand-grid > div span,
+  .brand-grid_active .overlay.brand-grid > div::after {
+    transition-delay: calc(var(--brand-delay) * 0.1s);
+  }
+
+  .item-experience,
+  main > section,
+  .overlay.dynamic-content > section,
+  .background .message {
+    grid-column: 1/-1;
+  }
+
+  .illustration.three {
+    display: none;
+  }
+  .illustration.two {
+    bottom: 62px;
+  }
+  .illustration.one {
+    top: 20%;
+    bottom: auto;
+    right: -5%;
+  }
+
+  /* --------------- Navigation --------------- */
+  .spa-nav > ul {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--gr-gap);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition);
+    pointer-events: none;
+    background-color: var(--clr-bg-100);
+    gap: calc(var(--gr-gap) * 0.5);
+  }
+  .spa-nav li a {
+    font-size: 1.5rem;
+  }
+  body.nav-open .spa-nav > ul {
+    opacity: 1;
+    z-index: 12;
+    pointer-events: initial;
+  }
+  .toggle.dynamic-content {
+    opacity: 1;
+  }
+  nav li + li {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: opacity var(--transition), transform var(--transition);
+  }
+  body.nav-open nav li {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: calc(var(--index) * .04s);
+  }
+  nav li:hover a {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 500px) {
+  .intro-buttons {
+    justify-content: center;
+  }
+  .background .message {
+    grid-column: 1/-1;
+  }
+  .illustration.two {
+    bottom: -60px;
+    width: 100%;
+  }
+  .contact .info {
+    max-width: 100%;
+  }
+  .illustration.one {
+    right: -10%;
+    top: 25%;
+  }
+}
+
+@media (min-width: 768px) {
+#intro, .work, .philosophy, .experiences, .references, .thoughts, #contact {
+    margin-left: calc(var(--gr-gap) * .5 - .125%);
+}
+}
