@@ -2,14 +2,13 @@
 Body {
   background-color: var(--clr-bg-100);
   color: var(--clr-fg-100);
-  padding-bottom: 10rem;
+  padding-bottom: calc(var(--gr-gap) * 3);
 }
 body.nav-open,
 body.overlay-open {
   overflow: hidden;
 }
 main {
-  padding-top: clamp(60px, 8.25vw, 9999rem) !important;
   overflow-x: clip;
 }
 /* ---------------
@@ -86,7 +85,6 @@ body.overlay-open .overlay.dynamic-content {
   SPA Navigation
 --------------- */
 .spa-nav {
-  --gr-gap: max(1rem, 1vw);
   position: fixed;
   align-items: flex-start;
   top: var(--gr-gap);
@@ -277,22 +275,22 @@ body.theme-0 .indicator {
   top: 100%;
 }
 body.theme-1 .indicator {
-  top: 87.25%;
+  top: 87%;
 }
 body.theme-2 .indicator {
-  top: 76.5%;
+  top: 74.75%;
 }
 body.theme-3 .indicator {
-  top: 63.75%;
+  top: 62.5%;
 }
 body.theme-4 .indicator {
-  top: 51%;
+  top: 50%;
 }
 body.theme-5 .indicator {
-  top: 38.25%;
+  top: 37.75%;
 }
 body.theme-6 .indicator {
-  top: 25.5%;
+  top: 25%;
 }
 body.theme-7 .indicator {
   top: 12.75%;
@@ -330,7 +328,7 @@ body.theme-8 .indicator {
 div.theme-selector:hover .dot {
   opacity: 1;
 }
-.theme-slider_wrapper > input {
+div.theme-slider_wrapper > input[type="range"] {
   writing-mode: vertical-lr;
   direction: rtl;
   height: 100%;
@@ -338,20 +336,30 @@ div.theme-selector:hover .dot {
   -webkit-appearance: none;
   background: transparent;
   outline: none;
+  box-shadow: none; 
+  border-color: transparent;
 }
-.theme-slider_wrapper > input::-webkit-slider-thumb {
+div.theme-slider_wrapper > input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
   width: calc(var(--gr-gap) * 1.5);
   height: calc(var(--gr-gap) * 1.5);
-  background: transparent;
-  border: none;
+  background: none; 
+  box-shadow: none;
+  border: none; 
   cursor: pointer;
   border-radius: 50%;
   transform: translateY(calc(var(--gr-gap) * 0.5));
   transition: transform var(--transition);
 }
-.theme-slider_wrapper > input::-moz-range-thumb {
+div.theme-slider_wrapper > input[type="range"]::-webkit-slider-runnable-track {
+  background: transparent;
+  border: none;
+  width: calc(var(--gr-gap) * 1.5);
+  border-color: transparent;
+  color: transparent;
+}
+div.theme-slider_wrapper > input[type="range"]::-moz-range-thumb {
   width: calc(var(--gr-gap) * 1.5);
   height: calc(var(--gr-gap) * 1.5);
   background: transparent;
@@ -359,12 +367,7 @@ div.theme-selector:hover .dot {
   cursor: pointer;
   border-radius: 50%;
 }
-.theme-slider_wrapper > input::-webkit-slider-runnable-track {
-  background: transparent;
-  border: none;
-  width: calc(var(--gr-gap) * 1.5);
-}
-.theme-slider_wrapper > input::-moz-range-track {
+div.theme-slider_wrapper > input[type="range"]::-moz-range-track {
   background: transparent;
   border: none;
 }
@@ -396,6 +399,9 @@ main > section {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+main section:first-child {
+  padding-top: clamp(60px, 8.25vw, 9999rem);
 }
 section + section {
   margin-top: calc(var(--gr-gap) * 8);
@@ -455,6 +461,7 @@ section + section {
   flex-direction: column;
   position: relative;
   gap: calc(var(--gr-gap) * 0.5);
+  min-width: 0 
 }
 .work .content .post-img_wrapper {
   aspect-ratio: 16/9;
@@ -533,12 +540,12 @@ section.thoughts .heading{
 .intro-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gr-gap);
+  gap: max(.5rem, calc(var(--gr-gap) * .5));
   margin-top: calc(var(--gr-gap) * 3);
 }
 .intro-buttons > a {
   border: 1px solid var(--clr-fg-100);
-  border-radius: 999rem;
+  border-radius: max(4px, calc(var(--gr-gap) * 0.25));
   padding: 0.5em 1em;
 }
 .intro-buttons > a:first-child {

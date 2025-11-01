@@ -1,7 +1,7 @@
 {
   "id": "nike-spring-campaign",
   "hero": {
-    "image": "https://images.pexels.com/photos/hero.jpeg",
+    "image": "https://lipsum.app/random/200x100",
     "alt": "Nike Spring Campaign Hero"
   },
   "content": [
@@ -11,7 +11,7 @@
     },
     {
       "type": "image",
-      "src": "https://images.pexels.com/photos/detail1.jpeg",
+      "src": "https://lipsum.app/random/100x100",
       "alt": "Campaign detail",
       "caption": "Key visual from the campaign"
     },
@@ -23,11 +23,11 @@
       "type": "gallery",
       "images": [
         {
-          "src": "https://images.pexels.com/photos/gallery1.jpeg",
+          "src": "https://lipsum.app/random/50x50",
           "alt": "Gallery image 1"
         },
         {
-          "src": "https://images.pexels.com/photos/gallery2.jpeg",
+          "src": "https://lipsum.app/random/150x150",
           "alt": "Gallery image 2"
         }
       ]

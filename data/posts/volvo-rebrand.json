@@ -1,7 +1,7 @@
 {
   "id": "volvo-rebrand",
   "hero": {
-    "image": "https://images.pexels.com/photos/volvo-hero.jpeg",
+    "image": "https://lipsum.app/random/192x108",
     "alt": "Volvo Rebrand Hero"
   },
   "content": [
@@ -11,7 +11,7 @@
     },
     {
       "type": "image",
-      "src": "https://images.pexels.com/photos/volvo-detail.jpeg",
+      "src": "https://lipsum.app/random/100x100",
       "alt": "Brand identity detail"
     }
   ],

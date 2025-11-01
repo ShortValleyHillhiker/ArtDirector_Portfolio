@@ -19,8 +19,8 @@
             this.posts = [];
             this.loadedCounts = { work: 0, blog: 0 };
             this.config = {
-                work: { initialLoad: 1, loadMore: 4, selector: SELECTORS.WORK_SECTION },
-                blog: { initialLoad: 1, loadMore: 6, selector: SELECTORS.THOUGHTS_SECTION }
+                work: { initialLoad: 4, loadMore: 4, selector: SELECTORS.WORK_SECTION },
+                blog: { initialLoad: 5, loadMore: 5, selector: SELECTORS.THOUGHTS_SECTION }
             };
             this.init();
         }
@@ -28,6 +28,7 @@
         async init() {
             await this.fetchPosts();
             this.renderPosts();
+            this.setupIntersectionObserver();
         }
 
         async fetchPosts() {
@@ -45,9 +46,23 @@
         renderPosts() {
             const workPosts = this.posts.filter(post => post.type === 'work');
             const blogPosts = this.posts.filter(post => post.type === 'blog');
-
             this.renderSection('work', workPosts, this.config.work.initialLoad);
             this.renderSection('blog', blogPosts, this.config.blog.initialLoad);
+        }
+
+        setupIntersectionObserver() {
+            this.observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                        this.observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '50px', threshold: 0.1 });
+
+            document.querySelectorAll('.work article, .thoughts article').forEach(article => {
+                this.observer.observe(article);
+            });
         }
 
         renderSection(type, allPosts, loadCount) {
@@ -61,24 +76,19 @@
             const startIndex = this.loadedCounts[type];
             const endIndex = Math.min(startIndex + loadCount, allPosts.length);
             const postsToRender = allPosts.slice(startIndex, endIndex);
-
             const fragment = document.createDocumentFragment();
             const loadMoreBtnWrapper = content.querySelector('span:has(.load-more)');
-            const newArticles = [];
 
             if (startIndex === 0) {
                 content.querySelectorAll(SELECTORS.SKELETON_ARTICLE).forEach(el => el.remove());
             }
 
             postsToRender.forEach((post, index) => {
-                const article = type === 'work'
-                    ? this.createWorkArticle(post)
-                    : this.createBlogArticle(post);
-
+                const article = this.createArticle(post, type);
                 article.style.setProperty('--i', index);
                 fragment.appendChild(article);
-                newArticles.push(article);
                 this.loadedCounts[type]++;
+                if (this.observer) this.observer.observe(article);
             });
 
             if (loadMoreBtnWrapper) {
@@ -87,77 +97,77 @@
                 content.appendChild(fragment);
             }
 
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    newArticles.forEach(article => article.classList.add('loaded'));
-                });
-            });
-
             this.updateLoadMoreButton(type, content, allPosts.length);
+        }
+
+        createArticle(post, type) {
+            const article = document.createElement('article');
+
+            if (type === 'work') {
+                article.innerHTML = `
+                    <div class="post-img_wrapper">
+                        <img src="${post.image}" alt="${post.alt || post.title}">
+                    </div>
+                    <div class="post-txt_wrapper">
+                        <span>
+                            <h3>${post.title}</h3>
+                            <p>${post.client}</p>
+                        </span>
+                        <ul>${post.tags?.map(tag => `<li>${tag}</li>`).join('') || ''}</ul>
+                    </div>
+                    <a href="#" class="block-link" data-post-id="${post.id}" aria-label="View ${post.title}"></a>
+                `;
+            } else {
+                const formattedDate = new Date(post.date).toLocaleDateString('sv-SE', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                article.innerHTML = `
+                    <div>
+                        <time datetime="${post.date}">${formattedDate}</time>
+                        <h3>${post.title}</h3>
+                    </div>
+                    <a href="#" data-post-id="${post.id}" aria-label="Read ${post.title}">${post.linkText || 'Läs mer'}</a>
+                `;
+            }
+
+            return article;
         }
 
         updateLoadMoreButton(type, content, totalPosts) {
             const remaining = totalPosts - this.loadedCounts[type];
             let btnWrapper = content.querySelector('span:has(.load-more)');
-            let btn = btnWrapper?.querySelector('.load-more');
 
             if (remaining > 0) {
                 if (!btnWrapper) {
                     btnWrapper = document.createElement('span');
-                    btn = document.createElement('p');
-                    btn.className = 'load-more';
-                    btn.textContent = type === 'work' ? 'Fler projekt' : 'Läs fler tankar';
+                    const btn = document.createElement('p');
+                    Object.assign(btn, {
+                        className: 'load-more',
+                        textContent: type === 'work' ? 'Fler projekt' : 'Läs fler tankar',
+                        tabIndex: 0,
+                        onclick: () => this.loadMore(type),
+                        onkeydown: (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                this.loadMore(type);
+                            }
+                        }
+                    });
+                    btn.setAttribute('role', 'button');
+                    btn.setAttribute('aria-label', `Load more ${type === 'work' ? 'projects' : 'thoughts'}`);
                     btnWrapper.appendChild(btn);
                     content.appendChild(btnWrapper);
                 }
-                // Always attach the handler (in case it's a pre-existing element)
-                btn.onclick = () => this.loadMore(type);
             } else {
                 btnWrapper?.remove();
             }
         }
+
         loadMore(type) {
             const allPosts = this.posts.filter(post => post.type === type);
-            const loadCount = this.config[type].loadMore;
-            this.renderSection(type, allPosts, loadCount);
-        }
-
-        createWorkArticle(post) {
-            const article = document.createElement('article');
-            article.innerHTML = `
-                <div class="post-img_wrapper">
-                    <img src="${post.image}" alt="${post.title}">
-                </div>
-                <div class="post-txt_wrapper">
-                    <span>
-                        <h3>${post.title}</h3>
-                        <p>${post.client}</p>
-                    </span>
-                    <ul>
-                        ${post.tags?.map(tag => `<li>${tag}</li>`).join('') || ''}
-                    </ul>
-                </div>
-                <a href="#" class="block-link" data-post-id="${post.id}"></a>
-            `;
-            return article;
-        }
-
-        createBlogArticle(post) {
-            const article = document.createElement('article');
-            const formattedDate = new Date(post.date).toLocaleDateString('sv-SE', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric'
-            });
-
-            article.innerHTML = `
-        <div>
-            <time datetime="${post.date}">${formattedDate}</time>
-            <h3>${post.title}</h3>
-        </div>
-        <a href="#" data-post-id="${post.id}">${post.linkText || 'Läs mer'}</a>
-    `;
-            return article;
+            this.renderSection(type, allPosts, this.config[type].loadMore);
         }
     }
 
@@ -168,6 +178,7 @@
             this.cache = new Map();
             this.currentPostId = null;
             this.isOpening = false;
+            this.previousFocus = null;
             this.init();
         }
 
@@ -181,9 +192,7 @@
             });
 
             this.overlay?.addEventListener('click', (e) => {
-                if (e.target === this.overlay) {
-                    this.closeOverlay();
-                }
+                if (e.target === this.overlay) this.closeOverlay();
             });
 
             document.addEventListener('keydown', (e) => {
@@ -192,14 +201,12 @@
                 }
             });
 
-            // Handle browser back/forward with debounce
             let popstateTimeout;
             window.addEventListener('popstate', () => {
                 clearTimeout(popstateTimeout);
                 popstateTimeout = setTimeout(() => this.handleRoute(), 10);
             });
 
-            // Check for initial path on page load
             this.handleRoute();
         }
 
@@ -207,25 +214,23 @@
             const path = window.location.pathname.replace(/^\/|\/$/g, '');
 
             if (!path) {
-                // Homepage, close overlay if open
                 if (BODY.classList.contains('overlay-open')) {
                     this.closeOverlay(false);
                 }
                 return;
             }
 
-            // Don't re-open if already open with same content
             if (BODY.classList.contains('overlay-open') && this.currentPostId === path) {
                 return;
             }
 
-            // Open the matching post
             this.openOverlay(path);
         }
 
         async openOverlay(postId) {
             if (this.isOpening) return;
             this.isOpening = true;
+            this.previousFocus = document.activeElement;
 
             try {
                 let postData = this.cache.get(postId);
@@ -241,13 +246,29 @@
                 this.currentPostId = postId;
                 BODY.classList.add('overlay-open');
 
-                // Update URL pathname
+                if (this.overlay) {
+                    Object.assign(this.overlay, {
+                        role: 'dialog',
+                        ariaModal: 'true',
+                        ariaLabel: postData.title || 'Content overlay'
+                    });
+
+                    setTimeout(() => {
+                        const firstFocusable = this.overlayContent?.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
+                        if (firstFocusable) {
+                            firstFocusable.focus();
+                        } else {
+                            this.overlayContent?.setAttribute('tabindex', '-1');
+                            this.overlayContent?.focus();
+                        }
+                    }, 100);
+                }
+
                 if (window.location.pathname.replace(/^\/|\/$/g, '') !== postId) {
                     window.history.pushState(null, '', `/${postId}`);
                 }
             } catch (error) {
                 console.error("Could not fetch post content:", error);
-                // Post not found, redirect to homepage
                 window.history.replaceState(null, '', '/');
             } finally {
                 this.isOpening = false;
@@ -258,7 +279,17 @@
             BODY.classList.remove('overlay-open');
             this.currentPostId = null;
 
-            // Clear URL pathname
+            if (this.overlay) {
+                this.overlay.removeAttribute('role');
+                this.overlay.removeAttribute('aria-modal');
+                this.overlay.removeAttribute('aria-label');
+            }
+
+            if (this.previousFocus?.focus) {
+                this.previousFocus.focus();
+                this.previousFocus = null;
+            }
+
             if (updateHistory && window.location.pathname !== '/') {
                 window.history.pushState(null, '', '/');
             }
@@ -284,10 +315,10 @@
             if (postData.credits) {
                 const credits = document.createElement('div');
                 credits.className = 'credits';
-                credits.innerHTML = '<h3>Credits</h3>';
-                Object.entries(postData.credits).forEach(([key, value]) => {
-                    credits.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
-                });
+                credits.innerHTML = '<h3>Credits</h3>' +
+                    Object.entries(postData.credits)
+                        .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+                        .join('');
                 fragment.appendChild(credits);
             }
 
@@ -319,17 +350,125 @@
         }
     }
 
+    class NavigationManager {
+        constructor() {
+            this.navLinks = document.querySelectorAll('.spa-nav li a');
+            this.sections = document.querySelectorAll('main > section[id]');
+            this.init();
+        }
+
+        init() {
+            if (!this.sections.length || !this.navLinks.length) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        this.setActiveNav(entry.target.id);
+                    }
+                });
+            }, {
+                rootMargin: '-20% 0px -60% 0px',
+                threshold: 0
+            });
+
+            this.sections.forEach(section => observer.observe(section));
+
+            this.navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 800) {
+                        BODY.classList.remove('nav-open');
+                    }
+                });
+            });
+        }
+
+        setActiveNav(sectionId) {
+            this.navLinks.forEach(link => {
+                const li = link.parentElement;
+                const href = link.getAttribute('href');
+
+                if (href === `#${sectionId}` || (href === '#' && sectionId === 'intro')) {
+                    li.classList.add('active');
+                } else {
+                    li.classList.remove('active');
+                }
+            });
+        }
+    }
+
+    function initializeIntro() {
+        const introSection = document.querySelector('#intro');
+        if (!introSection) return;
+
+        const leftMask = document.querySelector('.scroll-mask.left');
+        const rightMask = document.querySelector('.scroll-mask.right');
+        const introOptions = introSection.querySelector('.intro-options');
+
+        introSection.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                introSection.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+                option.classList.add('active');
+                
+                const identifierClass = Array.from(option.classList).find(cls => cls !== 'option' && cls !== 'active');
+                if (identifierClass) {
+                    introSection.querySelector(`.message.${identifierClass}`)?.classList.add('active');
+                }
+            });
+        });
+
+        if (introOptions) {
+            introOptions.addEventListener('scroll', function() {
+                const { scrollLeft, scrollWidth, clientWidth } = this;
+                leftMask?.classList.toggle('scrolled', scrollLeft > 0);
+                rightMask?.classList.toggle('scrolled', scrollLeft < scrollWidth - clientWidth);
+            });
+        }
+    }
+
+    function smoothScrollTo(target, duration = 330) {
+        const start = window.pageYOffset;
+        const end = target.getBoundingClientRect().top + start;
+        const distance = end - start;
+        const startTime = performance.now();
+        
+        const easeInOutCustom = (t) => {
+            if (t < 0.5) {
+                return 4 * t * t * t;
+            }
+            return 1 - Math.pow(-2 * t + 2, 3) / 2;
+        };
+
+        function animation(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeInOutCustom(progress);
+            
+            window.scrollTo(0, start + distance * eased);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animation);
+            }
+        }
+        
+        requestAnimationFrame(animation);
+    }
+
+    function setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) smoothScrollTo(target);
+            });
+        });
+    }
+
     function setupToggles() {
         const themeSlider = document.querySelector(SELECTORS.THEME_SLIDER);
         if (themeSlider) {
-            const removeThemeClass = () => {
-                const currentTheme = Array.from(BODY.classList).find(cls => cls.startsWith('theme-'));
-                if (currentTheme) {
-                    BODY.classList.remove(currentTheme);
-                }
-            };
             themeSlider.addEventListener('input', (e) => {
-                removeThemeClass();
+                const currentTheme = Array.from(BODY.classList).find(cls => cls.startsWith('theme-'));
+                if (currentTheme) BODY.classList.remove(currentTheme);
                 BODY.classList.add(`theme-${e.target.value}`);
             });
         }
@@ -346,12 +485,10 @@
             dynamicContentToggle.addEventListener('click', () => {
                 if (BODY.classList.contains('overlay-open')) {
                     BODY.classList.remove('overlay-open');
-                    // Clear URL pathname when closing overlay via toggle
                     if (window.location.pathname !== '/') {
                         window.history.pushState(null, '', '/');
                     }
-                }
-                else {
+                } else {
                     BODY.classList.toggle('nav-open');
                 }
             });
@@ -359,74 +496,17 @@
     }
 
     function initApp() {
+        initializeIntro();
+        setupSmoothScroll();
         setupToggles();
         new PostListManager();
         new OverlayManager();
+        new NavigationManager();
     }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initApp);
     } else {
         initApp();
-    }
-})();
-
-// 
-// 
-// 
-// 
-// 
-
-(function () {
-    "use strict";
-
-    // Debounce utility
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func.apply(this, args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    // Intro section
-    function initializeIntro() {
-        const introSection = document.querySelector('#intro');
-        if (!introSection) return;
-
-        const leftMask = document.querySelector('.scroll-mask.left');
-        const rightMask = document.querySelector('.scroll-mask.right');
-        const introOptions = introSection.querySelector('.intro-options');
-
-        // Options toggle
-        introSection.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', () => {
-                introSection.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
-                option.classList.add('active');
-                introSection.querySelector(`.message.${option.classList[1]}`)?.classList.add('active');
-            });
-        });
-
-        // Scroll masks with debounce
-        if (introOptions) {
-            const handleScroll = debounce(function() {
-                const { scrollLeft, scrollWidth, clientWidth } = this;
-                leftMask?.classList.toggle('scrolled', scrollLeft > 0);
-                rightMask?.classList.toggle('scrolled', scrollLeft < scrollWidth - clientWidth);
-            }, 16);
-            
-            introOptions.addEventListener('scroll', handleScroll);
-        }
-    }
-
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeIntro);
-    } else {
-        initializeIntro();
     }
 })();

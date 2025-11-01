@@ -59,6 +59,10 @@
     bottom: 5%;
     transform: rotate(10deg);
   }
+    .item-experience {
+    grid-column: 1/-1;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -97,6 +101,10 @@
     bottom: auto;
     right: -5%;
   }
+
+  main section:first-child {
+  padding-top: 7.5rem;
+}
 
   /* --------------- Navigation --------------- */
   .spa-nav > ul {
@@ -138,6 +146,9 @@
   nav li:hover a {
     text-decoration: underline;
   }
+  main > section.background {
+    z-index:1;
+  }
 }
 
 @media (max-width: 500px) {
@@ -164,4 +175,11 @@
 #intro, .work, .philosophy, .experiences, .references, .thoughts, #contact {
     margin-left: calc(var(--gr-gap) * .5 - .125%);
 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
