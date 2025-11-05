@@ -15,7 +15,7 @@
 }
 
 ::selection {
-  background: greenyellow;
+  background: var(--clr-hl-100, lightblue);
 }
 
 a {
@@ -36,7 +36,8 @@ p > span {
 
 
 
-.title.large {
+.title.large,
+.content-title .work-heading {
     font-size: var(--ft-l);
     line-height: var(--ft-m-lh);
     letter-spacing: var(--ft-m-ls);

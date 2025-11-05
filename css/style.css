@@ -68,6 +68,7 @@ body.brand-grid_toggled .overlay.brand-grid > div span {
 /* ---------- Dynamic-content ---------- */
 .overlay.dynamic-content {
   background-color: var(--clr-bg-100);
+  padding: clamp(60px, 8.25vw, 9999rem) var(--gr-gap);
   z-index: 11;
   opacity: 0;
   transition: opacity var(--transition);
@@ -463,7 +464,8 @@ section + section {
   gap: calc(var(--gr-gap) * 0.5);
   min-width: 0 
 }
-.work .content .post-img_wrapper {
+.work .content .post-img_wrapper,
+.hero {
   aspect-ratio: 16/9;
   overflow: hidden;
   border-radius: max(4px, calc(var(--gr-gap) * 0.25));
@@ -488,7 +490,8 @@ section + section {
   position: absolute;
   inset: 0;
 }
-.work article img {
+.work article img,
+.hero img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -500,7 +503,7 @@ section + section {
 section.thoughts {
   display: grid;
   grid-template-columns: var(--gr-c-m);
-  gap: calc(var(--gr-gap) * 4);
+  gap: calc(var(--gr-gap) * 4) var(--gr-gap);
 }
 section.thoughts .heading{
   grid-column: span 2;
@@ -772,14 +775,11 @@ article.loaded {
   transform: translateY(0);
   transition-delay: calc(var(--i) * 0.1s);
 }
-.dynamic-content section > * {
-  grid-column: 1/-1;
-}
 span:has(.load-more) {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: calc(var(-gr--gr-gap) * 2);
+  margin-top: calc(var(--gr-gap) * 3);
   grid-column: 1/-1;
 }
 .load-more {
@@ -880,4 +880,58 @@ span:has(.load-more) {
   }
 }
 
+.overlay.dynamic-content {
+  margin: 0;
+}
+.overlay.dynamic-content > section {
+  grid-column: 3 / -1;
+  background-color: var(--clr-bg-100);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gr-gap) * 4);
+}
+.overlay.dynamic-content > section * {
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: var(--gr-gap);
+}
 
+.overlay.dynamic-content > section :is(.content-image, .content-vimeo, video) {
+  border-radius: max(4px, calc(var(--gr-gap) * 0.25));
+  overflow: hidden;
+  background-color: var(--clr-fg-25);
+  position: relative;
+}
+.overlay.dynamic-content > section .content-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+}
+.content-vimeo {
+  width: 100%;
+  aspect-ratio: 16/9; /* or set via inline style from JSON */
+}
+
+.content-vimeo iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.content-preamble {
+  font-weight: 500;
+  font-size: var(--ft-l);
+}
+.content-gallery {
+  flex-direction: row!important;
+  flex-wrap: wrap;
+}
+.content-gallery > * {
+  width: calc(50% - (var(--gr-gap) * .5))!important;
+}

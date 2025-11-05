@@ -1,5 +1,8 @@
-(function () {
+(async function () {
     "use strict";
+
+    // Import the content renderer
+    const { ContentRenderer } = await import('./data/postTemplates.js');
 
     const BODY = document.body;
     const SELECTORS = {
@@ -191,10 +194,6 @@
                 }
             });
 
-            this.overlay?.addEventListener('click', (e) => {
-                if (e.target === this.overlay) this.closeOverlay();
-            });
-
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && BODY.classList.contains('overlay-open')) {
                     this.closeOverlay();
@@ -252,16 +251,6 @@
                         ariaModal: 'true',
                         ariaLabel: postData.title || 'Content overlay'
                     });
-
-                    setTimeout(() => {
-                        const firstFocusable = this.overlayContent?.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
-                        if (firstFocusable) {
-                            firstFocusable.focus();
-                        } else {
-                            this.overlayContent?.setAttribute('tabindex', '-1');
-                            this.overlayContent?.focus();
-                        }
-                    }, 100);
                 }
 
                 if (window.location.pathname.replace(/^\/|\/$/g, '') !== postId) {
@@ -298,55 +287,16 @@
         renderOverlayContent(postData) {
             if (!this.overlayContent) return;
 
-            const fragment = document.createDocumentFragment();
-
-            if (postData.hero) {
-                const hero = document.createElement('div');
-                hero.className = 'hero';
-                hero.innerHTML = `<img src="${postData.hero.image}" alt="${postData.hero.alt}">`;
-                fragment.appendChild(hero);
-            }
-
-            postData.content?.forEach(block => {
-                const element = this.createContentBlock(block);
-                if (element) fragment.appendChild(element);
-            });
-
-            if (postData.credits) {
-                const credits = document.createElement('div');
-                credits.className = 'credits';
-                credits.innerHTML = '<h3>Credits</h3>' +
-                    Object.entries(postData.credits)
-                        .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
-                        .join('');
-                fragment.appendChild(credits);
-            }
+            const fragment = ContentRenderer.render(postData);
 
             this.overlayContent.innerHTML = '';
             this.overlayContent.appendChild(fragment);
         }
 
         createContentBlock(block) {
-            switch (block.type) {
-                case 'text':
-                    const p = document.createElement('p');
-                    p.textContent = block.value;
-                    return p;
-                case 'image':
-                    const figure = document.createElement('figure');
-                    figure.innerHTML = `
-                        <img src="${block.src}" alt="${block.alt}">
-                        ${block.caption ? `<figcaption>${block.caption}</figcaption>` : ''}
-                    `;
-                    return figure;
-                case 'gallery':
-                    const gallery = document.createElement('div');
-                    gallery.className = 'gallery';
-                    gallery.innerHTML = block.images?.map(img => `<img src="${img.src}" alt="${img.alt}">`).join('') || '';
-                    return gallery;
-                default:
-                    return null;
-            }
+            // This method is no longer needed but keeping it for backwards compatibility
+            // All rendering is now handled by ContentRenderer
+            return null;
         }
     }
 

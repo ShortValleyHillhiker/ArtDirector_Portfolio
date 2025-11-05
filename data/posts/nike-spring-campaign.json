@@ -1,41 +1,83 @@
 {
   "id": "nike-spring-campaign",
-  "hero": {
-    "image": "https://lipsum.app/random/200x100",
-    "alt": "Nike Spring Campaign Hero"
-  },
+  "title": "Nike Spring Campaign",
+  "client": "Nike",
   "content": [
     {
-      "type": "text",
-      "value": "Nike approached us to create a campaign that would capture the energy of their new spring collection while staying true to their brand heritage."
-    },
-    {
       "type": "image",
-      "src": "https://lipsum.app/random/100x100",
-      "alt": "Campaign detail",
-      "caption": "Key visual from the campaign"
+      "src": "https://lipsum.app/random/192x108",
+      "alt": "Volvo Rebrand Hero",
+      "aspectRatio": "5/4"
     },
     {
-      "type": "text",
-      "value": "Our approach focused on movement and authenticity, shooting real athletes in natural settings."
+      "type": "paragraph",
+      "hasPreamble": true,
+      "paragraphs": [
+        "Repositioning Volvo for the electric era required a delicate balance between honoring their safety heritage and embracing a sustainable future.",
+        "The new identity system maintains Volvo's iconic restraint while introducing dynamic elements that speak to their electric ambitions.",
+        "Every touchpoint was reimagined to communicate safety, sustainability, and Scandinavian design principles."
+      ]
     },
     {
       "type": "gallery",
-      "images": [
+      "items": [
         {
-          "src": "https://lipsum.app/random/50x50",
-          "alt": "Gallery image 1"
+          "type": "image",
+          "src": "https://lipsum.app/random/100x50",
+          "alt": "Brand application 1",
+          "aspectRatio": "5/4"
         },
         {
-          "src": "https://lipsum.app/random/150x150",
-          "alt": "Gallery image 2"
+          "type": "image",
+          "src": "https://lipsum.app/random/100x50",
+          "alt": "Brand application 1",
+          "aspectRatio": "16/9"
+        },
+        {
+          "type": "image",
+          "src": "https://lipsum.app/random/100x50",
+          "alt": "Brand application 1",
+          "aspectRatio": "1/1"
+        },
+        {
+          "type": "video",
+          "src": "https://videos.pexels.com/video-files/34443509/14594732_2560_1440_30fps.mp4",
+          "alt": "Brand motion study"
         }
       ]
+    },
+    {
+      "type": "vimeo",
+      "embedUrl": "https://player.vimeo.com/video/123456789"
+    },
+    {
+      "type": "brief",
+      "sections": [
+        {
+          "label": "Brief",
+          "text": "Create a visual identity that bridges Volvo's 95-year safety legacy with their all-electric future, maintaining brand equity while signaling transformation."
+        },
+        {
+          "label": "Insikt",
+          "text": "Safety and sustainability are no longer separate values—they're intrinsically linked in the minds of modern consumers. The brand needed to evolve without abandoning its core DNA."
+        },
+        {
+          "label": "Idé",
+          "text": "A refined symbol system that reduces the iron mark to its essential geometric form, paired with a kinetic motion language that represents electric energy and Swedish minimalism."
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "https://lipsum.app/random/700x100",
+      "alt": "Brand identity detail",
+      "aspectRatio": "3/1"
+    },
+    {
+      "type": "quote",
+      "quote": "This rebrand doesn't just represent our electric future—it honors everything Volvo has stood for since 1927.",
+      "author": "Jane Doe",
+      "title": "Global Brand Director"
     }
-  ],
-  "credits": {
-    "artDirection": "Your Name",
-    "photography": "Photographer Name",
-    "agency": "Agency Name"
-  }
+  ]
 }

@@ -1,13 +1,15 @@
 {
   "id": "ai-in-advertising",
+  "type": "blog",
+  "title": "AI in advertising",
+  "date": "2025-01-01",
   "content": [
     {
-      "type": "text",
-      "value": "AI-verktyg är kraftfulla, men de kan aldrig ersätta den mänskliga förmågan att förstå kontext, kultur och känsla."
-    },
-    {
-      "type": "text",
-      "value": "Vad AI däremot kan göra är att befria oss från det repetitiva arbetet så vi kan fokusera på det som faktiskt kräver kreativitet."
+      "type": "paragraph",
+      "paragraphs": [
+        "AI-verktyg är kraftfulla, men de kan aldrig ersätta den mänskliga förmågan att förstå kontext, kultur och känsla.",
+        "Vad AI däremot kan göra är att befria oss från det repetitiva arbetet så vi kan fokusera på det som faktiskt kräver kreativitet."
+      ]
     }
   ]
 }

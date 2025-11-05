@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/queries.css">
 
+    
     <script defer src="app.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +23,7 @@
 
 </head>
 
-<body class="theme-4">
+<body class="theme-4 overlay-open">
     <div class="toggle dynamic-content">
         <div></div>
     </div>
@@ -179,9 +180,9 @@
                     </path>
                 </svg>
             </h2>
-            <p class="message small">2x guld, Gerillaägget 2025. <span>Retard raveloution&nbsp;(GIL/Spöket)</span> <br>
-                1x Shortlist, Svenska designpriset 2025. <span>Restaurang Kollage&nbsp;(Götaplatsgruppen/Spöket)</span>
-            </p>
+            <p class="message small">
+                2x guld, <span>Gerillaägget&nbsp;2025.</span><br>
+                1x Shortlist, <span>Svenska designpriset&nbsp;2025.</span>
         </section>
 
         <section class="experiences" id="experiences">
@@ -321,10 +322,57 @@
         <div style="--brand-delay:7;"><span style="--brand-delay:12;"></span><span style="--brand-delay:13;"></span>
         </div>
     </div>
+
     <div class="overlay dynamic-content" role="dialog" aria-label="Content details">
         <section>
-            <h1>This is the dynamic content</h1>
-            <p>Followed by some lorem ipsum dolor sit amet</p>
+            <div class="content-title">
+                <p class="work-headng">This is the post title</p>
+                <p class="work-client">Client name</p>
+            </div>
+
+            <div class="content-image">
+                <img src="https://lipsum.app/random/100x50" alt="">
+            </div>
+
+            <div class="content-gallery">
+                <div class="content-image">
+                    <img src="https://lipsum.app/random/100x50" alt="">
+                </div>
+                <div class="content-video">
+                    <video src="https://lipsum.app/random/50x25" alt="" autoplay muted loop>
+                </div>
+            </div>
+
+            <div class="content-vimeo">
+                vimeo-iframe
+            </div>
+
+            <div class="content-paragraph">
+                <p class="content-preamble">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque quidem explicabo necessitatibus, doloremque maxime eveniet, nostrum magni, quisquam sed amet est dignissimos tempore reiciendis dolore reprehenderit dolores vero quibusdam cupiditate!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus modi asperiores voluptate alias fugit debitis deleniti ex ipsum est veritatis eos sed voluptas dicta blanditiis quibusdam deserunt, tenetur vitae quisquam!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio doloribus inventore nesciunt suscipit vitae, sed porro, architecto dolorem vel obcaecati minus quis nam quisquam tempora debitis odio error! Assumenda, nobis?</p>
+            </div>
+
+            <div class="content-brief">
+                <span>
+                    <p>Brief:</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non error facere ratione, eius deleniti temporibus a nisi nostrum cupiditate pariatur eligendi reprehenderit ex fugiat. Repudiandae culpa ratione veniam eveniet placeat.</p>
+                </span>
+                <span>
+                    <p>Insikt:</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non error facere ratione, eius deleniti temporibus a nisi nostrum cupiditate pariatur eligendi reprehenderit ex fugiat. Repudiandae culpa ratione veniam eveniet placeat.</p>
+                </span>
+                <span>
+                    <p>Idé:</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non error facere ratione, eius deleniti temporibus a nisi nostrum cupiditate pariatur eligendi reprehenderit ex fugiat. Repudiandae culpa ratione veniam eveniet placeat.</p>
+                </span>
+            </div>
+
+            <div class="content-quote">
+                <p>"This is a quote that contextualizes the work."</p>
+                <p>Jane Doe,<span>Title</span></p>
+            </div>
+                        
         </section>
     </div>
 </body>

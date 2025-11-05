@@ -47,7 +47,8 @@
   }
 
 
-  main > section {
+  main > section,
+  .overlay.dynamic-content > section {
     grid-column: 2/-1;
   }
   .background .message {
@@ -60,7 +61,7 @@
     transform: rotate(10deg);
   }
     .item-experience {
-    grid-column: 1/-1;
+    grid-column: 1x/-1;
   }
 
 }
