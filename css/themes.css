@@ -2,12 +2,12 @@
 ----------------------------------------------------------------------------- */
 
 body.theme-8 {
-  --clr-fg-100: rgb(255 236 207 / 1);
+  --clr-fg-100: rgb(255, 236, 207);
   --clr-fg-50: rgb(255 236 207 / 0.5);
   --clr-fg-25: rgb(255 236 207 / 0.15);
 
-  --clr-bg-100: rgb(84 27 27 / 1);
-  --clr-bg-0: rgb(84 27 27 / 0);
+  --clr-bg-100: rgb(28 28 28 / 1);
+  --clr-bg-0: rgb(28 28 28 / 0);
 
   --clr-hl-100:red;
   --clr-hl-20: rgb(255 236 207 / 0.35);
@@ -87,7 +87,7 @@ body.theme-2 {
   --clr-bg-15: rgb(238 238 238 / 0.5);
   --clr-bg-0: rgb(238 238 238 / 0);
 
-  --clr-fg-100: rgb(5, 4, 7) ;
+  --clr-fg-100: rgb(37 0 201 / 1) ;
   --clr-fg-50: rgb(37 0 201 / 0.5);
   --clr-fg-25: rgb(37 0 201 / 0.33);
   --clr-fg-15: rgb(37 0 201 / 0.15);
@@ -121,30 +121,29 @@ body.theme-0 {
   --clr-hl-05: rgb(255 199 0 / 0.05);
 }
 
-
-body.theme-9 .image-overlay,
-body.theme-2 .image-overlay {
-  display: none;
+.post-img_wrapper {
+  position: relative;;
 }
-body.theme-5 .image-overlay,
-body.theme-3 .image-overlay {
-  background-color: var(--clr-fg);
+.post-img_wrapper::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+body.theme-6 .post-img_wrapper::after {
+  background-color: var(--clr-fg-100);
   mix-blend-mode: screen;
-}
-body.theme-5 .image-overlay {
-  opacity: 0.5;
-}
-body.theme-1 .image-overlay,
-body.theme-0 .image-overlay {
-  background-color: var(--clr-bg);
   opacity: .33;
-  mix-blend-mode: multiply;
 }
-body.theme-0 .image-overlay {
-  opacity: .33;
+body.theme-1 .post-img_wrapper::after,
+body.theme-7 .post-img_wrapper::after {
+    background-color: var(--clr-bg-100);
+    mix-blend-mode: lighten;
+    opacity: 0.825;
 }
 
-body.theme-1 .image-overlay {
-  opacity: .5;
+body.theme-0 .post-img_wrapper img {
+  filter: brightness(.825);
 }
+
 

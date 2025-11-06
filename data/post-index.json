@@ -1,38 +1,100 @@
 {
   "posts": [
     {
-      "id": "nike-spring-campaign",
-      "title": "Spring Collection Launch",
-      "client": "Nike",
-      "category": "Campaign",
+      "id": "vesta-arkitekter",
+      "title": "Nytt varumärke",
+      "client": "Vesta Arkitekter",
       "type": "work",
-      "image": "https://lipsum.app/random/500x500",
-      "tags": ["Digital"]
+      "image": "/img/vesta/001.webp",
+      "tags": ["Varumärkesbyggande"]
     },
     {
-      "id": "volvo-rebrand",
-      "title": "Electric Future Rebrand",
-      "client": "Volvo",
-      "category": "Branding",
+      "id": "nicbud",
+      "title": "PRESS START:",
+      "client": "Nicbud",
       "type": "work",
-      "image": "https://lipsum.app/random/501x501",
-      "tags": ["Strategy"]
+      "image": "/img/nb/00.jpg",
+      "tags": ["Varumärkesbyggande"]
     },
     {
-      "id": "creative-process",
-      "date": "2025-01-20",
-      "title": "Det är alltid bara bra i sitt kontext",
-      "category": "Process",
-      "type": "blog",
-      "linkText": "Kontextualisera inlägget, läs mer"
+      "id": "nordic-pouch",
+      "title": "Nytt varumärke",
+      "client": "Nordicpouch",
+      "type": "work",
+      "image": "/img/np/00.jpg",
+      "tags": ["Varumärkesbyggande"]
     },
     {
-      "id": "ai-in-advertising",
-      "date": "2024-12-05",
-      "title": "Dalarna, dalarna, dalarna, dalarna",
-      "category": "Opinion",
+      "id": "save-our-speech",
+      "title": "Kneecap: Save Our Speech",
+      "client": "Triat Film",
+      "type": "work",
+      "image": "/img/kc/00.png",
+      "tags": ["Kampanj"]
+    },
+    {
+      "id": "retard-raveloution",
+      "title": "Retard Raveloution",
+      "client": "GIL",
+      "type": "work",
+      "image": "/img/gil/00.webp",
+      "tags": ["Kampanj"]
+    },
+    {
+      "id": "sund-investering",
+      "title": "En riktigt sund investering",
+      "client": "Göteborgsvarvet",
+      "type": "work",
+      "image": "/img/gbgv/01.webp",
+      "tags": ["Kampanj"]
+    },
+    {
+      "id": "spkt-mockups",
+      "title": "Spkt-mockups",
+      "client": "Spöket",
+      "type": "work",
+      "image": "/img/mockups/00.webp",
+      "tags": ["Kampanj"]
+    },
+    {
+      "id": "mini-sylva",
+      "title": "Minisylva",
+      "client": "Stora Enso",
+      "type": "work",
+      "image": "/img/storaenso/01.webp",
+      "tags": ["Kampanj"]
+    },
+    {
+      "id": "vesta-arkitekter",
+      "date": "2025-12-24",
+      "title": "Feliz navidad",
       "type": "blog",
-      "linkText": "Läs om min syn på AI"
+      "linkText": "Marry Christler"
+    },
+    {
+      "id": "tusen-mil",
+      "date": "2025-11-26",
+      "title": "Utanför sitt kontext finns inget värde",
+      "type": "blog"
+    },
+    {
+      "id": "tusen-mil",
+      "date": "2025-11-25",
+      "title": "Simon sa det bra, men farmor sa det nog bäst",
+      "type": "blog",
+      "linkText": "Har man inget gott o säga"
+    },
+    {
+      "id": "tusen-mil",
+      "date": "2025-11-24",
+      "title": "Att starta aktiebolag veckan innan man får anställning",
+      "type": "blog"
+    },
+    {
+      "id": "tusen-mil",
+      "date": "2025-10-04",
+      "title": "Jag har aldrig vart i Pisa...",
+      "type": "blog"
     }
   ]
 }

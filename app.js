@@ -1,9 +1,6 @@
 (async function () {
     "use strict";
 
-    // Import the content renderer
-    const { ContentRenderer } = await import('./data/postTemplates.js');
-
     const BODY = document.body;
     const SELECTORS = {
         THEME_SLIDER: '.theme-selector input',
@@ -232,25 +229,23 @@
             this.previousFocus = document.activeElement;
 
             try {
-                let postData = this.cache.get(postId);
+                let htmlContent = this.cache.get(postId);
 
-                if (!postData) {
-                    const response = await fetch(`data/posts/${postId}.json`);
+                if (!htmlContent) {
+                    const response = await fetch(`data/posts/${postId}.html`);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    postData = await response.json();
-                    this.cache.set(postId, postData);
+                    htmlContent = await response.text();
+                    this.cache.set(postId, htmlContent);
                 }
 
-                this.renderOverlayContent(postData);
+                this.renderOverlayContent(htmlContent);
                 this.currentPostId = postId;
                 BODY.classList.add('overlay-open');
 
                 if (this.overlay) {
-                    Object.assign(this.overlay, {
-                        role: 'dialog',
-                        ariaModal: 'true',
-                        ariaLabel: postData.title || 'Content overlay'
-                    });
+                    this.overlay.setAttribute('role', 'dialog');
+                    this.overlay.setAttribute('aria-modal', 'true');
+                    this.overlay.setAttribute('aria-label', 'Content overlay');
                 }
 
                 if (window.location.pathname.replace(/^\/|\/$/g, '') !== postId) {
@@ -284,19 +279,9 @@
             }
         }
 
-        renderOverlayContent(postData) {
+        renderOverlayContent(htmlContent) {
             if (!this.overlayContent) return;
-
-            const fragment = ContentRenderer.render(postData);
-
-            this.overlayContent.innerHTML = '';
-            this.overlayContent.appendChild(fragment);
-        }
-
-        createContentBlock(block) {
-            // This method is no longer needed but keeping it for backwards compatibility
-            // All rendering is now handled by ContentRenderer
-            return null;
+            this.overlayContent.innerHTML = htmlContent;
         }
     }
 

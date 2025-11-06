@@ -680,9 +680,6 @@ section.background::after {
 }
 
 .experiences .title {
-  font-size: var(--ft-l);
-  line-height: var(--ft-m-lh);
-  letter-spacing: var(--ft-m-ls);
   padding: calc(var(--gr-gap) * 1.75) 0;
   grid-column: 1/-1;
 }
@@ -717,12 +714,6 @@ References
 }
 .item-references {
   grid-column: span 2;
-}
-#references .title,
-.quote-reference {
-  font-size: var(--ft-l);
-  line-height: var(--ft-m-lh);
-  letter-spacing: var(--ft-m-ls);
 }
 #references .title {
   grid-column: 1/-1;
@@ -897,6 +888,9 @@ display: flex;
 flex-direction: column;
 gap: var(--gr-gap);
 }
+.overlay.dynamic-content > section .content-title {
+  gap: calc(var(--gr-gap) * .5);
+}
 
 .overlay.dynamic-content > section :is(.content-image, .content-vimeo, video) {
   border-radius: max(4px, calc(var(--gr-gap) * 0.25));
@@ -924,9 +918,12 @@ gap: var(--gr-gap);
   height: 100%;
   border: 0;
 }
+.overlay.dynamic-content p:not(.content-preamble) {
+  line-height: var(--ft-s-lh);
+}
 .content-preamble {
   font-weight: 500;
-  font-size: var(--ft-l);
+  font-size: var(--ft-m);
 }
 .content-gallery {
   flex-direction: row!important;

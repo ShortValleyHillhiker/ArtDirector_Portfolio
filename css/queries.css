@@ -150,6 +150,9 @@
   main > section.background {
     z-index:1;
   }
+  .overlay.dynamic-content {
+    padding-bottom: max(8rem, calc(var(--gr-gap) * 8));
+}
 }
 
 @media (max-width: 500px) {
