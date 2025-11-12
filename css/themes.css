@@ -128,23 +128,44 @@ body.theme-0 {
   inset: 0;
 }
 body.theme-2 .post-img_wrapper::after,
-body.theme-6 .post-img_wrapper::after {
+body.theme-6 .post-img_wrapper::after,
+body.theme-2 .theme-aware::after,
+body.theme-6 .theme-aware::after  {
   background-color: var(--clr-fg-100);
   mix-blend-mode: screen;
   opacity: 0.33;
 }
 body.theme-1 .post-img_wrapper::after,
-body.theme-7 .post-img_wrapper::after {
+body.theme-7 .post-img_wrapper::after,
+body.theme-1 .theme-aware::after,
+body.theme-7 .theme-aware::after  {
   background-color: var(--clr-bg-100);
   mix-blend-mode: lighten;
   opacity: 0.33;
 }
 body.theme-0 .post-img_wrapper::after,
-body.theme-8 .post-img_wrapper::after {
+body.theme-8 .post-img_wrapper::after,
+body.theme-0 .theme-aware::after,
+body.theme-8 .theme-aware::after {
   background-color: var(--clr-bg-100);
   mix-blend-mode: lighten;
   opacity: 0.425;
 }
 body.theme-4 .post-img_wrapper img {
   opacity: 0.9;
+}
+.theme-aware {
+  position: relative;
+}
+
+body.theme-2 .theme-aware::after,
+body.theme-6 .theme-aware::after,
+body.theme-1 .theme-aware::after,
+body.theme-7 .theme-aware::after,
+body.theme-0 .theme-aware::after,
+body.theme-8 .theme-aware::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
 }
