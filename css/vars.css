@@ -28,8 +28,6 @@ body {
   /* Clr */
 
   --clr-bg-100: rgba(224, 224, 224, 1);
-  --clr-bg-50: rgba(224, 224, 224, 0.5);
-  --clr-bg-25: rgba(224, 224, 224, 0.25);
   --clr-bg-0: rgba(224, 224, 224, 0);
   
   --clr-fg-100:rgba(28, 28, 28, 1);
@@ -37,8 +35,14 @@ body {
   --clr-fg-25:rgba(28, 28, 28, 0.25);
   --clr-fg-0:rgba(28, 28, 28, 0);
 
+  --clr-hl-100:rgb(28 28 28 / 1);
+  --clr-hl-20: rgb(28 28 28 / 0.25);
+  --clr-hl-05: rgb(28 28 28 / 0.025);
+
   /* transitions */
 
   --timing: cubic-bezier(0.9, 0, 0.1, 1);
   --transition: .33s var(--timing);
+
+  --top-spacing: clamp(60px, 16vw, 9999rem);
 }

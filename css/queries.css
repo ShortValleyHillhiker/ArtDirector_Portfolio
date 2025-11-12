@@ -150,9 +150,15 @@
   main > section.background {
     z-index:1;
   }
+
   .overlay.dynamic-content {
     padding-bottom: max(8rem, calc(var(--gr-gap) * 8));
-}
+  }
+  .overlay.dynamic-content > section .content-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gr-gap);
+  }
 }
 
 @media (max-width: 500px) {
