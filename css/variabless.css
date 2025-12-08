@@ -1,0 +1,57 @@
+html {
+  --gap: clamp(.75rem, 1vw, 1rem);
+  --g-pdn: minmax(var(--gap), 1fr);
+  --g-ct: min(2160px, 100% - var(--gap) * 2);
+
+  --gs-1: 1fr;
+  --gs-2: repeat(3,1fr);
+  --gs-3: repeat(5,1fr);
+  --gs-4: repeat(7,1fr);
+
+  /* Font */
+  --f-fam: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
+  --f-wgt: 400;
+  --ft-style: normal;
+
+/* Typography */
+  --fs-0: clamp(.833rem, .833vw, 2rem);
+  --fs-1: clamp(1rem, 1vw, 1.5rem);
+  --fs-2: clamp(1.2rem, 1.2vw, 5rem);
+  --fs-3: clamp(1.44rem, 1.44vw, 5rem);
+  --fs-4: clamp(1.728rem, 1.728vw, 5rem);
+  --fs-5: clamp(2.074rem, 2.074vw, 5rem);
+  --fs-6: clamp(2.488rem, 2.488vw, 5rem);
+  --fs-7: clamp(2.986rem, 2.98vw, 5rem);
+
+  --f-lh-1: 1.6;
+  --f-lh-2: 1.25;
+  --f-lh-3: 1.15;
+  --f-lh-4: 1.1;
+
+  --f-ls-1: -0.0333em;
+  --f-ls-2: -0.035em;
+  --f-ls-3: -0.045em;
+
+/* Motion */
+  --timing: cubic-bezier(0.9, 0, 0.1, 1);
+  --transition: .33s var(--timing);
+}
+
+body {
+/* Colour */
+  --c-bg: 238 238 238;
+  --c-fg: 28 28 28;
+
+  --c-bg-100: rgb(var(--c-bg));
+  --c-bg-80: rgba(var(--c-bg)  / .8);
+  --c-bg-60: rgba(var(--c-bg)  / .6);
+  --c-bg-40: rgba(var(--c-bg)  / .4);
+  --c-bg-20: rgba(var(--c-bg)  / .2);
+
+  --c-fg-100: rgb(var(--c-fg));
+  --c-fg-80: rgba(var(--c-fg) / .8);
+  --c-fg-60: rgba(var(--c-fg) / .6);
+  --c-fg-40: rgba(var(--c-fg) / .4);
+  --c-fg-20: rgba(var(--c-fg) / .2);
+}

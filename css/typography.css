@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  font-family: var(--f-fam);
+  font-size: var(--fs-1);
+  line-height: var(--f-lh-1);
+  letter-spacing: var(--f-ls-1);
+  font-weight: var(--f-wgt);
+  color: var(--c-fg-100);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--fs-7);
+  line-height: var(--f-lh-4);
+  letter-spacing: var(--f-ls-3);
+}
+h2 {
+  font-size: var(--fs-6);
+  line-height: var(--f-lh-3);
+  letter-spacing: var(--f-ls-2);
+}
+h3 {
+  font-size: var(--fs-5);
+  line-height: var(--f-lh-3);
+  letter-spacing: var(--f-ls-2);
+}
+h4 {
+  font-size: var(--fs-4);
+  line-height: var(--f-lh-2);
+}
+h4 {
+  font-size: var(--fs-3);
+  line-height: var(--f-lh-2);
+}
+h5 {
+  font-size: var(--fs-2);
+  line-height: var(--f-lh-2);
+}
+small,
+.btn {
+  font-size: var(--fs-0);
+}

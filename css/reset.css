@@ -21,9 +21,13 @@ img, picture, video, canvas, svg, .video-wrapper {
 input, button, textarea, select {
   font: inherit;
 }
-p, h1, h2, h3, h4, h5, h6 {
+small, p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
   text-wrap: pretty;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+  font-display: swap;
 }
 ::-webkit-scrollbar {
   display: none;
