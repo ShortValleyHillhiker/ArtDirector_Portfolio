@@ -58,7 +58,9 @@ navLinks.forEach(link => {
 const themePicker = document.querySelector('.theme-picker input');
 
 themePicker.addEventListener('input', (e) => {
-  document.body.className = document.body.className.replace(/theme-\d+/g, '');
+  for (let i = 0; i <= 6; i++) {
+    document.body.classList.remove(`theme-${i}`);
+  }
   
   document.body.classList.add(`theme-${e.target.value}`);
 });
