@@ -297,11 +297,10 @@ input[type="range"]::-moz-range-track {
 .integer::after {
   content: "";
   display: block;
-  height: 1.5rem;
+  min-height: 1.5rem;
   width: 1.5rem;
   border: 3px solid var(--c-fg-100);
   position: relative;
-  aspect-ratio: 1;
   transition: top var(--transition);
   top: -1px;
   border-radius: 100px;
