@@ -330,9 +330,13 @@ body.theme-6 .btn-setting.theme-picker:hover .integer::after {
   top: 0;
 }
 
-.btn-setting.theme-picker:active,
 body:is(.menu-active, .overlay-active) {
   overflow: hidden;
+}
+@media (hover: hover) {
+  body:has(.btn-setting.theme-picker:hover) {
+    overflow: hidden;
+  }
 }
 /* -----------------------------------------
         SLASK
