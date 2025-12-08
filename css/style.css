@@ -30,17 +30,13 @@ main > section {
 .overlay,
 nav {
   display: grid;
-  grid-template-columns: var(--g-pdn) [content-start] var(--g-ct) [content-end] var(
-      --g-pdn
-    );
+  grid-template-columns: var(--g-pdn) [content-start] var(--g-ct) [content-end] var(--g-pdn);
   position: fixed;
   inset: 0;
   pointer-events: none;
 }
+
 /* ----- NAV ----- */
-body.overlay-active nav ul {
-  opacity: 0;
-}
 nav ul {
   grid-column: content;
   display: flex;
@@ -51,7 +47,9 @@ nav ul {
   max-width: 150px;
   transition: opacity var(--transition);
 }
-/* nav li */
+body.overlay-active nav ul {
+  opacity: 0;
+}
 nav li a {
   text-decoration: none;
   color: var(--c-fg-60);
@@ -66,7 +64,12 @@ nav li.active a {
   position: absolute;
   top: var(--gap);
   right: 0;
-    grid-column: content;
+  grid-column: content;
+}
+body.overlay-active .nav-mobile {
+  z-index: 1;
+  opacity: 1;
+  pointer-events: all;
 }
 .nav-settings {
   grid-column: content;
@@ -81,9 +84,9 @@ nav li.active a {
   gap: var(--gap);
   pointer-events: all;
 }
+
 /* ----- OVERLAY ----- */
 .overlay {
-  pointer-events: none;
   transition: background-color var(--transition);
 }
 .overlay > div {
@@ -108,7 +111,7 @@ nav li.active a {
   transition-delay: calc(var(--i) * .05s);
 }
 body.grid-active .overlay-grid span {
-  height: 0px;
+  height: 0;
 }
 .overlay-content {
   position: absolute;
@@ -132,7 +135,8 @@ body.overlay-active .overlay-content {
 body:is(.overlay-active, .menu-active) .overlay::before {
   opacity: 1;
 }
-/* Settings */
+
+/* ----- SETTINGS ----- */
 .btn-setting {
   display: flex;
   width: 3rem;
@@ -146,6 +150,8 @@ body:is(.overlay-active, .menu-active) .overlay::before {
 .btn-setting span {
   background-color: var(--c-fg-100);
 }
+
+/* Overlay toggle */
 .btn-setting.overlay-toggle > div {
   position: relative;
   display: flex;
@@ -161,22 +167,14 @@ body:is(.overlay-active, .menu-active) .overlay::before {
   height: 3px;
   transition: transform var(--transition);
 }
-body:is(.overlay-active, .menu-active)
-  .btn-setting.overlay-toggle
-  span:first-child {
+body:is(.overlay-active, .menu-active) .btn-setting.overlay-toggle span:first-child {
   transform: rotate(-45deg);
 }
-body:is(.overlay-active, .menu-active)
-  .btn-setting.overlay-toggle
-  span:last-child {
+body:is(.overlay-active, .menu-active) .btn-setting.overlay-toggle span:last-child {
   transform: rotate(45deg);
 }
-body.overlay-active .nav-mobile {
-  position: absolute;
-  z-index: 1;
-  opacity: 1;
-  pointer-events: all;
-}
+
+/* Grid toggle */
 .btn-setting.grid-toggle > div {
   position: relative;
   display: flex;
@@ -190,7 +188,7 @@ body.overlay-active .nav-mobile {
   transition: height var(--transition);
 }
 body.grid-active .btn-setting.grid-toggle span {
-  height: 0px;
+  height: 0;
 }
 body.grid-active .btn-setting.grid-toggle span:nth-child(odd) {
   height: 100%;
@@ -198,17 +196,11 @@ body.grid-active .btn-setting.grid-toggle span:nth-child(odd) {
   animation-delay: calc(var(--brand-delay) * 0.06s);
 }
 @keyframes gridBounce {
-  0% {
-    height: 100%;
-  }
-  75% {
-    height: 0;
-  }
-  100% {
-    height: 0;
-  }
+  0%, 100% { height: 0; }
+  75% { height: 0; }
 }
-/* ---------- Theme-slider ---------- */
+
+/* Theme picker */
 .btn-setting.theme-picker {
   display: flex;
   align-items: center;
@@ -216,16 +208,19 @@ body.grid-active .btn-setting.grid-toggle span:nth-child(odd) {
   flex-direction: column;
   transition: height var(--transition);
   position: relative;
+  height: 3rem;
+  -webkit-tap-highlight-color: transparent;
 }
-.btn-setting.theme-picker:hover {
+.btn-setting.theme-picker.expanded {
   height: 224px;
 }
 .btn-setting.theme-picker > * {
   pointer-events: none;
 }
-.btn-setting.theme-picker:hover input[type="range"] {
+.btn-setting.theme-picker.expanded input[type="range"] {
   pointer-events: initial;
 }
+
 input[type="range"] {
   writing-mode: vertical-lr;
   direction: rtl;
@@ -292,51 +287,32 @@ input[type="range"]::-moz-range-track {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
 }
 .integer::after {
   content: "";
   display: block;
-  min-height: 1.5rem;
   width: 1.5rem;
+  min-height: 1.5rem;
   border: 3px solid var(--c-fg-100);
   position: relative;
+  box-sizing: border-box;
   transition: top var(--transition);
   top: -1px;
   border-radius: 100px;
 }
-.btn-setting.theme-picker:hover .integer::after {
+.btn-setting.theme-picker.expanded .integer::after {
   transition: top .2s;
 }
-body.theme-0 .btn-setting.theme-picker:hover .integer::after {
-  top: 100%;
-}
-body.theme-1 .btn-setting.theme-picker:hover .integer::after {
-  top: 83.33333333%;
-}
-body.theme-2 .btn-setting.theme-picker:hover .integer::after {
-  top: 66.66666667%;
-}
-body.theme-3 .btn-setting.theme-picker:hover .integer::after {
-  top: 50%;
-}
-body.theme-4 .btn-setting.theme-picker:hover .integer::after {
-  top: 33.33333333%;
-}
-body.theme-5 .btn-setting.theme-picker:hover .integer::after {
-  top: 16.66666667%;
-}
-body.theme-6 .btn-setting.theme-picker:hover .integer::after {
-  top: 0;
-}
+body.theme-0 .btn-setting.theme-picker.expanded .integer::after { top: 100%; }
+body.theme-1 .btn-setting.theme-picker.expanded .integer::after { top: 83.33333333%; }
+body.theme-2 .btn-setting.theme-picker.expanded .integer::after { top: 66.66666667%; }
+body.theme-3 .btn-setting.theme-picker.expanded .integer::after { top: 50%; }
+body.theme-4 .btn-setting.theme-picker.expanded .integer::after { top: 33.33333333%; }
+body.theme-5 .btn-setting.theme-picker.expanded .integer::after { top: 16.66666667%; }
+body.theme-6 .btn-setting.theme-picker.expanded .integer::after { top: 0; }
 
-body:is(.menu-active, .overlay-active) {
+body:is(.menu-active, .overlay-active, .theme-picker-active) {
   overflow: hidden;
-}
-@media (hover: hover) {
-  body:has(.btn-setting.theme-picker:hover) {
-    overflow: hidden;
-  }
 }
 /* -----------------------------------------
         SLASK

@@ -55,14 +55,50 @@ navLinks.forEach(link => {
 });
 
 // THEME SLIDER
+// const themePicker = document.querySelector('.theme-picker input');
+
+// themePicker.addEventListener('input', (e) => {
+//   for (let i = 0; i <= 6; i++) {
+//     document.body.classList.remove(`theme-${i}`);
+//   }
+  
+//   document.body.classList.add(`theme-${e.target.value}`);
+// });
+
+// document.body.classList.add(`theme-${themePicker.value}`);
+
+
 const themePicker = document.querySelector('.theme-picker input');
+const themePickerBtn = document.querySelector('.btn-setting.theme-picker');
+let isExpanded = false;
+
+themePickerBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (!isExpanded) {
+    isExpanded = true;
+    themePickerBtn.classList.add('expanded');
+    document.body.classList.add('theme-picker-active');
+    setTimeout(() => themePicker.style.pointerEvents = 'auto', 500);
+  }
+});
+
+themePicker.addEventListener('touchend', (e) => {
+  e.stopPropagation();
+});
+
+document.body.addEventListener('click', () => {
+  if (isExpanded) {
+    isExpanded = false;
+    themePicker.style.pointerEvents = 'none';
+    themePickerBtn.classList.remove('expanded');
+    document.body.classList.remove('theme-picker-active');
+  }
+});
 
 themePicker.addEventListener('input', (e) => {
-  for (let i = 0; i <= 6; i++) {
-    document.body.classList.remove(`theme-${i}`);
-  }
-  
+  for (let i = 0; i <= 6; i++) document.body.classList.remove(`theme-${i}`);
   document.body.classList.add(`theme-${e.target.value}`);
 });
 
+themePicker.style.pointerEvents = 'none';
 document.body.classList.add(`theme-${themePicker.value}`);
