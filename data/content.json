@@ -4,13 +4,50 @@
       "id": "work-template",
       "title": "Project Title",
       "customer": "Customer Name",
-      "tags": ["branding", "web", "motion"]
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/1080x1080"
     },
     {
       "id": "work-template",
       "title": "Detta är ett projekt",
       "customer": "Customer Name",
-      "tags": ["branding", "web", "motion"]
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/850x850"
+    },
+    {
+      "id": "work-template",
+      "title": "Detta är ett projekt",
+      "customer": "Customer Name",
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/850x850"
+    },
+    {
+      "id": "work-template",
+      "title": "Detta är ett projekt",
+      "customer": "Customer Name",
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/850x850"
+    },
+    {
+      "id": "work-template",
+      "title": "Detta är ett projekt",
+      "customer": "Customer Name",
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/850x850"
+    },
+    {
+      "id": "work-template",
+      "title": "Detta är ett projekt",
+      "customer": "Customer Name",
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/850x850"
+    },
+    {
+      "id": "work-template",
+      "title": "Detta är ett projekt",
+      "customer": "Customer Name",
+      "tags": ["branding", "web", "motion"],
+      "image": "https://lipsum.app/random/850x850"
     }
   ],
   "blog": [
@@ -18,7 +55,61 @@
       "id": "blog-template",
       "title": "Blog Post Title",
       "description": "Short description of the post",
-      "date": "2024-12-08"
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
+    },
+    {
+      "id": "blog-template",
+      "title": "Blog Post Title",
+      "description": "Short description of the post",
+      "date": "2:a augusti, 2025"
     }
   ]
 }

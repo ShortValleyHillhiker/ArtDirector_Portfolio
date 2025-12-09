@@ -1,14 +1,17 @@
 body.theme-6 {
   --c-fg: 243 230 207;
   --c-bg: 233 79 14;
+  --c-hl: 28 28 28;
 }
 body.theme-5 {
   --c-bg: 255 240 206;
   --c-fg: 185 27 19;
+  --c-hl: 255 0 0;
 }
 body.theme-4 {
   --c-bg: 238 238 238;
   --c-fg: 228 47 37;
+  --c-hl: 255 0 0;
 }
 body.theme-3 {
   --c-bg: 238 238 238;
@@ -17,14 +20,17 @@ body.theme-3 {
 body.theme-2 {
   --c-bg: 238 238 238;
   --c-fg: 37 0 201;
+  --c-hl: 255 0 0;
 }
 body.theme-1 {
   --c-fg: 22 17 126;
   --c-bg: 216 235 242;
+  --c-hl: 255 0 0;
 }
 body.theme-0 {
   --c-bg: 37 0 201;
   --c-fg: 232 238 248;
+  --c-hl: 255 0 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,10 +40,12 @@ body.theme-0 {
 } */
 }
 
-body.i-love-you {
+body:has(.option.O7.active) {
   --c-bg: 75 15 112;
   --c-fg: 255 208 0;
+  --c-hl: 255 0 0;
 }
-body.i-love-you .btn-setting.theme-picker {
+bOdy:has(.option.O7.active) .btn-setting.theme-picker {
   display: none;
+  color: #222;
 }

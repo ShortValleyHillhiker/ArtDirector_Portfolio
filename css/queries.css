@@ -3,12 +3,12 @@
     --gs-1: 1fr;
     --gs-2: repeat(2, 1fr);
     --gs-3: repeat(3, 1fr);
-    --gs-4: repeat(5, 1fr);
+    --gs-4: repeat(6, 1fr);
   }
   main > section {
     grid-column: 3/-1;
   }
-  .overlay-grid div:nth-child(n + 6) {
+  .overlay-grid div:nth-child(n + 7) {
     display: none;
   }
 }
@@ -28,6 +28,9 @@
   }
 .overlay-grid span {
   transition-delay: calc(var(--i) * .1s);
+}
+article.work-preview .img-wrapper {
+  aspect-ratio:  5/4;
 }
 }
 
@@ -90,6 +93,9 @@ body.menu-active nav li {
   .btn-setting.overlay-toggle span:last-child {
     transform: rotate(0) translateY(5px);
   }
+  .intro-options {
+    padding-right: 1rem;
+}
 }
 
 @media (min-width: 768px) {

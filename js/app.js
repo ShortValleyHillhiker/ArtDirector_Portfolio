@@ -39,66 +39,126 @@ navLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     document.querySelector(link.getAttribute('href')).scrollIntoView({ 
-      behavior: window.innerWidth >= 768 ? 'smooth' : 'instant' 
+      behavior: window.innerWidth >= 500 ? 'smooth' : 'instant' 
     });
-    if (window.innerWidth < 768) document.body.classList.remove('menu-active');
-  });
-});
-
-// Close menu on mobile when clicking nav links
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if (window.innerWidth < 768) {
-      document.body.classList.remove('menu-active');
-    }
+    if (window.innerWidth < 500) document.body.classList.remove('menu-active');
   });
 });
 
 // THEME SLIDER
-// const themePicker = document.querySelector('.theme-picker input');
-
-// themePicker.addEventListener('input', (e) => {
-//   for (let i = 0; i <= 6; i++) {
-//     document.body.classList.remove(`theme-${i}`);
-//   }
-  
-//   document.body.classList.add(`theme-${e.target.value}`);
-// });
-
-// document.body.classList.add(`theme-${themePicker.value}`);
-
-
 const themePicker = document.querySelector('.theme-picker input');
 const themePickerBtn = document.querySelector('.btn-setting.theme-picker');
-let isExpanded = false;
-
-themePickerBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (!isExpanded) {
-    isExpanded = true;
-    themePickerBtn.classList.add('expanded');
-    document.body.classList.add('theme-picker-active');
-    setTimeout(() => themePicker.style.pointerEvents = 'auto', 500);
-  }
-});
-
-themePicker.addEventListener('touchend', (e) => {
-  e.stopPropagation();
-});
-
-document.body.addEventListener('click', () => {
-  if (isExpanded) {
-    isExpanded = false;
-    themePicker.style.pointerEvents = 'none';
-    themePickerBtn.classList.remove('expanded');
-    document.body.classList.remove('theme-picker-active');
-  }
-});
+const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
 themePicker.addEventListener('input', (e) => {
-  for (let i = 0; i <= 6; i++) document.body.classList.remove(`theme-${i}`);
+  document.body.className = document.body.className.replace(/theme-\d+/g, '');
   document.body.classList.add(`theme-${e.target.value}`);
 });
 
-themePicker.style.pointerEvents = 'none';
+if (isTouchDevice) {
+  themePickerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themePickerBtn.classList.toggle('expanded');
+  });
+
+  document.addEventListener('click', () => {
+    themePickerBtn.classList.remove('expanded');
+  });
+}
+
 document.body.classList.add(`theme-${themePicker.value}`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Intro message switcher
+const options = document.querySelectorAll('.intro-options .option');
+const messages = document.querySelectorAll('.intro-content .message');
+
+options.forEach(option => {
+  option.addEventListener('click', () => {
+    // Get the class that matches (O1, O2, etc.)
+    const targetClass = Array.from(option.classList).find(cls => cls.startsWith('O'));
+    
+    // Remove active from all options and messages
+    options.forEach(opt => opt.classList.remove('active'));
+    messages.forEach(msg => msg.classList.remove('active'));
+    
+    // Add active to clicked option and corresponding message
+    option.classList.add('active');
+    document.querySelector(`.message.${targetClass}`).classList.add('active');
+  });
+});
+
+// Intro scroll masks
+const introOptions = document.querySelector('.intro-options');
+const leftMask = document.querySelector('.scroll-mask.left');
+const rightMask = document.querySelector('.scroll-mask.right');
+
+introOptions.addEventListener('scroll', () => {
+  const scrollLeft = introOptions.scrollLeft;
+  const maxScroll = introOptions.scrollWidth - introOptions.clientWidth;
+  
+  // Show left mask when scrolled more than 25px from left
+  leftMask.classList.toggle('scrolled', scrollLeft > 25);
+  
+  // Remove scrolled from right mask when within 25px of right edge
+  rightMask.classList.toggle('scrolled', maxScroll - scrollLeft > 25);
+});
