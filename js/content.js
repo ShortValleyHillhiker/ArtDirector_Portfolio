@@ -4,8 +4,8 @@ const contentData = {
 };
 
 const lazyLoadConfig = {
-  work: { initial: 4, increment: 4, currentIndex: 0 },
-  blog: { initial: 10, increment: 4, currentIndex: 0 }
+  work: { initial: 2, increment: 2, currentIndex: 0 },
+  blog: { initial: 2, increment: 2, currentIndex: 0 }
 };
 
 // Single intersection observer instance shared across all articles
@@ -61,7 +61,7 @@ function renderContent(type, isInitial = false) {
   if (isInitial) {
     grid.innerHTML = html;
   } else {
-    grid.querySelector(`.load-more-${type}`)?.remove();
+grid.querySelector('.btn-wrapper')?.remove();
     grid.insertAdjacentHTML('beforeend', html);
   }
   
@@ -115,19 +115,20 @@ function updateLoadMoreButton(type) {
   
   const config = lazyLoadConfig[type];
   const hasMore = config.currentIndex < contentData[type].length;
-  let btn = grid.querySelector(`.load-more-${type}`);
+  let wrapper = grid.querySelector('.btn-wrapper');
   
-  if (hasMore && !btn) {
-    btn = document.createElement('div');
-    btn.className = `btn load-more-${type}`;
-    btn.textContent = 'Ladda fler';
-    btn.addEventListener('click', () => renderContent(type, false));
-    grid.appendChild(btn);
-  } else if (!hasMore && btn) {
-    btn.remove();
+  if (hasMore) {
+    if (!wrapper) {
+      wrapper = document.createElement('div');
+      wrapper.className = 'btn-wrapper';
+      wrapper.innerHTML = `<div class="btn load-more-${type}">Ladda fler</div>`;
+      wrapper.firstChild.addEventListener('click', () => renderContent(type, false));
+      grid.appendChild(wrapper);
+    }
+  } else if (wrapper) {
+    wrapper.remove();
   }
 }
-
 async function loadOverlay(type, id) {
   try {
     const response = await fetch(`data/${type}/${id}.html`);

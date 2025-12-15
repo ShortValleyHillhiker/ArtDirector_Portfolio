@@ -20,7 +20,8 @@
     --gs-3: 1fr 1fr;
     --gs-4: repeat(3, 1fr);
   }
-  main > section {
+  main > section,
+  .test-wrapper {
     grid-column: 2/-1;
   }
   .overlay-grid div:nth-child(n + 4) {
@@ -44,7 +45,8 @@ article.work-preview .img-wrapper {
     --gs-3: 1fr;
     --gs-4: repeat(2, 1fr);
   }
-  main > section {
+  main > section,
+.test-wrapper  {
     grid-column: 1/-1;
   }
   .overlay-grid div:nth-child(n + 3) {

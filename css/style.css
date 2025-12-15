@@ -16,13 +16,12 @@ main {
   grid-template-columns: var(--gs-4);
   color: var(--c-fg-100);
 
-  gap: var(--gap);
+  gap: clamp(15rem, 25vw, 25rem) var(--gap);
 }
 main > section {
   grid-column: 3/-1;
 
   position: relative;
-  min-height: 720px; /* REMOVE LATER*/
 }
 
 /* -----------------------------------------
@@ -53,6 +52,8 @@ nav ul {
   pointer-events: all;
   max-width: 150px;
   transition: opacity var(--transition);
+  opacity: 1;
+  transform: translateZ(0); /* Add this - forces GPU rendering */
 }
 /* nav li */
 nav li a {
@@ -123,6 +124,7 @@ body.grid-active .overlay-grid span {
   inset: 0;
   opacity: 0;
   transition: opacity var(--transition);
+  overflow-y: scroll;
 }
 body.overlay-active .overlay-content {
   opacity: 1;
@@ -383,14 +385,17 @@ body:is(.menu-active, .overlay-active) {
   color: var(--c-bg-100);
   background-color: var(--c-fg-100);
 }
-article.work-preview .img-wrapper {
+/* -----------------------------------
+  Posts
+----------------------------------- */
+.img-wrapper, video {
   background-color: var(--c-fg-20);
-  aspect-ratio: 2/1;
   overflow: hidden;
-  display: grid;
-  align-content: center;
   position: relative;
   border-radius: .5rem;
+}
+article.work-preview .img-wrapper {
+  aspect-ratio: 2/1;
 }
 article.work-preview img {
   width: 100%;
@@ -429,10 +434,54 @@ article.hidden {
   transform: translateY(20px);
 }
 article {
+  width: 100%;
   transition: opacity var(--transition), transform var(--transition);
 }
-
-
+.btn-wrapper {
+  grid-column: 1/-1;
+  display: flex;
+    justify-content: center;
+}
+/* -----------------------------------
+  Post content
+----------------------------------- */
+.test-wrapper {
+  display: grid;
+  gap: var(--gap);
+  grid-column: 3/-1;
+}
+.test-wrapper > * {
+  grid-column: 1/-1;
+}
+.test-wrapper > .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.test-wrapper > video {
+  width: 100%;
+}
+.test-frame {
+  position: relative;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+.test-frame iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.test-wintro {
+    display: flex;
+    flex-direction: column;
+    gap: calc(2 * var(--gap));
+  }
+.test-wintro span p {
+  color: var(--c-fg-40);
+  }
 /* -----------------------------------
   Section Intro
 ----------------------------------- */
@@ -451,7 +500,7 @@ article {
 .intro-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap);
+  gap: .5em;
 }
 .intro-buttons > a {
   border: 1px solid var(--c-fg-100);
