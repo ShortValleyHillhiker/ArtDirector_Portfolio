@@ -8,7 +8,6 @@ const lazyLoadConfig = {
   blog: { initial: 2, increment: 2, currentIndex: 0 }
 };
 
-// Single intersection observer instance shared across all articles
 const articleObserver = new IntersectionObserver((entries) => {
   const queue = entries.filter(e => e.isIntersecting && e.target.classList.contains('hidden'));
   
@@ -67,7 +66,6 @@ grid.querySelector('.btn-wrapper')?.remove();
   
   config.currentIndex = endIndex;
   
-  // Attach listeners only to new articles
   const newArticles = grid.querySelectorAll('article:not([data-has-listener])');
   const loadFn = type === 'work' ? loadProject : loadBlogPost;
   
@@ -85,7 +83,7 @@ grid.querySelector('.btn-wrapper')?.remove();
 function createWorkHTML(item) {
   return `
     <article class="work-preview hidden" data-id="${item.id}">
-      <div class="img-wrapper">
+      <div class="media-wrapper">
         ${item.image ? `<img src="${item.image}" alt="${item.title}">` : ''}
       </div>
       <div class="work-preview_content">
@@ -105,7 +103,7 @@ function createBlogHTML(item) {
         <small>${item.date}</small>
         <h5>${item.title}</h5>
       </div>
-      <div class="btn">Läs mer</div>
+      <button class="secondary">Läs mer</button>
     </article>`;
 }
 
@@ -121,7 +119,7 @@ function updateLoadMoreButton(type) {
     if (!wrapper) {
       wrapper = document.createElement('div');
       wrapper.className = 'btn-wrapper';
-      wrapper.innerHTML = `<div class="btn load-more-${type}">Ladda fler</div>`;
+      wrapper.innerHTML = `<button class="tertiary load-more-${type}">Ladda fler</button>`;
       wrapper.firstChild.addEventListener('click', () => renderContent(type, false));
       grid.appendChild(wrapper);
     }

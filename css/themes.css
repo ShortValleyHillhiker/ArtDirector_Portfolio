@@ -45,7 +45,7 @@ body:has(.option.O7.active) {
   --c-fg: 255 208 0;
   --c-hl: 255 0 0;
 }
-bOdy:has(.option.O7.active) .btn-setting.theme-picker {
+body:has(.option.O7.active) .btn-setting.theme-picker {
   display: none;
   color: #222;
 }

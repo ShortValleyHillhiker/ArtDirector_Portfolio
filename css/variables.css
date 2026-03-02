@@ -34,8 +34,9 @@ html {
   --f-ls-3: -0.045em;
 
 /* Motion */
-  --timing: cubic-bezier(0.9, 0, 0.1, 1);
-  --transition: .33s var(--timing);
+  --easing: cubic-bezier(0.9, 0, 0.1, 1);
+  --timing: .33s;
+  --transition: var(--timing) var(--easing);
 }
 
 body {
