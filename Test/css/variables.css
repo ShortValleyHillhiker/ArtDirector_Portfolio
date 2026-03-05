@@ -1,0 +1,63 @@
+html {
+    /* Font sizing */
+    --fs-1: clamp(0.833rem, 0.8179rem + 0.0684vw, 0.9rem);
+    --fs-2: clamp(1rem, 0.9712rem + 0.128vw, 1.125rem);
+    --fs-3: clamp(1.2rem, 1.1524rem + 0.212vw, 1.4063rem);
+    --fs-4: clamp(1.44rem, 1.3667rem + 0.326vw, 1.7578rem);
+    --fs-5: clamp(1.728rem, 1.6197rem + 0.481vw, 2.1973rem);
+    --fs-6: clamp(2.0736rem, 1.9183rem + 0.69vw, 2.7466rem);
+    --fs-7: clamp(2.4883rem, 2.2703rem + 0.969vw, 3.4332rem);
+    --fs-8: clamp(2.986rem, 2.724rem + 1.371vw, 4.12rem);
+
+    /* Colors */
+    --c-bg: 238 238 238;
+    --c-fg: 28 28 28;
+    --c-hl: 255 221 0;
+
+    --c-bg: 238 238 238;
+    --c-fg: 37 0 201;
+
+    --c-bg-100: rgb(var(--c-bg));
+    --c-bg-80: rgba(var(--c-bg) / .8);
+    --c-bg-60: rgba(var(--c-bg) / .6);
+    --c-bg-40: rgba(var(--c-bg) / .4);
+    --c-bg-20: rgba(var(--c-bg) / .2);
+    --c-bg-0: rgba(var(--c-bg) / 0);
+
+    --c-fg-100: rgb(var(--c-fg));
+    --c-fg-80: rgba(var(--c-fg) / .8);
+    --c-fg-60: rgba(var(--c-fg) / .6);
+    --c-fg-40: rgba(var(--c-fg) / .4);
+    --c-fg-20: rgba(var(--c-fg) / .2);
+
+    --c-hl-100: rgb(var(--c-hl));
+
+
+    /* Motion */
+    --timing: 330ms;
+    --bezier: cubic-bezier(0.9, 0, 0.1, 1);
+    --transition: var(--timing) var(--bezier);
+
+    /* Grid system */
+    --g-pdn: minmax(var(--gap), 1fr);
+    --g-ct: min(1920px, 100% - var(--gap-m) * 2);
+    --g-cols: minmax(var(--gap-m), 1fr) [content-start] var(--g-ct) [content-end] minmax(var(--gap-m), 1fr);
+
+    --gap-s: min(0.5rem, 10px);
+    --gap-m: min(1rem, 20px);
+    --gap-l: min(2rem, 32px);
+
+
+    --gs-1: 1fr;
+    --gs-2: repeat(2, 1fr);
+    --gs-3: repeat(5, 1fr);
+    --gs-4: repeat(8, 1fr);
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+    --c-fg: 255 255 255;
+    --c-bg: 0 0 0;
+    --c-hl-100: rgb(var(--c-hl) / .6);
+}
+}

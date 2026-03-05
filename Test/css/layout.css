@@ -1,0 +1,37 @@
+body,
+.spa-overlay {
+    display: grid;
+    grid-template-columns: var(--g-cols);
+}
+
+main,
+.spa-overlay>* {
+    grid-column: content;
+    display: grid;
+    grid-template-columns: var(--gs-4);
+    gap: var(--gap-m);
+}
+main > section {
+    grid-column: 3/-1;
+}
+.spa-overlay>* {
+    position: absolute;
+    inset: 0;
+}
+.spa-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+/* Lines overlay */
+.lines-column {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.lines-column span {
+    display: block;
+    /* width: 1px; */
+    background-color: var(--c-fg-20);
+    transition: height var(--transition);
+}
